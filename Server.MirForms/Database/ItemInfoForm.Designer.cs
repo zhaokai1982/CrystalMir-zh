@@ -97,6 +97,8 @@
             ISetComboBox = new ComboBox();
             label35 = new Label();
             tabPage2 = new TabPage();
+            DamageEnhancetextBox = new TextBox();
+            label66 = new Label();
             groupBox1 = new GroupBox();
             label50 = new Label();
             label52 = new Label();
@@ -210,8 +212,6 @@
             Gameshop_button = new Button();
             TxtSearchItem = new TextBox();
             label65 = new Label();
-            DamageEnhancetextBox = new TextBox();
-            label66 = new Label();
             ItemInfoPanel.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -896,7 +896,7 @@
             // 
             ShapeTextBox.Location = new Point(426, 123);
             ShapeTextBox.Margin = new Padding(4);
-            ShapeTextBox.MaxLength = 3;
+            ShapeTextBox.MaxLength = 5;
             ShapeTextBox.Name = "ShapeTextBox";
             ShapeTextBox.Size = new Size(46, 23);
             ShapeTextBox.TabIndex = 6;
@@ -1060,6 +1060,26 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "基本属性";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // DamageEnhancetextBox
+            // 
+            DamageEnhancetextBox.Location = new Point(479, 150);
+            DamageEnhancetextBox.Margin = new Padding(4);
+            DamageEnhancetextBox.MaxLength = 3;
+            DamageEnhancetextBox.Name = "DamageEnhancetextBox";
+            DamageEnhancetextBox.Size = new Size(41, 23);
+            DamageEnhancetextBox.TabIndex = 141;
+            DamageEnhancetextBox.TextChanged += DamageEnhancetextBox_TextChanged;
+            // 
+            // label66
+            // 
+            label66.AutoSize = true;
+            label66.Location = new Point(386, 156);
+            label66.Margin = new Padding(4, 0, 4, 0);
+            label66.Name = "label66";
+            label66.Size = new Size(80, 17);
+            label66.TabIndex = 140;
+            label66.Text = "伤害增加数值";
             // 
             // groupBox1
             // 
@@ -2302,27 +2322,6 @@
             label65.Size = new Size(56, 17);
             label65.TabIndex = 31;
             label65.Text = "搜索物品";
-            // 
-            // DamageEnhancetextBox
-            // 
-            DamageEnhancetextBox.Location = new Point(479, 150);
-            DamageEnhancetextBox.Margin = new Padding(4);
-            DamageEnhancetextBox.MaxLength = 3;
-            DamageEnhancetextBox.Name = "DamageEnhancetextBox";
-            DamageEnhancetextBox.Size = new Size(41, 23);
-            DamageEnhancetextBox.TabIndex = 141;
-            DamageEnhancetextBox.TextChanged += DamageEnhancetextBox_TextChanged;
-            // 
-            // label66
-            // 
-            label66.AutoSize = true;
-            label66.Location = new Point(386, 156);
-            label66.Margin = new Padding(4, 0, 4, 0);
-            label66.Name = "label66";
-            label66.Size = new Size(80, 17);
-            label66.TabIndex = 140;
-            label66.Text = "伤害增加数值";
-
             // 
             // ItemInfoForm
             // 
