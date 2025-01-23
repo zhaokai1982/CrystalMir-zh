@@ -6749,5 +6749,156 @@ namespace ServerPackets
             }
         }
     }
+    public sealed class PlayBgMusic : Packet
+    {
+        public override short Index
+        {
+            get { return (short)ServerPacketIds.PlayBgMusic; }
+        }
 
+        public string Music;
+        public string From;
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            Music = reader.ReadString();
+            From = reader.ReadString();
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(Music);
+            writer.Write(From);
+        }
+    }
+
+    public sealed class SetBgMusic : Packet
+    {
+        public override short Index
+        {
+            get { return (short)ServerPacketIds.SetBgMusic; }
+        }
+
+        public string BgMusic;
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            BgMusic = reader.ReadString();
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(BgMusic);
+        }
+    }
+
+    public sealed class BgMusicEffect : Packet
+    {
+        public override short Index
+        {
+            get { return (short)ServerPacketIds.BgMusicEffect; }
+        }
+
+        public uint ObjectID;
+        public uint Duration;
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            ObjectID = reader.ReadUInt32();
+            Duration = reader.ReadUInt32();
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(ObjectID);
+            writer.Write(Duration);
+        }
+    }
+    public sealed class PullLzPaysResult : Packet
+    {
+        public override short Index
+        {
+            get { return (short)ServerPacketIds.PullLzPaysResult; }
+        }
+
+        public string LzPayInfo = string.Empty;
+        public string WebInfo = string.Empty;
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            LzPayInfo = reader.ReadString();
+            WebInfo = reader.ReadString();
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(LzPayInfo);
+            writer.Write(WebInfo);
+        }
+    }
+
+    public sealed class RechargeResult : Packet
+    {
+        public override short Index
+        {
+            get { return (short)ServerPacketIds.RechargeResult; }
+        }
+
+        public bool Result = false;
+        public string Info = string.Empty;
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            Result = reader.ReadBoolean();
+            Info = reader.ReadString();
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(Result);
+            writer.Write(Info);
+        }
+    }
+    public sealed class PickInfos : Packet
+    {
+        public override short Index
+        {
+            get { return (short)ServerPacketIds.PickInfos; }
+        }
+        public string Infos = string.Empty;
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            Infos = reader.ReadString();
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(Infos);
+        }
+    }
+    public sealed class NoPickList : Packet
+    {
+        public override short Index
+        {
+            get { return (short)ServerPacketIds.NoPickList; }
+        }
+        public List<string> Items = new List<string>();
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            int count = reader.ReadInt32();
+            for (int i = 0; i < count; i++)
+            {
+                Items.Add(reader.ReadString());
+            }
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(Items.Count);
+            for (int i = 0; i < Items.Count; i++)
+            {
+                writer.Write(Items[i]);
+            }
+        }
+    }
 }

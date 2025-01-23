@@ -105,7 +105,7 @@ namespace Server.MirDatabase
         public int CurrentHeroIndex;
         public bool HeroSpawned;
         public HeroBehaviour HeroBehaviour;
-
+        public List<string> NoPickList = new List<string>();
         public CharacterInfo() { }
 
         public CharacterInfo(ClientPackets.NewCharacter p, MirConnection c)
@@ -380,6 +380,14 @@ namespace Server.MirDatabase
 
             if (version > 100)
                 HeroBehaviour = (HeroBehaviour)reader.ReadByte();
+            if (version > 110)
+            {
+                count = reader.ReadInt32();
+                for (int i = 0; i < count; i++)
+                {
+                    NoPickList.Add(reader.ReadString());
+                }
+            }
         }
 
         public virtual void Save(BinaryWriter writer)
@@ -565,6 +573,11 @@ namespace Server.MirDatabase
             writer.Write(CurrentHeroIndex);
             writer.Write(HeroSpawned);
             writer.Write((byte)HeroBehaviour);
+            writer.Write(NoPickList.Count);
+            for (int i = 0; i < NoPickList.Count; i++)
+            {
+                writer.Write(NoPickList[i]);
+            }
         }
 
         public SelectInfo ToSelectInfo()

@@ -72,6 +72,8 @@ namespace Server
         public static bool StartHTTPService = false;
         public static string HTTPIPAddress = "http://127.0.0.1:5679/";
         public static string HTTPTrustedIPAddress = "127.0.0.1";
+        public static string WebServerIPAddress = "http://127.0.0.1:5680";
+        public static string LzPayServerIPAddress = "http://127.0.0.1:5681";
 
         //Permission
         public static bool AllowNewAccount = true,
@@ -223,7 +225,7 @@ namespace Server
         public static byte RefineItemStatReduce = 15;
         public static int RefineCost = 125;
 
-        public static string RefineOreName = "黑色铁矿石";
+        public static string RefineOreName = "黑铁矿石";
 
         //Marriage Settings
         public static int LoverEXPBonus = 5;
@@ -304,7 +306,7 @@ namespace Server
         //Archive Settings
         public static int ArchiveInactiveCharacterAfterMonths = 12;
         public static int ArchiveDeletedCharacterAfterMonths = 1;
-
+        public static string PickInfos;
         public static void LoadVersion()
         {
             try
@@ -576,6 +578,7 @@ namespace Server
             LoadNotice();
             LoadWorldMap();
             LoadHeroSettings();
+            LoadPick();
 
             GameLanguage.LoadServerLanguage(Path.Combine(ConfigPath, "Language.ini"));
         }
@@ -1587,6 +1590,14 @@ namespace Server
             reader.Write("Goods", "BuyBackTime", GoodsBuyBackTime);
             reader.Write("Goods", "BuyBackMaxStored", GoodsBuyBackMaxStored);
             reader.Write("Goods", "HideAddedStats", GoodsHideAddedStats);
+        }
+        public static void LoadPick()
+        {
+            if (!File.Exists(Path.Combine(ConfigPath, "Pick.ini")))
+            {
+                return;
+            }
+            PickInfos = File.ReadAllText(Path.Combine(ConfigPath, "Pick.ini"));
         }
 
     }

@@ -59,8 +59,8 @@ namespace Server.MirObjects
         {
             get { return account; }
             set { account = value; }
-        }       
-        
+        }
+
         public override bool CanMove
         {
             get
@@ -193,6 +193,11 @@ namespace Server.MirObjects
         public List<int> CompletedQuests
         {
             get { return Info.CompletedQuests; }
+        }
+        public List<string> NoPickList//不回收列表
+        {
+            get { return Info.NoPickList; }
+            set { Info.NoPickList = value; }
         }
 
         public PlayerObject() { }
@@ -1169,6 +1174,7 @@ namespace Server.MirObjects
 
             SendBaseStats();
             GetObjectsPassive();
+            Enqueue(new S.NoPickList() { Items = NoPickList });
             Enqueue(new S.TimeOfDay { Lights = Envir.Lights });
             Enqueue(new S.ChangeAMode { Mode = AMode });
             Enqueue(new S.ChangePMode { Mode = PMode });
@@ -4132,6 +4138,17 @@ namespace Server.MirObjects
             }
 
             return text;
+        }
+        public void KillPet(uint objectID)
+        {
+            for (int i = 0; i < Pets.Count; i++)
+            {
+                if (Pets[i].ObjectID == objectID && !Pets[i].Dead)
+                {
+                    Pets[i].Die();
+                    break;
+                }
+            }
         }
         public void Turn(MirDirection dir)
         {
@@ -7261,7 +7278,7 @@ namespace Server.MirObjects
             Account.Gold -= gold;
             Enqueue(new S.LoseGold { Gold = gold });
         }
-        public void PickUp()
+        public void PickUp(bool force = false)
         {
             if (Dead)
             {
@@ -7278,7 +7295,15 @@ namespace Server.MirObjects
                 MapObject ob = cell.Objects[i];
 
                 if (ob.Race != ObjectType.Item) continue;
-
+                if (!force)
+                {
+                    bool inNoPickList = false;
+                    foreach (var no in NoPickList)
+                    {
+                        if (ob.Name == no) inNoPickList = true;
+                    }
+                    if (inNoPickList) continue;
+                }
                 if (ob.Owner != null && ob.Owner != this && !IsGroupMember(ob.Owner)) //Or Group member.
                 {
                     sendFail = true;
@@ -7298,7 +7323,7 @@ namespace Server.MirObjects
                     GainItem(item.Item);
 
                     Report.ItemChanged(item.Item, item.Item.Count, 2);
-
+                    CallDefaultNPC(DefaultNPCType.PickUp, item.Item.Info.Shape);
                     CurrentMap.RemoveObject(ob);
                     ob.Despawn();
 
@@ -7627,6 +7652,10 @@ namespace Server.MirObjects
                     break;
                 case DefaultNPCType.Client:
                     key = "Client";
+                    break;
+                case DefaultNPCType.PickUp:
+                    if (value.Length < 1) return;
+                    key = string.Format("PickUp({0})", value[0]);
                     break;
             }
 
@@ -13882,7 +13911,19 @@ namespace Server.MirObjects
         }
 
         #endregion
+        //客户端在下载后开始播放音乐
+        public void ClientPlayBgMusic(uint duration)
+        {
+            Broadcast(new S.BgMusicEffect { ObjectID = ObjectID, Duration = duration });
+        }
 
+        public void PlayerToggleBgMusic(bool play)
+        {
+            //if (Account.FansLevel > -1)
+            //{
+                Account.PlayBgMusic = play;
+            //}
+        }
         public Server.MirEnvir.Timer GetTimer(string key)
         {
             var timerKey = Name + "-" + key;

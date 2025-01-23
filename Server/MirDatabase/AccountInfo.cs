@@ -14,7 +14,7 @@ namespace Server.MirDatabase
         protected static MessageQueue MessageQueue => MessageQueue.Instance;
 
         public int Index;
-
+        //public string Openid = string.Empty;
         public string AccountID = string.Empty;
 
         private string password = string.Empty;
@@ -61,7 +61,8 @@ namespace Server.MirDatabase
 
         public LinkedList<AuctionInfo> Auctions = new LinkedList<AuctionInfo>();
         public bool AdminAccount;
-
+        public string BgMusic = string.Empty;
+        public bool PlayBgMusic;
         public AccountInfo()
         {
 
@@ -69,6 +70,7 @@ namespace Server.MirDatabase
 
         public AccountInfo(C.NewAccount p)
         {
+            //Openid = p.AccountID;
             AccountID = p.AccountID;
 
             Password = p.Password;
@@ -83,7 +85,7 @@ namespace Server.MirDatabase
         public AccountInfo(BinaryReader reader)
         {
             Index = reader.ReadInt32();
-
+            //Openid = reader.ReadString();
             AccountID = reader.ReadString();
             if (Envir.LoadVersion < 94)
                 Password = reader.ReadString();
@@ -174,11 +176,17 @@ namespace Server.MirDatabase
                     Envir.CheckRankUpdate(Characters[i]);
                 }
             }
+            if (Envir.LoadVersion > 110)
+            {
+                BgMusic = reader.ReadString();
+                PlayBgMusic = reader.ReadBoolean();
+            }
         }
 
         public void Save(BinaryWriter writer)
         {
             writer.Write(Index);
+            //writer.Write(Openid);
             writer.Write(AccountID);
             writer.Write(Password);
             writer.Write(Salt.Length);
@@ -220,6 +228,8 @@ namespace Server.MirDatabase
                 Storage[i].Save(writer);
             }
             writer.Write(AdminAccount);
+            writer.Write(BgMusic);
+            writer.Write(PlayBgMusic);
         }
 
         public List<SelectInfo> GetSelectInfo()

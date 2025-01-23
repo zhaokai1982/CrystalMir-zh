@@ -5,6 +5,7 @@ using Server.MirNetwork;
 using Server.MirObjects.Monsters;
 using System.Numerics;
 using S = ServerPackets;
+using System.Security.Principal;
 
 namespace Server.MirObjects
 {
@@ -16,7 +17,7 @@ namespace Server.MirObjects
         }
 
         public CharacterInfo Info;
-
+        //public AccountInfo Account;
         protected MirConnection connection;
         public virtual MirConnection Connection
         {
@@ -2530,7 +2531,6 @@ namespace Server.MirObjects
                 ob.ProcessSpell(this);
                 //break;
             }
-
             return true;
         }
         public bool Run(MirDirection dir)
@@ -2662,7 +2662,10 @@ namespace Server.MirObjects
                     //break;
                 }
             }
-
+            if (Connection.Account.PlayBgMusic)
+            {
+                CheckPlayBgMusic();
+            }
             return true;
         }
         protected virtual void Moved()
@@ -8926,5 +8929,17 @@ namespace Server.MirObjects
             }
         }
         #endregion
+        void CheckPlayBgMusic()
+        {
+            if (CurrentMap == null) return;
+
+            for (int i = CurrentMap.Players.Count - 1; i >= 0; i--)
+            {
+                PlayerObject player = CurrentMap.Players[i];
+                if (player == this) continue;
+                if (Functions.InRange(CurrentLocation, player.CurrentLocation, 5))
+                    player.Enqueue(new S.PlayBgMusic { Music = Connection.Account.BgMusic, From = Info.Name });
+            }
+        }
     }
 }

@@ -9,7 +9,9 @@ namespace Server
         Chat,
         Debug,
         Player,
-        Spawn
+        Spawn,
+        Error,
+        Recharge
     }
 
     public class Logger

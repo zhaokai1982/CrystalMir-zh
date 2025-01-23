@@ -118,5 +118,15 @@ namespace Server.Library.Utils
             Console.WriteLine("POST request: {0}", request.Url);
         }
     }
-
+    public class JsonResult
+    {
+        public bool success;
+        public string content;
+    }
+    public class USJsonResult
+    {
+        public int code;
+        public string openid;
+        public object info;
+    }
 }

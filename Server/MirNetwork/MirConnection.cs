@@ -7,6 +7,7 @@ using C = ClientPackets;
 using S = ServerPackets;
 using System.Text.RegularExpressions;
 using Server.Utils;
+using Server.Library.Utils;
 
 namespace Server.MirNetwork
 {
@@ -739,6 +740,27 @@ namespace Server.MirNetwork
                 case (short)ClientPacketIds.ConfirmItemRental:
                     ConfirmItemRental();
                     break;
+                case (short)ClientPacketIds.PlayBgMusic:
+                    PlayBgMusic((C.PlayBgMusic)p);
+                    break;
+                case (short)ClientPacketIds.ToggleBgMusic:
+                    ToggleBgMusic((C.ToggleBgMusic)p);
+                    break;
+                case (short)ClientPacketIds.PullLzPays:
+                    PullLzPays((C.PullLzPays)p);
+                    break;
+                case (short)ClientPacketIds.Recharge:
+                    Recharge((C.Recharge)p);
+                    break;
+                case (short)ClientPacketIds.PullPickInfos:
+                    PullPickInfos();
+                    break;
+                case (short)ClientPacketIds.UpdateNoPickList:
+                    UpdateNoPickList((C.UpdateNoPickList)p);
+                    break;
+                case (short)ClientPacketIds.KillPet:
+                    KillPet((C.KillPet)p);
+                    break;
                 default:
                     MessageQueue.Enqueue(string.Format("接收到的数据包无效 ID: {0}", p.Index));
                     break;
@@ -1188,7 +1210,7 @@ namespace Server.MirNetwork
         {
             if (Stage != GameStage.Game) return;
 
-            Player.PickUp();
+            Player.PickUp(true);
         }
 
         private void RequestMapInfo(C.RequestMapInfo p)
@@ -2054,7 +2076,83 @@ namespace Server.MirNetwork
 
             Player.ItemRentalLockItem();
         }
+        private void PlayBgMusic(C.PlayBgMusic p)
+        {
+            if (Stage != GameStage.Game)
+                return;
 
+            Player.ClientPlayBgMusic(p.Duration);
+        }
+        private void ToggleBgMusic(C.ToggleBgMusic p)
+        {
+            if (Stage != GameStage.Game)
+                return;
+            Player.PlayerToggleBgMusic(p.Play);
+        }
+        private void PullLzPays(C.PullLzPays p)
+        {
+            S.PullLzPaysResult result = new S.PullLzPaysResult();
+            //拉取支付通道
+            Utils.HttpHelper.requestSyncNoJson(string.Format(Settings.WebServerIPAddress + "/payTypes"), delegate (string err, string callback)
+            {
+                if (err == null)
+                {
+                    result.LzPayInfo = callback;
+                    //拉取历史充值
+                    Utils.HttpHelper.requestSyncNoJson(string.Format(Settings.WebServerIPAddress + "/appCommand?id={0}&type={1}&value={2}",
+                   CryptionHelper.encode(Account.AccountID), CryptionHelper.encode("rechargeInfo"), CryptionHelper.encode("")), delegate (string err2, string callback2)
+                   {
+                       if (err2 == null)
+                       {
+                           result.WebInfo = callback2;
+                           Player.Enqueue(result);
+                       }
+                   });
+                }
+            });
+        }
+
+        private void Recharge(C.Recharge p)
+        {
+            //向web请求创建订单
+            Utils.HttpHelper.requestSync(string.Format(Settings.WebServerIPAddress + "/appCommand?id={0}&type={1}&value={2}",
+     CryptionHelper.encode(Player.Account.AccountID), CryptionHelper.encode("recharge"), CryptionHelper.encode(this.IPAddress + "#" + p.Money.ToString() + "#" + p.PayType + "#" + Player.Name)), delegate (string err, JsonResult jsonResult)
+     {
+         if (err == null)
+         {
+             S.RechargeResult result = new S.RechargeResult() { Result = jsonResult.success, Info = jsonResult.content };
+             Player.Enqueue(result);
+         }
+         else
+         {
+             S.RechargeResult result = new S.RechargeResult() { Result = false, Info = string.Empty };
+             Player.Enqueue(result);
+         }
+     });
+        }
+        private void PullPickInfos()
+        {
+            if (Settings.PickInfos == null)
+            {
+                MessageQueue.EnqueueError("PullPickInfos崩溃捕捉到");
+                return;
+            }
+            if (Player == null)
+            {
+                MessageQueue.EnqueueError("PullPickInfos崩溃捕捉到B");
+                return;
+            }
+            S.PickInfos result = new S.PickInfos() { Infos = Settings.PickInfos };
+            Player.Enqueue(result);
+        }
+        private void UpdateNoPickList(C.UpdateNoPickList p)
+        {
+            Player.NoPickList = p.NoPickList;
+        }
+        private void KillPet(C.KillPet p)
+        {
+            Player.KillPet(p.ObjectID);
+        }
         private void ConfirmItemRental()
         {
             if (Stage != GameStage.Game)

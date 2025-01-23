@@ -14,7 +14,8 @@ namespace Server
         public readonly ConcurrentQueue<string> MessageLog = new ConcurrentQueue<string>();
         public readonly ConcurrentQueue<string> DebugLog = new ConcurrentQueue<string>();
         public readonly ConcurrentQueue<string> ChatLog = new ConcurrentQueue<string>();
-
+        public readonly ConcurrentQueue<string> ErrorLog = new ConcurrentQueue<string>();
+        public readonly ConcurrentQueue<string> RechargeLog = new ConcurrentQueue<string>();
         public MessageQueue() { }
 
         public void Enqueue(string msg)
@@ -47,6 +48,21 @@ namespace Server
                 ChatLog.Enqueue(String.Format("[{0}]: {1}" + Environment.NewLine, DateTime.Now, msg));
 
             Logger.GetLogger(LogType.Chat).Info(msg);
+        }
+        public void EnqueueError(string msg)
+        {
+            if (ErrorLog.Count < 100)
+                ErrorLog.Enqueue(String.Format("[{0}]: {1}" + Environment.NewLine, DateTime.Now, msg));
+
+            Logger.GetLogger(LogType.Error).Error(msg);
+        }
+
+        public void EnqueueRecharge(string msg)
+        {
+            if (RechargeLog.Count < 100)
+                RechargeLog.Enqueue(String.Format("[{0}]: {1}" + Environment.NewLine, DateTime.Now, msg));
+
+            Logger.GetLogger(LogType.Recharge).Debug(msg);
         }
     }
 }

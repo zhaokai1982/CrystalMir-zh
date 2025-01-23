@@ -2545,4 +2545,125 @@ namespace ClientPackets
         protected override void WritePacket(BinaryWriter writer)
         { }
     }
+
+    public sealed class PlayBgMusic : Packet
+    {
+        public override short Index { get { return (short)ClientPacketIds.PlayBgMusic; } }
+
+        public uint Duration;
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            Duration = reader.ReadUInt32();
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(Duration);
+        }
+    }
+
+    public sealed class ToggleBgMusic : Packet
+    {
+        public override short Index { get { return (short)ClientPacketIds.ToggleBgMusic; } }
+
+        public bool Play;
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            Play = reader.ReadBoolean();
+        }
+
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(Play);
+        }
+    }
+    public sealed class PullLzPays : Packet
+    {
+        public override short Index { get { return (short)ClientPacketIds.PullLzPays; } }
+
+
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+
+        }
+        protected override void WritePacket(BinaryWriter writer)
+        {
+
+        }
+    }
+
+    public sealed class Recharge : Packet
+    {
+        public override short Index { get { return (short)ClientPacketIds.Recharge; } }
+
+        public float Money = 0;
+        public string PayType = string.Empty;
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            Money = reader.ReadInt32();
+            PayType = reader.ReadString();
+        }
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(Money);
+            writer.Write(PayType);
+        }
+        //public override IMessage A2B()//客户端发送时使用
+        //{
+        //    CP.Recharge p = new CP.Recharge();
+        //    p.Money = Money;
+        //    p.PayType = PayType;
+        //    return p;
+        //}
+        //public static Recharge B2A(CP.Recharge im)//服务端接收时使用
+        //{
+        //    Recharge p = new Recharge();
+        //    p.Money = im.Money;
+        //    p.PayType = im.PayType;
+        //    return p;
+        //}
+    }
+    public sealed class PullPickInfos : Packet
+    {
+        public override short Index { get { return (short)ClientPacketIds.PullPickInfos; } }
+        protected override void ReadPacket(BinaryReader reader) { }
+        protected override void WritePacket(BinaryWriter writer) { }
+    }
+    public sealed class UpdateNoPickList : Packet
+    {
+        public override short Index { get { return (short)ClientPacketIds.UpdateNoPickList; } }
+        public List<string> NoPickList = new List<string>();
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            int count = reader.ReadInt32();
+            for (int i = 0; i < count; i++)
+            {
+                NoPickList.Add(reader.ReadString());
+            }
+        }
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(NoPickList.Count);
+            for (int i = 0; i < NoPickList.Count; i++)
+            {
+                writer.Write(NoPickList[i]);
+            }
+        }
+    }
+    public sealed class KillPet : Packet
+    {
+        public override short Index { get { return (short)ClientPacketIds.KillPet; } }
+        public uint ObjectID;
+        protected override void ReadPacket(BinaryReader reader)
+        {
+            ObjectID = reader.ReadUInt32();
+        }
+        protected override void WritePacket(BinaryWriter writer)
+        {
+            writer.Write(ObjectID);
+        }
+    }
 }

@@ -189,7 +189,8 @@ public enum DefaultNPCType : byte
     OnAcceptQuest,
     OnFinishQuest,
     Daily,
-    Client
+    Client,
+    PickUp
 }
 
 public enum IntelligentCreatureType : byte
@@ -1901,6 +1902,13 @@ public enum ServerPacketIds : short
     SendMemberLocation,
     InventoryCollating,
     StorageCollating,
+    PlayBgMusic,
+    SetBgMusic,
+    BgMusicEffect,
+    PullLzPaysResult,
+    RechargeResult,
+    PickInfos,
+    NoPickList,
 }
 
 public enum ClientPacketIds : short
@@ -2055,7 +2063,14 @@ public enum ClientPacketIds : short
     CancelItemRental,
     ItemRentalLockFee,
     ItemRentalLockItem,
-    ConfirmItemRental
+    ConfirmItemRental,
+    PlayBgMusic,
+    ToggleBgMusic,
+    PullLzPays,
+    Recharge,
+    PullPickInfos,
+    UpdateNoPickList,
+    KillPet
 }
 
 public enum ConquestType : byte
