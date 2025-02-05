@@ -53,7 +53,7 @@ namespace Server.MirObjects.Monsters
                 {
                     Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0, TargetID = Target.ObjectID });
 
-                    damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
                     List<MapObject> targets = FindAllTargets(1, Target.CurrentLocation);
 
@@ -81,7 +81,7 @@ namespace Server.MirObjects.Monsters
 
                     MirDirection dir = Functions.PreviousDir(Direction);
    
-                    damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
                     for (int i = 0; i < 8; i++)
                     {
@@ -119,11 +119,11 @@ namespace Server.MirObjects.Monsters
                         //Slash
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                        damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         action = new DelayedAction(DelayedType.Damage, Envir.Time + 300, Target, damage, DefenceType.ACAgility, AttackType.SingleSlash);
                         ActionList.Add(action);
 
-                        damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         action = new DelayedAction(DelayedType.Damage, Envir.Time + 500, Target, damage, DefenceType.ACAgility, AttackType.SingleSlash);
                         ActionList.Add(action);
                         break;
@@ -131,7 +131,7 @@ namespace Server.MirObjects.Monsters
                         //Two hand slash
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                        damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         action = new DelayedAction(DelayedType.Damage, Envir.Time + 300, Target, damage, DefenceType.ACAgility, AttackType.SingleSlash);
                         ActionList.Add(action);
                         break;
@@ -153,7 +153,7 @@ namespace Server.MirObjects.Monsters
 
             if (target == null || !target.IsAttackTarget(this) || target.CurrentMap != CurrentMap || target.Node == null) return;
 
-            int poisonTime = GetAttackPower(Stats[Stat.MinSC], Stats[Stat.MaxSC]);
+            int poisonTime = GetAttackPower(Stats[Stat.最小道术], Stats[Stat.最大道术]);
 
             if (target.Attacked(this, damage, defence) <= 0) return;
 

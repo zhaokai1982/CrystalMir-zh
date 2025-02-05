@@ -96,7 +96,7 @@ namespace Server.MirObjects.Monsters
             {
                 if (target.IsAttackTarget(this))
                 {
-                    var damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    var damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     if (damage == 0) return;
 
                     target.Attacked(this, damage, DefenceType.MACAgility);
@@ -133,10 +133,10 @@ namespace Server.MirObjects.Monsters
             {
                 if (target.IsFriendlyTarget(this))
                 {
-                    var protect = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    var protect = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     if (protect == 0) return;
 
-                    target.AddBuff(BuffType.御体之力, this, Info.AttackSpeed, new Stats { [Stat.MaxAC] = protect, [Stat.MaxMAC] = protect });
+                    target.AddBuff(BuffType.御体之力, this, Info.AttackSpeed, new Stats { [Stat.最大防御] = protect, [Stat.最大魔御] = protect });
                     target.OperateTime = 0;
                 }
             }

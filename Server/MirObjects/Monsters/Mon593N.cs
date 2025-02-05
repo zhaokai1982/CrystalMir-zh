@@ -35,7 +35,7 @@ namespace Server.MirObjects.Monsters
             ActionTime = Envir.Time + 300;
             AttackTime = Envir.Time + AttackSpeed;
 
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
             if (damage == 0) return;
 
             FullmoonAttack(damage, 600, DefenceType.MACAgility, -1, 3);

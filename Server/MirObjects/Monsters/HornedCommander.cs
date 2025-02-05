@@ -200,7 +200,7 @@ namespace Server.MirObjects.Monsters
 
                 MassSpawnRockFall(front, rockFallDuration);
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]) * rockFallLoops;
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]) * rockFallLoops;
 
                 DelayedAction action = new DelayedAction(DelayedType.RangeDamage, Envir.Time + (rockFallDuration) + 500, Target, damage, DefenceType.AC, 5);
                 ActionList.Add(action);
@@ -220,7 +220,7 @@ namespace Server.MirObjects.Monsters
 
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 2, Level = spinLoops });
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]) * spinLoops;
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]) * spinLoops;
 
                 DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + spinDuration + 500, Target, damage, DefenceType.AC, true);
                 ActionList.Add(action);
@@ -236,7 +236,7 @@ namespace Server.MirObjects.Monsters
             {
                 Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 DelayedAction action = new DelayedAction(DelayedType.RangeDamage, Envir.Time + 300, Target, damage, DefenceType.AC, 3);
@@ -260,7 +260,7 @@ namespace Server.MirObjects.Monsters
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 500, Target, damage, DefenceType.ACAgility, false);
@@ -270,7 +270,7 @@ namespace Server.MirObjects.Monsters
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 500, Target, damage, DefenceType.ACAgility, false);
@@ -388,7 +388,7 @@ namespace Server.MirObjects.Monsters
 
                     if (!cell.Valid) continue;
 
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MinMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最小魔法]);
 
                     var start = 500 + offset;
 
@@ -495,7 +495,7 @@ namespace Server.MirObjects.Monsters
                         spawned = true;
                     }
 
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MinMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最小魔法]);
 
                     var start = 500;
 

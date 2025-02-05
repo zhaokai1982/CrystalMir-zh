@@ -54,8 +54,8 @@ namespace Server.MirObjects.Monsters
 
                 var stats = new Stats
                 {
-                    [Stat.MaxAC] = 500,
-                    [Stat.MinAC] = 500
+                    [Stat.最大防御] = 500,
+                    [Stat.最小防御] = 500
                 };
 
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 2 });
@@ -65,7 +65,7 @@ namespace Server.MirObjects.Monsters
                 return;
             }
 
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
             if (damage == 0) return;
 
             if (!ranged && Envir.Random.Next(3) > 0)

@@ -37,7 +37,7 @@ namespace Server.MirObjects.Monsters
                 case 1:
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
 
                         Target.Pushed(this, Direction, 2);
@@ -46,7 +46,7 @@ namespace Server.MirObjects.Monsters
                 default:
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation });
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]) * 2;
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]) * 2;
                         if (damage == 0) return;
 
                         DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 400, Target, damage, DefenceType.ACAgility);

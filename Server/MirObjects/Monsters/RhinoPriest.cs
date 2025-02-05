@@ -30,7 +30,7 @@ namespace Server.MirObjects.Monsters
             if (!range)
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 600, Target, damage, DefenceType.ACAgility);
@@ -40,7 +40,7 @@ namespace Server.MirObjects.Monsters
             {
                 AttackTime = Envir.Time + AttackSpeed + 500;
 
-                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                 if (damage == 0) return;
 
                 if (Envir.Random.Next(3) > 0)
@@ -88,9 +88,9 @@ namespace Server.MirObjects.Monsters
             {
                 var stats = new Stats
                 {
-                    [Stat.MaxDC] = damage * -1,
-                    [Stat.MaxMC] = damage * -1,
-                    [Stat.MaxSC] = damage * -1
+                    [Stat.最大攻击] = damage * -1,
+                    [Stat.最大魔法] = damage * -1,
+                    [Stat.最大道术] = damage * -1
                 };
 
                 target.AddBuff(BuffType.惩戒真言, this, Settings.Second * (5 + damage), stats);

@@ -60,7 +60,7 @@ namespace Server.MirObjects.Monsters
                     if (location.X == CurrentLocation.X || location.Y == CurrentLocation.Y) continue;
 
                     var start = Envir.Random.Next(0, 5000);
-                    var value = Envir.Random.Next(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    var value = Envir.Random.Next(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
                     var spellObj = new SpellObject
                     {
@@ -87,7 +87,7 @@ namespace Server.MirObjects.Monsters
                 if (Envir.Random.Next(3) > 0)
                 {
                     Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                    int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     if (damage == 0) return;
 
                     DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 500, Target, damage, DefenceType.ACAgility, false);
@@ -96,7 +96,7 @@ namespace Server.MirObjects.Monsters
                 else
                 {
                     Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                     if (damage == 0) return;
 
                     DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 500, Target, damage, DefenceType.ACAgility, true);
@@ -108,7 +108,7 @@ namespace Server.MirObjects.Monsters
                 if (Envir.Random.Next(4) > 0)
                 {
                     Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID, Type = 1 });
-                    int damage = GetAttackPower(Stats[Stat.MinSC], Stats[Stat.MaxSC]);
+                    int damage = GetAttackPower(Stats[Stat.最小道术], Stats[Stat.最大道术]);
                     if (damage == 0) return;
 
                     ProjectileAttack(damage, DefenceType.MACAgility);
@@ -116,7 +116,7 @@ namespace Server.MirObjects.Monsters
                 else
                 {
                     Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID, Type = 2 });
-                    int damage = GetAttackPower(Stats[Stat.MinSC], Stats[Stat.MaxSC] * 2);
+                    int damage = GetAttackPower(Stats[Stat.最小道术], Stats[Stat.最大道术] * 2);
                     if (damage == 0) return;
 
                     DelayedAction action = new DelayedAction(DelayedType.RangeDamage, Envir.Time + 500, Target, damage, DefenceType.ACAgility, true);

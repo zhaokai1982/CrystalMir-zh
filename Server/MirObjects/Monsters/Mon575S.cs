@@ -156,7 +156,7 @@ namespace Server.MirObjects.Monsters
                     case 0:
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 1200, Target, damage, DefenceType.AC);
@@ -166,7 +166,7 @@ namespace Server.MirObjects.Monsters
                     case 1:
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             PoisonTarget(Target, 5, 10, PoisonType.Red, 1000);
@@ -177,7 +177,7 @@ namespace Server.MirObjects.Monsters
                     case 2:
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             FullmoonAttack(damage);
@@ -191,7 +191,7 @@ namespace Server.MirObjects.Monsters
             {
                 Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID });
 
-                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                 if (damage == 0) return;
 
                 PoisonTarget(Target, 5, 7, PoisonType.Green, 1000);

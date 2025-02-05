@@ -332,14 +332,14 @@ namespace Client.MirScenes.Dialogs
             };
             StatusPage.BeforeDraw += (o, e) =>
             {
-                ACLabel.Text = string.Format("{0}-{1}", actor.Stats[Stat.MinAC], actor.Stats[Stat.MaxAC]);
-                MACLabel.Text = string.Format("{0}-{1}", actor.Stats[Stat.MinMAC], actor.Stats[Stat.MaxMAC]);
-                DCLabel.Text = string.Format("{0}-{1}", actor.Stats[Stat.MinDC], actor.Stats[Stat.MaxDC]);
-                MCLabel.Text = string.Format("{0}-{1}", actor.Stats[Stat.MinMC], actor.Stats[Stat.MaxMC]);
-                SCLabel.Text = string.Format("{0}-{1}", actor.Stats[Stat.MinSC], actor.Stats[Stat.MaxSC]);
+                ACLabel.Text = string.Format("{0}-{1}", actor.Stats[Stat.最小防御], actor.Stats[Stat.最大防御]);
+                MACLabel.Text = string.Format("{0}-{1}", actor.Stats[Stat.最小魔御], actor.Stats[Stat.最大魔御]);
+                DCLabel.Text = string.Format("{0}-{1}", actor.Stats[Stat.最小攻击], actor.Stats[Stat.最大攻击]);
+                MCLabel.Text = string.Format("{0}-{1}", actor.Stats[Stat.最小魔法], actor.Stats[Stat.最大魔法]);
+                SCLabel.Text = string.Format("{0}-{1}", actor.Stats[Stat.最小道术], actor.Stats[Stat.最大道术]);
                 HealthLabel.Text = string.Format("{0}/{1}", actor.HP, actor.Stats[Stat.HP]);
                 ManaLabel.Text = string.Format("{0}/{1}", actor.MP, actor.Stats[Stat.MP]);
-                CritRLabel.Text = string.Format("{0}%", actor.Stats[Stat.暴击倍率]);
+                CritRLabel.Text = string.Format("{0}%", actor.Stats[Stat.暴击率]);
                 CritDLabel.Text = string.Format("{0}", actor.Stats[Stat.暴击伤害]);
                 AttkSpdLabel.Text = string.Format("{0}", actor.Stats[Stat.攻击速度]);
                 AccLabel.Text = string.Format("+{0}", actor.Stats[Stat.准确]);
@@ -359,18 +359,18 @@ namespace Client.MirScenes.Dialogs
             {
                 ExpPLabel.Text = string.Format("{0:0.##%}", actor.Experience / (double)actor.MaxExperience);
                 BagWLabel.Text = string.Format("{0}/{1}", actor.CurrentBagWeight, actor.Stats[Stat.背包负重]);
-                WearWLabel.Text = string.Format("{0}/{1}", actor.CurrentWearWeight, actor.Stats[Stat.装备负重]);
-                HandWLabel.Text = string.Format("{0}/{1}", actor.CurrentHandWeight, actor.Stats[Stat.腕力负重]);
+                WearWLabel.Text = string.Format("{0}/{1}", actor.CurrentWearWeight, actor.Stats[Stat.佩戴负重]);
+                HandWLabel.Text = string.Format("{0}/{1}", actor.CurrentHandWeight, actor.Stats[Stat.手腕负重]);
                 MagicRLabel.Text = string.Format("+{0}", actor.Stats[Stat.魔法躲避]);
-                PoisonResLabel.Text = string.Format("+{0}", actor.Stats[Stat.毒物躲避]);
-                HealthRLabel.Text = string.Format("+{0}", actor.Stats[Stat.生命恢复]);
+                PoisonResLabel.Text = string.Format("+{0}", actor.Stats[Stat.毒药抵抗]);
+                HealthRLabel.Text = string.Format("+{0}", actor.Stats[Stat.体力恢复]);
                 ManaRLabel.Text = string.Format("+{0}", actor.Stats[Stat.法力恢复]);
                 PoisonRecLabel.Text = string.Format("+{0}", actor.Stats[Stat.中毒恢复]);
                 HolyTLabel.Text = string.Format("+{0}", actor.Stats[Stat.神圣]);
-                FreezeLabel.Text = string.Format("+{0}", actor.Stats[Stat.冰冻伤害]);
-                PoisonAtkLabel.Text = string.Format("+{0}", actor.Stats[Stat.毒素伤害]);
-                ReflectAtkLabel.Text = string.Format("+{0}", actor.Stats[Stat.反弹伤害]);
-                HPDrainRatePercentLabel.Text = string.Format("+ {0}%", actor.Stats[Stat.吸血数率]);
+                FreezeLabel.Text = string.Format("+{0}", actor.Stats[Stat.冰冻]);
+                PoisonAtkLabel.Text = string.Format("+{0}", actor.Stats[Stat.毒攻]);
+                ReflectAtkLabel.Text = string.Format("+{0}", actor.Stats[Stat.Reflect]);
+                HPDrainRatePercentLabel.Text = string.Format("+ {0}%", actor.Stats[Stat.吸血]);
             };
 
 

@@ -43,7 +43,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             DelayedAction action = new(DelayedType.Damage, Envir.Time + 300, Target, damage, DefenceType.AC, false);
@@ -54,7 +54,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC] * 2);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击] * 2);
                             if (damage == 0) return;
 
                             DelayedAction action = new(DelayedType.Damage, Envir.Time + 300, Target, damage, DefenceType.ACAgility, false);
@@ -71,7 +71,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             WideLineAttack(damage, 5, 500, DefenceType.ACAgility, false, 3);
@@ -83,7 +83,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC] * 2);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击] * 2);
                             if (damage == 0) return;
 
                             WideLineAttack(damage, 5, 500, DefenceType.ACAgility, false, 3);
@@ -101,7 +101,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID, Type = 0 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             DelayedAction action = new(DelayedType.RangeDamage, Envir.Time + 300, Target, damage, DefenceType.AC, false);
@@ -112,7 +112,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID, Type = 0 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC] * 2);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击] * 2);
                             if (damage == 0) return;
 
                             DelayedAction action = new(DelayedType.RangeDamage, Envir.Time + 300, Target, damage, DefenceType.ACAgility, false);

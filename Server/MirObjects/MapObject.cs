@@ -471,10 +471,10 @@ namespace Server.MirObjects
                         BroadcastDamageIndicator(DamageType.Miss);
                         hit = false;
                     }
-                    armour = GetDefencePower(Stats[Stat.MinAC], Stats[Stat.MaxAC]);
+                    armour = GetDefencePower(Stats[Stat.最小防御], Stats[Stat.最大防御]);
                     break;
                 case DefenceType.AC:
-                    armour = GetDefencePower(Stats[Stat.MinAC], Stats[Stat.MaxAC]);
+                    armour = GetDefencePower(Stats[Stat.最小防御], Stats[Stat.最大防御]);
                     break;
                 case DefenceType.MACAgility:
                     if (Envir.Random.Next(Settings.MagicResistWeight) < Stats[Stat.魔法躲避])
@@ -487,7 +487,7 @@ namespace Server.MirObjects
                         BroadcastDamageIndicator(DamageType.Miss);
                         hit = false;
                     }
-                    armour = GetDefencePower(Stats[Stat.MinMAC], Stats[Stat.MaxMAC]);
+                    armour = GetDefencePower(Stats[Stat.最小魔御], Stats[Stat.最大魔御]);
                     break;
                 case DefenceType.MAC:
                     if (Envir.Random.Next(Settings.MagicResistWeight) < Stats[Stat.魔法躲避])
@@ -495,7 +495,7 @@ namespace Server.MirObjects
                         BroadcastDamageIndicator(DamageType.Miss);
                         hit = false;
                     }
-                    armour = GetDefencePower(Stats[Stat.MinMAC], Stats[Stat.MaxMAC]);
+                    armour = GetDefencePower(Stats[Stat.最小魔御], Stats[Stat.最大魔御]);
                     break;
                 case DefenceType.Agility:
                     if (Envir.Random.Next(Stats[Stat.敏捷] + 1) > attacker.Stats[Stat.准确])
@@ -514,15 +514,15 @@ namespace Server.MirObjects
             {
                 ApplyPoison(new Poison { PType = PoisonType.Paralysis, Duration = 5, TickSpeed = 1000 }, attacker);
             }
-            if ((attacker.Stats[Stat.冰冻伤害] > 0) && (Settings.PvpCanFreeze || Race != ObjectType.Player) && type != DefenceType.MAC && type != DefenceType.MACAgility)
+            if ((attacker.Stats[Stat.冰冻] > 0) && (Settings.PvpCanFreeze || Race != ObjectType.Player) && type != DefenceType.MAC && type != DefenceType.MACAgility)
             {
-                if ((Envir.Random.Next(Settings.FreezingAttackWeight) < attacker.Stats[Stat.冰冻伤害]) && (Envir.Random.Next(levelOffset) == 0))
-                    ApplyPoison(new Poison { PType = PoisonType.Slow, Duration = Math.Min(10, (3 + Envir.Random.Next(attacker.Stats[Stat.冰冻伤害]))), TickSpeed = 1000 }, attacker);
+                if ((Envir.Random.Next(Settings.FreezingAttackWeight) < attacker.Stats[Stat.冰冻]) && (Envir.Random.Next(levelOffset) == 0))
+                    ApplyPoison(new Poison { PType = PoisonType.Slow, Duration = Math.Min(10, (3 + Envir.Random.Next(attacker.Stats[Stat.冰冻]))), TickSpeed = 1000 }, attacker);
             }
-            if (attacker.Stats[Stat.毒素伤害] > 0 && type != DefenceType.MAC && type != DefenceType.MACAgility)
+            if (attacker.Stats[Stat.毒攻] > 0 && type != DefenceType.MAC && type != DefenceType.MACAgility)
             {
-                if ((Envir.Random.Next(Settings.PoisonAttackWeight) < attacker.Stats[Stat.毒素伤害]) && (Envir.Random.Next(levelOffset) == 0))
-                    ApplyPoison(new Poison { PType = PoisonType.Green, Duration = 5, TickSpeed = 1000, Value = Math.Min(10, 3 + Envir.Random.Next(attacker.Stats[Stat.毒素伤害])) }, attacker);
+                if ((Envir.Random.Next(Settings.PoisonAttackWeight) < attacker.Stats[Stat.毒攻]) && (Envir.Random.Next(levelOffset) == 0))
+                    ApplyPoison(new Poison { PType = PoisonType.Green, Duration = 5, TickSpeed = 1000, Value = Math.Min(10, 3 + Envir.Random.Next(attacker.Stats[Stat.毒攻])) }, attacker);
             }
         }
 

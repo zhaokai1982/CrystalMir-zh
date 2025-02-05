@@ -65,7 +65,7 @@ namespace Server.MirObjects.Monsters
                 ResetStats();
             }
 
-            damage += attacker.Stats[Stat.攻击增伤];
+            damage += attacker.Stats[Stat.功力];
 
             int armour = 0;
             //deal with trainers defense
@@ -73,11 +73,11 @@ namespace Server.MirObjects.Monsters
             {
                 case DefenceType.AC:
                 case DefenceType.ACAgility:
-                    armour = GetAttackPower(Stats[Stat.MinAC], Stats[Stat.MaxAC]);
+                    armour = GetAttackPower(Stats[Stat.最小防御], Stats[Stat.最大防御]);
                     break;
                 case DefenceType.MAC:
                 case DefenceType.MACAgility:
-                    armour = GetAttackPower(Stats[Stat.MinMAC], Stats[Stat.MaxMAC]);
+                    armour = GetAttackPower(Stats[Stat.最小魔御], Stats[Stat.最大魔御]);
                     break;
             }
             if (armour >= damage)
@@ -120,11 +120,11 @@ namespace Server.MirObjects.Monsters
             {
                 case DefenceType.AC:
                 case DefenceType.ACAgility:
-                    armour = GetAttackPower(Stats[Stat.MinAC], Stats[Stat.MaxAC]);
+                    armour = GetAttackPower(Stats[Stat.最小防御], Stats[Stat.最大防御]);
                     break;
                 case DefenceType.MAC:
                 case DefenceType.MACAgility:
-                    armour = GetAttackPower(Stats[Stat.MinMAC], Stats[Stat.MaxMAC]);
+                    armour = GetAttackPower(Stats[Stat.最小魔御], Stats[Stat.最大魔御]);
                     break;
             }
             if (armour >= damage)

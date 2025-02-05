@@ -141,7 +141,7 @@ namespace Server.MirObjects.Monsters
 
         private void AttackLogic()
         {
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
             if (damage == 0) return;
             Point target = Functions.PointMove(CurrentLocation, Direction, 1);
 

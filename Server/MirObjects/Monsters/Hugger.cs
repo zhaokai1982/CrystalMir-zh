@@ -59,7 +59,7 @@ namespace Server.MirObjects.Monsters
 
             for (int i = 0; i < targets.Count; i++)
             {
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 if (targets[i].Attacked(this, damage, DefenceType.ACAgility) <= 0) return;

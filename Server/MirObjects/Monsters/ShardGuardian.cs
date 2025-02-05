@@ -149,7 +149,7 @@ namespace Server.MirObjects.Monsters
                         case 0:
                             {
                                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                                 if (damage == 0) return;
 
                                 HalfmoonAttack(damage);
@@ -161,7 +161,7 @@ namespace Server.MirObjects.Monsters
                         case 1:
                             {
                                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                                 if (damage == 0) return;
 
                                 HalfmoonAttack(damage);
@@ -174,7 +174,7 @@ namespace Server.MirObjects.Monsters
                         case 2:
                             {
                                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                                 if (damage == 0) return;
 
                                 FullmoonAttack(damage, 600, DefenceType.ACAgility, 1, 2);
@@ -198,7 +198,7 @@ namespace Server.MirObjects.Monsters
                         case 0:
                             {
                                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                                 if (damage == 0) return;
 
                                 ThreeQuarterMoonAttack(damage);
@@ -210,7 +210,7 @@ namespace Server.MirObjects.Monsters
                         case 1:
                             {
                                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
-                                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                                 if (damage == 0) return;
 
                                 FullmoonAttack(damage, 600, DefenceType.ACAgility, 1, 2);
@@ -222,7 +222,7 @@ namespace Server.MirObjects.Monsters
                         case 2:
                             {
                                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
-                                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                                 if (damage == 0) return;
 
                                 Thrust(Target);
@@ -235,7 +235,7 @@ namespace Server.MirObjects.Monsters
                             {
                                 Thrust(Target);
                                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
-                                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                                 if (damage == 0) return;
 
                                 LineAttack(damage, Functions.MaxDistance(CurrentLocation, Target.CurrentLocation) + 2, 300, DefenceType.ACAgility, true);
@@ -281,7 +281,7 @@ namespace Server.MirObjects.Monsters
 
                     if (!cell.Valid) continue;
 
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
 
                     var start = 1500;
                     var time = 2300;
@@ -319,7 +319,7 @@ namespace Server.MirObjects.Monsters
             {
                 Target = targets[i];
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) continue;
 
                 DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 1200, Target, damage, DefenceType.ACAgility);
@@ -345,7 +345,7 @@ namespace Server.MirObjects.Monsters
                 CurrentMap.GetCell(CurrentLocation).Add(this);
                 AddObjects(jumpDir, 1);
 
-                int damage = Stats[Stat.MaxDC];
+                int damage = Stats[Stat.最大攻击];
 
                 if (damage > 0)
                     LineAttack(damage, 3, 300);
@@ -370,20 +370,20 @@ namespace Server.MirObjects.Monsters
             {
                 var friends = FindAllFriends(4, target.CurrentLocation);
 
-                var min = Stats[Stat.MinMC];
-                var max = Stats[Stat.MaxMC];
+                var min = Stats[Stat.最小魔法];
+                var max = Stats[Stat.最大魔法];
 
                 for (int i = 0; i < friends.Count; i++)
                 {
 
                     if (Info.Effect == 0)
                     {
-                        var stats = new Stats { [Stat.MinAC] = min, [Stat.MaxAC] = max, [Stat.MinMAC] = min, [Stat.MaxMAC] = max };
+                        var stats = new Stats { [Stat.最小防御] = min, [Stat.最大防御] = max, [Stat.最小魔御] = min, [Stat.最大魔御] = max };
                         friends[i].AddBuff(BuffType.寒冰护甲, this, Settings.Second * 10, stats);
                     }
                     else if (Info.Effect == 1)
                     {
-                        var stats = new Stats { [Stat.MinDC] = min, [Stat.MaxDC] = max, [Stat.MinMC] = min, [Stat.MaxMC] = max };
+                        var stats = new Stats { [Stat.最小攻击] = min, [Stat.最大攻击] = max, [Stat.最小魔法] = min, [Stat.最大魔法] = max };
                         friends[i].AddBuff(BuffType.至尊威严, this, Settings.Second * 10, stats);
                     }
 

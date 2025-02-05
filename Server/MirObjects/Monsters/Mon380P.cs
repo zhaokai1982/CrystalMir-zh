@@ -45,13 +45,13 @@ namespace Server.MirObjects.Monsters
                     return 0;
                 case DefenceType.ACAgility:
                 case DefenceType.AC:
-                    armour = GetDefencePower(Stats[Stat.MinAC], Stats[Stat.MaxAC]);
+                    armour = GetDefencePower(Stats[Stat.最小防御], Stats[Stat.最大防御]);
                     break;
                 case DefenceType.MACAgility when Envir.Random.Next(Stats[Stat.敏捷] + 1) > attacker.Stats[Stat.准确]:
                     return 0;
                 case DefenceType.MACAgility:
                 case DefenceType.MAC:
-                    armour = GetDefencePower(Stats[Stat.MinMAC], Stats[Stat.MaxMAC]);
+                    armour = GetDefencePower(Stats[Stat.最小魔御], Stats[Stat.最大魔御]);
                     break;
                 case DefenceType.Agility when Envir.Random.Next(Stats[Stat.敏捷] + 1) > attacker.Stats[Stat.准确]:
                     return 0;

@@ -115,17 +115,17 @@ namespace Server.MirObjects.Monsters
             {
                 case DefenceType.ACAgility:
                     if (Envir.Random.Next(Stats[Stat.敏捷] + 1) > attacker.Stats[Stat.准确]) return 0;
-                    armour = GetAttackPower(Stats[Stat.MinAC], Stats[Stat.MaxAC]);
+                    armour = GetAttackPower(Stats[Stat.最小防御], Stats[Stat.最大防御]);
                     break;
                 case DefenceType.AC:
-                    armour = GetAttackPower(Stats[Stat.MinAC], Stats[Stat.MaxAC]);
+                    armour = GetAttackPower(Stats[Stat.最小防御], Stats[Stat.最大防御]);
                     break;
                 case DefenceType.MACAgility:
                     if (Envir.Random.Next(Stats[Stat.敏捷] + 1) > attacker.Stats[Stat.准确]) return 0;
-                    armour = GetAttackPower(Stats[Stat.MinMAC], Stats[Stat.MaxMAC]);
+                    armour = GetAttackPower(Stats[Stat.最小魔御], Stats[Stat.最大魔御]);
                     break;
                 case DefenceType.MAC:
-                    armour = GetAttackPower(Stats[Stat.MinMAC], Stats[Stat.MaxMAC]);
+                    armour = GetAttackPower(Stats[Stat.最小魔御], Stats[Stat.最大魔御]);
                     break;
                 case DefenceType.Agility:
                     if (Envir.Random.Next(Stats[Stat.敏捷] + 1) > attacker.Stats[Stat.准确]) return 0;
@@ -172,17 +172,17 @@ namespace Server.MirObjects.Monsters
             {
                 case DefenceType.ACAgility:
                     if (Envir.Random.Next(Stats[Stat.敏捷] + 1) > attacker.Stats[Stat.准确]) return 0;
-                    armour = GetAttackPower(Stats[Stat.MinAC], Stats[Stat.MaxAC]);
+                    armour = GetAttackPower(Stats[Stat.最小防御], Stats[Stat.最大防御]);
                     break;
                 case DefenceType.AC:
-                    armour = GetAttackPower(Stats[Stat.MinAC], Stats[Stat.MaxAC]);
+                    armour = GetAttackPower(Stats[Stat.最小防御], Stats[Stat.最大防御]);
                     break;
                 case DefenceType.MACAgility:
                     if (Envir.Random.Next(Stats[Stat.敏捷] + 1) > attacker.Stats[Stat.准确]) return 0;
-                    armour = GetAttackPower(Stats[Stat.MinMAC], Stats[Stat.MaxMAC]);
+                    armour = GetAttackPower(Stats[Stat.最小魔御], Stats[Stat.最大魔御]);
                     break;
                 case DefenceType.MAC:
-                    armour = GetAttackPower(Stats[Stat.MinMAC], Stats[Stat.MaxMAC]);
+                    armour = GetAttackPower(Stats[Stat.最小魔御], Stats[Stat.最大魔御]);
                     break;
                 case DefenceType.Agility:
                     if (Envir.Random.Next(Stats[Stat.敏捷] + 1) > attacker.Stats[Stat.准确]) return 0;

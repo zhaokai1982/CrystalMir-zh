@@ -16,7 +16,7 @@ namespace Server.MirObjects.Monsters
         {
             int attackerDamage = base.Attacked(attacker, damage, type, damageWeapon);
 
-            int ownDamage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int ownDamage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
             if (attackerDamage > ownDamage && Envir.Random.Next(2) == 0)
             {
@@ -30,7 +30,7 @@ namespace Server.MirObjects.Monsters
         {
             int attackerDamage = base.Attacked(attacker, damage, type);
 
-            int ownDamage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int ownDamage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
             if (attackerDamage > ownDamage && Envir.Random.Next(2) == 0)
             {
@@ -50,7 +50,7 @@ namespace Server.MirObjects.Monsters
 
             for (int i = 0; i < targets.Count; i++)
             {
-                if (targets[i].Stats[Stat.MinDC] >= Target.Stats[Stat.MinDC]) continue;
+                if (targets[i].Stats[Stat.最小攻击] >= Target.Stats[Stat.最小攻击]) continue;
 
                 newTarget = targets[i];
             }

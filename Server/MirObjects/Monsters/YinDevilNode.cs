@@ -34,7 +34,7 @@ namespace Server.MirObjects.Monsters
 
                 var stats = new Stats
                 {
-                    [type == BuffType.神圣战甲术 ? Stat.MaxAC : Stat.MaxDC] = Target.Level / 7 + 4
+                    [type == BuffType.神圣战甲术 ? Stat.最大防御 : Stat.最大攻击] = Target.Level / 7 + 4
                 };
 
                 Target.AddBuff(type, this, Settings.Second * 5, stats);

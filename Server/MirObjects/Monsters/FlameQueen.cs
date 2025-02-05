@@ -42,7 +42,7 @@ namespace Server.MirObjects.Monsters
 
                 if (targets.Count == 0) return;
 
-                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
 
                 for (int i = 0; i < targets.Count; i++)
                 {
@@ -62,7 +62,7 @@ namespace Server.MirObjects.Monsters
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
                 DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 300, Target, damage, DefenceType.ACAgility);
                 ActionList.Add(action);
@@ -71,7 +71,7 @@ namespace Server.MirObjects.Monsters
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
                 DelayedAction action = new DelayedAction(DelayedType.RangeDamage, Envir.Time + 300, Target, damage, DefenceType.ACAgility);
                 ActionList.Add(action);

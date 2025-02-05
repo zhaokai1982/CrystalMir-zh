@@ -51,7 +51,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             PoisonTarget(Target, 5, 8, PoisonType.Green, 2000);
@@ -63,7 +63,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             LineAttack(damage, 3, 300, DefenceType.AC);
@@ -76,7 +76,7 @@ namespace Server.MirObjects.Monsters
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC] * 2);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击] * 2);
                 if (damage == 0) return;
 
                 LineAttack(damage, 3, 300, DefenceType.ACAgility);
@@ -105,7 +105,7 @@ namespace Server.MirObjects.Monsters
                     var cell = CurrentMap.GetCell(x, y);
                     if (!cell.Valid) continue;
 
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                     var start = 500;
                     var time = Settings.Second * 5;
 

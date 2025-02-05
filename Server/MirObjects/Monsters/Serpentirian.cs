@@ -85,7 +85,7 @@ namespace Server.MirObjects.Monsters
                     case 0:
                         {
                             Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID, Type = 0 });
-                            int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                            int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                             if (damage == 0) return;
 
                             PoisonTarget(Target, 5, 5, PoisonType.Green, 1000);
@@ -98,7 +98,7 @@ namespace Server.MirObjects.Monsters
                     case 1:
                         {
                             Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID, Type = 1 });
-                            int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                            int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                             if (damage == 0) return;
 
                             PoisonTarget(Target, 5, 7, PoisonType.Slow, 1000);
@@ -112,7 +112,7 @@ namespace Server.MirObjects.Monsters
             else
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation });
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 FullmoonAttack(damage);

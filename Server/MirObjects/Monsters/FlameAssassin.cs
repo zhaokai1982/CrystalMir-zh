@@ -21,7 +21,7 @@ namespace Server.MirObjects.Monsters
 
             if (target.Attacked(this, damage, defence) <= 0) return;
 
-            PoisonTarget(target, 1, GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]), PoisonType.Slow, 1000);
+            PoisonTarget(target, 1, GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]), PoisonType.Slow, 1000);
         }
 
         protected override void ProcessTarget()

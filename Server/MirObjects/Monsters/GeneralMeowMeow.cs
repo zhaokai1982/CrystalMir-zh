@@ -73,8 +73,8 @@ namespace Server.MirObjects.Monsters
                 {
                     var stats = new Stats
                     {
-                        [Stat.MaxAC] = 100,
-                        [Stat.MinAC] = 100
+                        [Stat.最大防御] = 100,
+                        [Stat.最小防御] = 100
                     };
 
                     AddBuff(BuffType.GeneralMeowMeowShield, this, ShieldUpDuration, stats);                 
@@ -93,7 +93,7 @@ namespace Server.MirObjects.Monsters
                 if (Envir.Random.Next(9) != 0)
                 {
                     Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                    int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     if (damage == 0) return;
 
                     DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 500, Target, damage, DefenceType.ACAgility, false);
@@ -102,7 +102,7 @@ namespace Server.MirObjects.Monsters
                 else
                 {
                     Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
-                    int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]) * 3;
+                    int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]) * 3;
                     if (damage == 0) return;
 
                     DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 500, Target, damage, DefenceType.AC, true);
@@ -112,7 +112,7 @@ namespace Server.MirObjects.Monsters
             else
             {
                 Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID, Type = 0 });
-                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                 if (damage == 0) return;
 
                 DelayedAction action = new DelayedAction(DelayedType.RangeDamage, Envir.Time + 500, Target, damage, DefenceType.MACAgility);
@@ -149,7 +149,7 @@ namespace Server.MirObjects.Monsters
                         var spellObj = new SpellObject
                         {
                             Spell = Spell.GeneralMeowMeowThunder,
-                            Value = Envir.Random.Next(Stats[Stat.MinMC], Stats[Stat.MaxMC]),
+                            Value = Envir.Random.Next(Stats[Stat.最小魔法], Stats[Stat.最大魔法]),
                             ExpireTime = Envir.Time + 1000,
                             TickSpeed = 500,
                             Caster = this,

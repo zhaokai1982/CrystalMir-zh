@@ -1505,9 +1505,9 @@ public enum BuffType : byte
     天上秘术,
 
     //Monster
-    HornedArcherBuff = 50,
+    HornedArcherBuff,
     ColdArcherBuff,
-    HornedColdArcherBuff,
+    //HornedColdArcherBuff,
     GeneralMeowMeowShield,
     惩戒真言,
     御体之力,

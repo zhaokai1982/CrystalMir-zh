@@ -114,16 +114,16 @@ namespace Server
             HPTextBox.Text = info.Stats[Stat.HP].ToString();
             ExperienceTextBox.Text = info.Experience.ToString();
 
-            MinACTextBox.Text = info.Stats[Stat.MinAC].ToString();
-            MaxACTextBox.Text = info.Stats[Stat.MaxAC].ToString();
-            MinMACTextBox.Text = info.Stats[Stat.MinMAC].ToString();
-            MaxMACTextBox.Text = info.Stats[Stat.MaxMAC].ToString();
-            MinDCTextBox.Text = info.Stats[Stat.MinDC].ToString();
-            MaxDCTextBox.Text = info.Stats[Stat.MaxDC].ToString();
-            MinMCTextBox.Text = info.Stats[Stat.MinMC].ToString();
-            MaxMCTextBox.Text = info.Stats[Stat.MaxMC].ToString();
-            MinSCTextBox.Text = info.Stats[Stat.MinSC].ToString();
-            MaxSCTextBox.Text = info.Stats[Stat.MaxSC].ToString();
+            MinACTextBox.Text = info.Stats[Stat.最小防御].ToString();
+            MaxACTextBox.Text = info.Stats[Stat.最大防御].ToString();
+            MinMACTextBox.Text = info.Stats[Stat.最小魔御].ToString();
+            MaxMACTextBox.Text = info.Stats[Stat.最大魔御].ToString();
+            MinDCTextBox.Text = info.Stats[Stat.最小攻击].ToString();
+            MaxDCTextBox.Text = info.Stats[Stat.最大攻击].ToString();
+            MinMCTextBox.Text = info.Stats[Stat.最小魔法].ToString();
+            MaxMCTextBox.Text = info.Stats[Stat.最大魔法].ToString();
+            MinSCTextBox.Text = info.Stats[Stat.最小道术].ToString();
+            MaxSCTextBox.Text = info.Stats[Stat.最大道术].ToString();
             AccuracyTextBox.Text = info.Stats[Stat.准确].ToString();
             AgilityTextBox.Text = info.Stats[Stat.敏捷].ToString();
             LightTextBox.Text = info.Light.ToString();
@@ -155,16 +155,16 @@ namespace Server
                 if (HPTextBox.Text != info.Stats[Stat.HP].ToString()) HPTextBox.Text = string.Empty;
                 if (ExperienceTextBox.Text != info.Experience.ToString()) ExperienceTextBox.Text = string.Empty;
 
-                if (MinACTextBox.Text != info.Stats[Stat.MinAC].ToString()) MinACTextBox.Text = string.Empty;
-                if (MaxACTextBox.Text != info.Stats[Stat.MaxAC].ToString()) MaxACTextBox.Text = string.Empty;
-                if (MinMACTextBox.Text != info.Stats[Stat.MinMAC].ToString()) MinMACTextBox.Text = string.Empty;
-                if (MaxMACTextBox.Text != info.Stats[Stat.MaxMAC].ToString()) MaxMACTextBox.Text = string.Empty;
-                if (MinDCTextBox.Text != info.Stats[Stat.MinDC].ToString()) MinDCTextBox.Text = string.Empty;
-                if (MaxDCTextBox.Text != info.Stats[Stat.MaxDC].ToString()) MaxDCTextBox.Text = string.Empty;
-                if (MinMCTextBox.Text != info.Stats[Stat.MinMC].ToString()) MinMCTextBox.Text = string.Empty;
-                if (MaxMCTextBox.Text != info.Stats[Stat.MaxMC].ToString()) MaxMCTextBox.Text = string.Empty;
-                if (MinSCTextBox.Text != info.Stats[Stat.MinSC].ToString()) MinSCTextBox.Text = string.Empty;
-                if (MaxSCTextBox.Text != info.Stats[Stat.MaxSC].ToString()) MaxSCTextBox.Text = string.Empty;
+                if (MinACTextBox.Text != info.Stats[Stat.最小防御].ToString()) MinACTextBox.Text = string.Empty;
+                if (MaxACTextBox.Text != info.Stats[Stat.最大防御].ToString()) MaxACTextBox.Text = string.Empty;
+                if (MinMACTextBox.Text != info.Stats[Stat.最小魔御].ToString()) MinMACTextBox.Text = string.Empty;
+                if (MaxMACTextBox.Text != info.Stats[Stat.最大魔御].ToString()) MaxMACTextBox.Text = string.Empty;
+                if (MinDCTextBox.Text != info.Stats[Stat.最小攻击].ToString()) MinDCTextBox.Text = string.Empty;
+                if (MaxDCTextBox.Text != info.Stats[Stat.最大攻击].ToString()) MaxDCTextBox.Text = string.Empty;
+                if (MinMCTextBox.Text != info.Stats[Stat.最小魔法].ToString()) MinMCTextBox.Text = string.Empty;
+                if (MaxMCTextBox.Text != info.Stats[Stat.最大魔法].ToString()) MaxMCTextBox.Text = string.Empty;
+                if (MinSCTextBox.Text != info.Stats[Stat.最小道术].ToString()) MinSCTextBox.Text = string.Empty;
+                if (MaxSCTextBox.Text != info.Stats[Stat.最大道术].ToString()) MaxSCTextBox.Text = string.Empty;
                 if (AccuracyTextBox.Text != info.Stats[Stat.准确].ToString()) AccuracyTextBox.Text = string.Empty;
                 if (AgilityTextBox.Text != info.Stats[Stat.敏捷].ToString()) AgilityTextBox.Text = string.Empty;
                 if (LightTextBox.Text != info.Light.ToString()) LightTextBox.Text = string.Empty;
@@ -341,7 +341,7 @@ namespace Server
             ActiveControl.BackColor = SystemColors.Window;
 
             for (int i = 0; i < _selectedMonsterInfos.Count; i++)
-                _selectedMonsterInfos[i].Stats[Stat.MinAC] = temp;
+                _selectedMonsterInfos[i].Stats[Stat.最小防御] = temp;
         }
         private void MaxACTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -358,7 +358,7 @@ namespace Server
             ActiveControl.BackColor = SystemColors.Window;
 
             for (int i = 0; i < _selectedMonsterInfos.Count; i++)
-                _selectedMonsterInfos[i].Stats[Stat.MaxAC] = temp;
+                _selectedMonsterInfos[i].Stats[Stat.最大防御] = temp;
         }
         private void MinMACTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -375,7 +375,7 @@ namespace Server
             ActiveControl.BackColor = SystemColors.Window;
 
             for (int i = 0; i < _selectedMonsterInfos.Count; i++)
-                _selectedMonsterInfos[i].Stats[Stat.MinMAC] = temp;
+                _selectedMonsterInfos[i].Stats[Stat.最小魔御] = temp;
         }
         private void MaxMACTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -392,7 +392,7 @@ namespace Server
             ActiveControl.BackColor = SystemColors.Window;
 
             for (int i = 0; i < _selectedMonsterInfos.Count; i++)
-                _selectedMonsterInfos[i].Stats[Stat.MaxMAC] = temp;
+                _selectedMonsterInfos[i].Stats[Stat.最大魔御] = temp;
         }
         private void MinDCTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -408,7 +408,7 @@ namespace Server
             ActiveControl.BackColor = SystemColors.Window;
 
             for (int i = 0; i < _selectedMonsterInfos.Count; i++)
-                _selectedMonsterInfos[i].Stats[Stat.MinDC] = temp;
+                _selectedMonsterInfos[i].Stats[Stat.最小攻击] = temp;
         }
         private void MaxDCTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -425,7 +425,7 @@ namespace Server
             ActiveControl.BackColor = SystemColors.Window;
 
             for (int i = 0; i < _selectedMonsterInfos.Count; i++)
-                _selectedMonsterInfos[i].Stats[Stat.MaxDC] = temp;
+                _selectedMonsterInfos[i].Stats[Stat.最大攻击] = temp;
         }
         private void MinMCTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -442,7 +442,7 @@ namespace Server
             ActiveControl.BackColor = SystemColors.Window;
 
             for (int i = 0; i < _selectedMonsterInfos.Count; i++)
-                _selectedMonsterInfos[i].Stats[Stat.MinMC] = temp;
+                _selectedMonsterInfos[i].Stats[Stat.最小魔法] = temp;
         }
         private void MaxMCTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -459,7 +459,7 @@ namespace Server
             ActiveControl.BackColor = SystemColors.Window;
 
             for (int i = 0; i < _selectedMonsterInfos.Count; i++)
-                _selectedMonsterInfos[i].Stats[Stat.MaxMC] = temp;
+                _selectedMonsterInfos[i].Stats[Stat.最大魔法] = temp;
         }
         private void MinSCTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -476,7 +476,7 @@ namespace Server
             ActiveControl.BackColor = SystemColors.Window;
 
             for (int i = 0; i < _selectedMonsterInfos.Count; i++)
-                _selectedMonsterInfos[i].Stats[Stat.MinSC] = temp;
+                _selectedMonsterInfos[i].Stats[Stat.最小道术] = temp;
         }
         private void MaxSCTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -493,7 +493,7 @@ namespace Server
             ActiveControl.BackColor = SystemColors.Window;
 
             for (int i = 0; i < _selectedMonsterInfos.Count; i++)
-                _selectedMonsterInfos[i].Stats[Stat.MaxSC] = temp;
+                _selectedMonsterInfos[i].Stats[Stat.最大道术] = temp;
         }
         private void AccuracyTextBox_TextChanged(object sender, EventArgs e)
         {

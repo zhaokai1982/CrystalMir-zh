@@ -91,7 +91,7 @@ namespace Server.MirObjects.Monsters
             ActionTime = Envir.Time + 500;
             AttackTime = Envir.Time + AttackSpeed;
 
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
             if (damage == 0) return;
 
             if (Envir.Random.Next(5) == 0)
@@ -145,7 +145,7 @@ namespace Server.MirObjects.Monsters
             ActionTime = Envir.Time + 500;
             AttackTime = Envir.Time + AttackSpeed;
 
-            int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+            int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
             if (damage == 0) return;
 
             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 2 });
@@ -159,7 +159,7 @@ namespace Server.MirObjects.Monsters
             MirDirection direction = Direction;
             Cell cell;
 
-            int Damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+            int Damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
 
             int col = 3;
             int row = 3;
@@ -193,7 +193,7 @@ namespace Server.MirObjects.Monsters
                                 {
                                     if (target.Attacked(this, Damage, DefenceType.MAC) > 0)
                                     {
-                                        if (Envir.Random.Next(Settings.PoisonResistWeight) >= target.Stats[Stat.毒物躲避])
+                                        if (Envir.Random.Next(Settings.PoisonResistWeight) >= target.Stats[Stat.毒药抵抗])
                                         {
                                             if (Envir.Random.Next(5) == 0)
                                             {

@@ -18,7 +18,7 @@ namespace Server.MirObjects.Monsters
         {
             int attackerDamage = base.Attacked(attacker, damage, type, damageWeapon);
 
-            int ownDamage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int ownDamage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
             if (attackerDamage > ownDamage && Envir.Random.Next(2) == 0)
             {
@@ -32,7 +32,7 @@ namespace Server.MirObjects.Monsters
         {
             int attackerDamage = base.Attacked(attacker, damage, type);
 
-            int ownDamage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int ownDamage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
             if (attackerDamage > ownDamage && Envir.Random.Next(10) == 0)
             {
@@ -52,7 +52,7 @@ namespace Server.MirObjects.Monsters
 
             for (int i = 0; i < targets.Count; i++)
             {
-                if (targets[i].Stats[Stat.MinDC] >= Target.Stats[Stat.MinDC]) continue;
+                if (targets[i].Stats[Stat.最小攻击] >= Target.Stats[Stat.最小攻击]) continue;
 
                 newTarget = targets[i];
             }
@@ -98,7 +98,7 @@ namespace Server.MirObjects.Monsters
             if (Envir.Random.Next(3) > 0)
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 500, Target, damage, DefenceType.ACAgility, false, false);
@@ -109,7 +109,7 @@ namespace Server.MirObjects.Monsters
                 if (HealthPercent >= 60)
                 {
                     Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
-                    int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     if (damage == 0) return;
 
                     DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 500, Target, damage, DefenceType.ACAgility, true, false);
@@ -118,7 +118,7 @@ namespace Server.MirObjects.Monsters
                 else if (HealthPercent >= 30)
                 {
                     Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 2 });
-                    int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     if (damage == 0) return;
 
                     DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 500, Target, damage, DefenceType.ACAgility, false, true);
@@ -127,7 +127,7 @@ namespace Server.MirObjects.Monsters
                 else
                 {
                     Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 3 });
-                    int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     if (damage == 0) return;
 
                     DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 500, Target, damage, DefenceType.ACAgility, false, false);
@@ -162,7 +162,7 @@ namespace Server.MirObjects.Monsters
         {
             var targets = FindAllTargets(1, CurrentLocation, false);
 
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
             if (damage > 0)
             {
                 for (int i = 0; i < targets.Count; i++)

@@ -42,7 +42,7 @@ namespace Server.MirObjects.Monsters
                 //TODO - Fix this
                 List<MapObject> targets = FindAllTargets(2, Target.CurrentLocation, false);
 
-                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
 
                 if (damage > 0 && targets.Count > 0)
                 {

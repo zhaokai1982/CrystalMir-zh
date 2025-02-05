@@ -42,7 +42,7 @@ namespace Server.MirObjects.Monsters
             bool isCrit = false;
             bool ranged = CurrentLocation == Target.CurrentLocation || !Functions.InRange(CurrentLocation, Target.CurrentLocation, 1);
 
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
             if (damage == 0) return;
 
             int critBonus = (int)Math.Round((double)damage * 0.5);

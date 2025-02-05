@@ -80,19 +80,19 @@ namespace Server.MirObjects.Monsters
                 case 1:
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
 
                         DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 400, Target, damage / 2, DefenceType.ACAgility);
                         ActionList.Add(action);
 
-                        damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
 
                         action = new DelayedAction(DelayedType.Damage, Envir.Time + 600, Target, damage / 2, DefenceType.ACAgility);
                         ActionList.Add(action);
 
-                        damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
 
                         action = new DelayedAction(DelayedType.Damage, Envir.Time + 800, Target, damage / 2, DefenceType.ACAgility);
@@ -102,7 +102,7 @@ namespace Server.MirObjects.Monsters
                 default:
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation });
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
 
                         DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 400, Target, damage, DefenceType.ACAgility);
@@ -137,7 +137,7 @@ namespace Server.MirObjects.Monsters
 
             Broadcast(new S.ObjectBackStep { ObjectID = ObjectID, Direction = Direction, Location = location, Distance = 2 });
 
-            int damage = Stats[Stat.MaxDC];
+            int damage = Stats[Stat.最大攻击];
             if (damage == 0) return;
 
             DelayedAction action = new DelayedAction(DelayedType.RangeDamage, Envir.Time + 900, Target, damage, DefenceType.AC);

@@ -28,7 +28,7 @@ namespace Server.MirObjects.Monsters
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 2 });
 
-                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
 
                 List<MapObject> targets = FindAllTargets(3, CurrentLocation);
 
@@ -37,7 +37,7 @@ namespace Server.MirObjects.Monsters
                     targets[i].Attacked(this, damage, DefenceType.MAC);
 
                     //TODO - Delay this
-                    if (Envir.Random.Next(Settings.PoisonResistWeight) >= targets[i].Stats[Stat.毒物躲避])
+                    if (Envir.Random.Next(Settings.PoisonResistWeight) >= targets[i].Stats[Stat.毒药抵抗])
                     {
                         if (Envir.Random.Next(5) == 0)
                         {
@@ -60,7 +60,7 @@ namespace Server.MirObjects.Monsters
                     break;
                 case 2:
                     {
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 

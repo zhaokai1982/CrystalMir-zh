@@ -112,7 +112,7 @@ namespace Server.MirObjects.Monsters
                 if (Envir.Random.Next(2) == 0)
                 {
                     Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID, Type = 0 });
-                    int damage = GetAttackPower(Stats[Stat.MinMC], HenshinMode ? (Stats[Stat.MaxMC] * 2) : Stats[Stat.MaxMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], HenshinMode ? (Stats[Stat.最大魔法] * 2) : Stats[Stat.最大魔法]);
                     if (damage == 0) return;
 
                     DelayedAction action = new DelayedAction(DelayedType.RangeDamage, Envir.Time + 1200, Target, damage, DefenceType.MAC);
@@ -129,7 +129,7 @@ namespace Server.MirObjects.Monsters
             else
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 if (HenshinMode == false)
@@ -201,13 +201,13 @@ namespace Server.MirObjects.Monsters
                         var time = 0;
                         if (HenshinMode)
                         {
-                            damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                            damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                             start = 1300;
                             time = 2300;
                         }
                         else
                         {
-                            damage = (int)(GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]) * (HenshinMode ? 2 : 1.5));
+                            damage = (int)(GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]) * (HenshinMode ? 2 : 1.5));
                             start = 1800;
                             time = 2800;
                         }

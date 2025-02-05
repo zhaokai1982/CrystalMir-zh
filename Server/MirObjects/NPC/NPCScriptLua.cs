@@ -6,6 +6,7 @@ using S = ServerPackets;
 using NLua;
 using System.Text;
 using System.IO;
+using System.Numerics;
 
 
 
@@ -143,7 +144,10 @@ namespace Server.MirObjects
                 "INGUILD",
                 "ADDTOGUILD",
                 "CHECKQUEST",
-                "SETQUEST"
+                "SETQUEST",
+                "CHECKACCOUNTLIST",
+                "DELACCOUNTLIST",
+                "HASBUFF",
             };
 
             foreach (var functionName in functions)
@@ -518,92 +522,20 @@ namespace Server.MirObjects
                 monster.Spawn(map, new Point(X_Coord, Y_Coord));
             }
         }
-        public void GIVEBUFF(string BuffName, int Time, bool Infinite, bool Visible, bool stackable, string[] extra = null)
+        public void GIVEBUFF(string BuffName, int Time, string buffStats, bool Infinite, bool Visible, int statValue)
         {
             var player = lua["player"] as PlayerObject;
-            var path = Path.Combine(Settings.EnvirPath, "SetBuffs.txt");
-
-            if (!File.Exists(path))
+            var buffStatsList = new Stats();
+            if (Enum.TryParse(buffStats, out Stat enumValue))
             {
-                File.Create(path).Dispose();
+                buffStatsList[enumValue] = statValue;
             }
-
-            var lines = File.ReadAllLines(path);
-
-            if (!Enum.IsDefined(typeof(BuffType), BuffName))
+            try
             {
-                return;
+                player.AddBuff((BuffType)(byte)Enum.Parse(typeof(BuffType), BuffName, true), player, Settings.Second * Time, buffStatsList, Visible);
             }
-
-            var matchedLine = lines.FirstOrDefault(l => l.StartsWith(BuffName + ";"));
-            var buffStats = new Stats();
-            var initialStats = new Dictionary<Stat, int>();
-            bool canAddBuff = true;
-
-            if (matchedLine != null)
-            {
-                var statsPart = matchedLine.Substring(matchedLine.IndexOf(';') + 1).Trim(';');
-                var potionStats = statsPart.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-
-                foreach (var stat in potionStats)
-                {
-                    var statParts = stat.Split('=');
-                    if (statParts.Length != 2) continue;
-
-                    var statName = statParts[0].Trim();
-                    var statValueString = statParts[1].Trim();
-
-                    if (string.IsNullOrWhiteSpace(statValueString)) continue;
-
-                    if (int.TryParse(statValueString, out var statValue))
-                    {
-                        if (Enum.TryParse(statName, out Stat enumValue))
-                        {
-                            buffStats[enumValue] = statValue;
-                            initialStats[enumValue] = statValue;
-                        }
-                    }
-                }
-            }
-
-            if (extra != null)
-            {
-                for (int j = 0; j < extra.Length; j++)
-                {
-                    var extraStatParts = extra[j].Split('=');
-                    if (extraStatParts.Length != 2) continue;
-
-                    var extraStatName = extraStatParts[0].Trim();
-                    var extraStatValueString = extraStatParts[1].Trim();
-
-                    if (string.IsNullOrWhiteSpace(extraStatValueString)) continue;
-
-                    if (!int.TryParse(extraStatValueString, out var extraStatValue)) continue;
-
-                    if (!Enum.TryParse(extraStatName, out Stat extraEnumValue) || !Enum.IsDefined(typeof(Stat), extraEnumValue))
-                    {
-                        continue;
-                    }
-
-                    if (initialStats.TryGetValue(extraEnumValue, out var initialValue) && initialValue != 0)
-                    {
-                        canAddBuff = false;
-                        break;
-                    }
-
-                    if (!initialStats.ContainsKey(extraEnumValue))
-                    {
-                        canAddBuff = false;
-                        break;
-                    }
-
-                    buffStats[extraEnumValue] = extraStatValue;
-                }
-            }
-
-            if (canAddBuff)
-            {
-                player.AddBuff((BuffType)(byte)Enum.Parse(typeof(BuffType), BuffName, true), player, Settings.Second * Time, buffStats, Visible);
+            catch (Exception) { 
+            
             }
         }
         public void REMOVEBUFF(string BuffName)
@@ -770,11 +702,12 @@ namespace Server.MirObjects
             var player = lua["player"] as PlayerObject;
             return player.Account.Credit;
         }
-        public void DELITEM(int slot,ushort count)
+        public void DELITEM(int slot, ushort count)
         {
             var player = lua["player"] as PlayerObject;
             var uid = GETUID(slot);
-            if (uid != 0) {
+            if (uid != 0)
+            {
                 player.Enqueue(new S.DeleteItem { UniqueID = uid, Count = count });
             }
         }
@@ -795,11 +728,11 @@ namespace Server.MirObjects
             var player = lua["player"] as PlayerObject;
             return player.Level;
         }
-        public bool INGUILD(string GuildName="")
+        public bool INGUILD(string GuildName = "")
         {
             var player = lua["player"] as PlayerObject;
             var failed = true;
-            if (GuildName !="")
+            if (GuildName != "")
             {
                 failed = player.MyGuild == null || player.MyGuild.Name != GuildName;
             }
@@ -836,7 +769,8 @@ namespace Server.MirObjects
             }
             return !failed;
         }
-        public void SETQUEST(int questID, string status) { 
+        public void SETQUEST(int questID, string status)
+        {
             var player = lua["player"] as PlayerObject;
             int.TryParse(status, out int questState);
 
@@ -867,6 +801,57 @@ namespace Server.MirObjects
             }
 
             player.GetCompletedQuests();
+        }
+        public int CHECKACCOUNTLIST(string relativePath, string key = "")
+        {
+            // Construct the full path to the .txt file
+            string fullPath = Path.Combine("Envir", "Namelists", relativePath + ".txt");
+            int count = 0;
+            // Check if the file exists
+            if (File.Exists(fullPath))
+            {
+                // Read all lines from the file
+                string[] lines = File.ReadAllLines(fullPath);
+
+                // Check if the file is empty and display "Empty" if so, otherwise display each line as a new item
+                if (lines.Length == 0)
+                {
+                    return count;
+                }
+                else
+                {
+                    foreach (string line in lines)
+                    {
+                        key = key == "" ? USERNAME() : key;
+                        if (line == key)
+                        {
+                            count++;
+                        }
+                    }
+                    return count;
+                }
+            }
+            else
+            {
+                // Display a message if the file is not found
+                return count;
+            }
+        }
+        public void DELACCOUNTLIST(string relativePath, string key = "")
+        {
+            string playerToDelete = key == "" ? USERNAME() : key;
+            string fullPath = Path.Combine("Envir", "Namelists", relativePath + ".txt");
+
+            var lines = File.ReadAllLines(fullPath).ToList();
+            foreach (string line in lines)
+            {
+                lines.Remove(playerToDelete);
+            }
+
+        }
+        public bool HASBUFF(int bufftype) {
+            var player = lua["player"] as PlayerObject;
+            return player.HasBuff((BuffType)bufftype);
         }
     }
 }

@@ -153,7 +153,7 @@ namespace Server.MirObjects.Monsters
                 case 0:
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
 
                         DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 1200, Target, damage, DefenceType.AC);
@@ -163,7 +163,7 @@ namespace Server.MirObjects.Monsters
                 case 1:
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC] * 2);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击] * 2);
                         if (damage == 0) return;
 
                         DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 1200, Target, damage, DefenceType.AC);
@@ -173,7 +173,7 @@ namespace Server.MirObjects.Monsters
                 case 2:
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC] * 2);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击] * 2);
                         if (damage == 0) return;
 
                         PoisonTarget(Target, 3, 5, PoisonType.Bleeding, 1000);
@@ -184,7 +184,7 @@ namespace Server.MirObjects.Monsters
                 case 3:
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
                         LineAttack(damage, Functions.MaxDistance(CurrentLocation, Target.CurrentLocation) + 1);
 
@@ -195,7 +195,7 @@ namespace Server.MirObjects.Monsters
                 case 4:
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
                         LineAttack(damage, Functions.MaxDistance(CurrentLocation, Target.CurrentLocation) + 2);
 
@@ -206,7 +206,7 @@ namespace Server.MirObjects.Monsters
                 case 5:
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC] * 2);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击] * 2);
                         if (damage == 0) return;
                         LineAttack(damage, Functions.MaxDistance(CurrentLocation, Target.CurrentLocation) + 2);
 

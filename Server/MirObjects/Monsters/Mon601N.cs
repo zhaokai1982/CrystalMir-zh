@@ -43,7 +43,7 @@ namespace Server.MirObjects.Monsters
             if (distance > 2)
             {
                 Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID });
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 ProjectileAttack(damage + (damage / 2), DefenceType.AC, 500);
@@ -51,7 +51,7 @@ namespace Server.MirObjects.Monsters
             else
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation });
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 WideLineAttack(damage, 3, 500, DefenceType.ACAgility, false, 3);

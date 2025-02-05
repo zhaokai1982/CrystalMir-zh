@@ -2179,35 +2179,35 @@ namespace Client.MirControls
                     }
                     break;
                 case RequiredType.MaxAC:
-                    if (actor.Stats[Stat.MaxAC] < Item.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最大防御] < Item.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("没有足够的物理防御", ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MaxMAC:
-                    if (actor.Stats[Stat.MaxMAC] < Item.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最大魔御] < Item.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("没有足够的魔法防御", ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MaxDC:
-                    if (actor.Stats[Stat.MaxDC] < Item.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最大攻击] < Item.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat(GameLanguage.LowDC, ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MaxMC:
-                    if (actor.Stats[Stat.MaxMC] < Item.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最大魔法] < Item.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat(GameLanguage.LowMC, ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MaxSC:
-                    if (actor.Stats[Stat.MaxSC] < Item.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最大道术] < Item.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat(GameLanguage.LowSC, ChatType.System);
                         return false;
@@ -2221,35 +2221,35 @@ namespace Client.MirControls
                     }
                     break;
                 case RequiredType.MinAC:
-                    if (actor.Stats[Stat.MinAC] < Item.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最小防御] < Item.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("物理防御不足", ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MinMAC:
-                    if (actor.Stats[Stat.MinMAC] < Item.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最小魔御] < Item.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("魔法防御不足", ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MinDC:
-                    if (actor.Stats[Stat.MinDC] < Item.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最小攻击] < Item.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("物理攻击不足", ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MinMC:
-                    if (actor.Stats[Stat.MinMC] < Item.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最小魔法] < Item.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("魔法攻击不足", ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MinSC:
-                    if (actor.Stats[Stat.MinSC] < Item.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最小道术] < Item.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("道术攻击不足", ChatType.System);
                         return false;
@@ -2361,35 +2361,35 @@ namespace Client.MirControls
                     }
                     break;
                 case RequiredType.MaxAC:
-                    if (actor.Stats[Stat.MaxAC] < i.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最大防御] < i.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("没有足够的物理防御", ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MaxMAC:
-                    if (actor.Stats[Stat.MaxMAC] < i.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最大魔御] < i.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("没有足够的魔法防御", ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MaxDC:
-                    if (actor.Stats[Stat.MaxDC] < i.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最大攻击] < i.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat(GameLanguage.LowDC, ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MaxMC:
-                    if (actor.Stats[Stat.MaxMC] < i.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最大魔法] < i.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat(GameLanguage.LowMC, ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MaxSC:
-                    if (actor.Stats[Stat.MaxSC] < i.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最大道术] < i.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat(GameLanguage.LowSC, ChatType.System);
                         return false;
@@ -2403,35 +2403,35 @@ namespace Client.MirControls
                     }
                     break;
                 case RequiredType.MinAC:
-                    if (actor.Stats[Stat.MinAC] < i.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最小防御] < i.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("物理防御不足", ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MinMAC:
-                    if (actor.Stats[Stat.MinMAC] < i.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最小魔御] < i.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("魔法防御不足", ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MinDC:
-                    if (actor.Stats[Stat.MinDC] < i.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最小攻击] < i.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("物理攻击不足", ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MinMC:
-                    if (actor.Stats[Stat.MinMC] < i.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最小魔法] < i.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("魔法攻击不足", ChatType.System);
                         return false;
                     }
                     break;
                 case RequiredType.MinSC:
-                    if (actor.Stats[Stat.MinSC] < i.Info.RequiredAmount)
+                    if (actor.Stats[Stat.最小道术] < i.Info.RequiredAmount)
                     {
                         GameScene.Scene.ChatDialog.ReceiveChat("道术攻击不足", ChatType.System);
                         return false;
@@ -2441,7 +2441,7 @@ namespace Client.MirControls
 
             if (i.Info.Type == ItemType.武器 || i.Info.Type == ItemType.照明物)
             {
-                if (i.Weight - (Item != null ? Item.Weight : 0) + actor.CurrentHandWeight > actor.Stats[Stat.腕力负重])
+                if (i.Weight - (Item != null ? Item.Weight : 0) + actor.CurrentHandWeight > actor.Stats[Stat.手腕负重])
                 {
                     GameScene.Scene.ChatDialog.ReceiveChat(GameLanguage.TooHeavyToHold, ChatType.System);
                     return false;
@@ -2449,7 +2449,7 @@ namespace Client.MirControls
             }
             else
             {
-                if (i.Weight - (Item != null ? Item.Weight : 0) + actor.CurrentWearWeight > actor.Stats[Stat.装备负重])
+                if (i.Weight - (Item != null ? Item.Weight : 0) + actor.CurrentWearWeight > actor.Stats[Stat.佩戴负重])
                 {
                     GameScene.Scene.ChatDialog.ReceiveChat("穿戴负重不足", ChatType.System);
                     return false;

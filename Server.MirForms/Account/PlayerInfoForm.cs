@@ -48,11 +48,11 @@ namespace Server
                 CurrentXY.Text = $"X:{Character.CurrentLocation.X}: Y:{Character.CurrentLocation.Y}";
 
                 ExpTextBox.Text = $"{string.Format("{0:#0.##%}", Character.Player.Experience / (double)Character.Player.MaxExperience)}";
-                ACBox.Text = $"{Character.Player.Stats[Stat.MinAC]}-{Character.Player.Stats[Stat.MaxAC]}";
-                AMCBox.Text = $"{Character.Player.Stats[Stat.MinMAC]}-{Character.Player.Stats[Stat.MaxMAC]}";
-                DCBox.Text = $"{Character.Player.Stats[Stat.MinDC]}-{Character.Player.Stats[Stat.MaxDC]}";
-                MCBox.Text = $"{Character.Player.Stats[Stat.MinMC]}-{Character.Player.Stats[Stat.MaxMC]}";
-                SCBox.Text = $"{Character.Player.Stats[Stat.MinSC]}-{Character.Player.Stats[Stat.MaxSC]}";
+                ACBox.Text = $"{Character.Player.Stats[Stat.最小防御]}-{Character.Player.Stats[Stat.最大防御]}";
+                AMCBox.Text = $"{Character.Player.Stats[Stat.最小魔御]}-{Character.Player.Stats[Stat.最大魔御]}";
+                DCBox.Text = $"{Character.Player.Stats[Stat.最小攻击]}-{Character.Player.Stats[Stat.最大攻击]}";
+                MCBox.Text = $"{Character.Player.Stats[Stat.最小魔法]}-{Character.Player.Stats[Stat.最大魔法]}";
+                SCBox.Text = $"{Character.Player.Stats[Stat.最小道术]}-{Character.Player.Stats[Stat.最大道术]}";
                 ACCBox.Text = $"{Character.Player.Stats[Stat.准确]}";
                 AGILBox.Text = $"{Character.Player.Stats[Stat.敏捷]}";
                 ATKSPDBox.Text = $"{Character.Player.Stats[Stat.攻击速度]}";

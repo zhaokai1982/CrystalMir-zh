@@ -138,7 +138,7 @@ namespace Server.MirObjects.Monsters
                     var spellObj = new SpellObject
                     {
                         Spell = Envir.Random.Next(2) == 0 ? Spell.MapQuake1 : Spell.MapQuake2,
-                        Value = Envir.Random.Next(Envir.Random.Next(Stats[Stat.MinDC], Stats[Stat.MaxDC])),
+                        Value = Envir.Random.Next(Envir.Random.Next(Stats[Stat.最小攻击], Stats[Stat.最大攻击])),
                         ExpireTime = Envir.Time + 2000 + start,
                         TickSpeed = 500,
                         Caster = null,

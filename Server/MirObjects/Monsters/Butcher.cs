@@ -72,7 +72,7 @@ namespace Server.MirObjects.Monsters
 
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 500, Target, damage, DefenceType.ACAgility, false);
@@ -124,7 +124,7 @@ namespace Server.MirObjects.Monsters
 
             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 2, Level = stompLoops });
 
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]) * stompLoops;
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]) * stompLoops;
             if (damage == 0) return;
             LineAttack(damage, 7, 300, DefenceType.MACAgility);
 
@@ -169,7 +169,7 @@ namespace Server.MirObjects.Monsters
 
                     if (!cell.Valid) return;
 
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
 
                     var start = 1000;
                     var time = Settings.Second * 15;
@@ -211,7 +211,7 @@ namespace Server.MirObjects.Monsters
                 CurrentMap.GetCell(CurrentLocation).Add(this);
                 AddObjects(jumpDir, 1);
 
-                int damage = Stats[Stat.MaxDC];
+                int damage = Stats[Stat.最大攻击];
 
                 if (damage > 0)
                     FullmoonAttack(damage);
@@ -237,12 +237,12 @@ namespace Server.MirObjects.Monsters
 
             {
 
-                var min = Stats[Stat.MinAC];
-                var max = Stats[Stat.MaxAC];
+                var min = Stats[Stat.最小防御];
+                var max = Stats[Stat.最大防御];
                 var stats = new Stats
                 {
-                    [Stat.MaxAC] = max * -1,
-                    [Stat.MinAC] = min * -1
+                    [Stat.最大防御] = max * -1,
+                    [Stat.最小防御] = min * -1
                 };
 
                 Target.AddBuff(BuffType.死亡印记, this, Settings.Second * 10, stats);

@@ -1046,7 +1046,7 @@ namespace Server
                 reader.Write("Item" + i.ToString(), "MaxDcStatChance", stat.MaxDcStatChance);
                 reader.Write("Item" + i.ToString(), "MaxDcMaxStat", stat.MaxDcMaxStat);
                 reader.Write("Item" + i.ToString(), "MaxMcChance", stat.MaxMcChance);
-                reader.Write("Item" + i.ToString(), "MaxMcStatChance",  stat.MaxMcStatChance);
+                reader.Write("Item" + i.ToString(), "MaxMcStatChance", stat.MaxMcStatChance);
                 reader.Write("Item" + i.ToString(), "MaxMcMaxStat", stat.MaxMcMaxStat);
                 reader.Write("Item" + i.ToString(), "MaxScChance", stat.MaxScChance);
                 reader.Write("Item" + i.ToString(), "MaxScStatChance", stat.MaxScStatChance);

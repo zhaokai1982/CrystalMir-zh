@@ -44,7 +44,7 @@ namespace Server.MirObjects.Monsters
 
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation });
 
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
 
                         TriangleAttack(damage, 3, 2, 600, DefenceType.ACAgility, false);
@@ -59,7 +59,7 @@ namespace Server.MirObjects.Monsters
                         ActionTime = Envir.Time + 300;
                         AttackTime = Envir.Time + AttackSpeed;
 
-                        int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                        int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                         if (damage == 0) return;
 
                         DelayedAction action = new DelayedAction(DelayedType.RangeDamage, Envir.Time + 500, Target, damage, DefenceType.MACAgility);
@@ -73,7 +73,7 @@ namespace Server.MirObjects.Monsters
                         ActionTime = Envir.Time + 300;
                         AttackTime = Envir.Time + AttackSpeed;
 
-                        int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                        int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                         if (damage == 0) return;
 
                         DelayedAction action = new DelayedAction(DelayedType.RangeDamage, Envir.Time + 500, Target, damage, DefenceType.MACAgility);
@@ -128,19 +128,19 @@ namespace Server.MirObjects.Monsters
             {
                 var friends = FindAllFriends(4, target.CurrentLocation);
 
-                var min = Stats[Stat.MinMC];
-                var max = Stats[Stat.MaxMC];
+                var min = Stats[Stat.最小魔法];
+                var max = Stats[Stat.最大魔法];
 
                 for (int i = 0; i < friends.Count; i++)
                 {
                     if (Info.Effect == 0)
                     {
-                        var stats = new Stats { [Stat.MinDC] = min, [Stat.MaxDC] = max, [Stat.MinMC] = min, [Stat.MaxMC] = max };
+                        var stats = new Stats { [Stat.最小攻击] = min, [Stat.最大攻击] = max, [Stat.最小魔法] = min, [Stat.最大魔法] = max };
                         friends[i].AddBuff(BuffType.ReaperPriestBuff, this, Settings.Second * 10, stats);
                     }
                     else if (Info.Effect == 1)
                     {
-                        var stats = new Stats { [Stat.MinAC] = min, [Stat.MaxAC] = max, [Stat.MinMAC] = min, [Stat.MaxMAC] = max };
+                        var stats = new Stats { [Stat.最小防御] = min, [Stat.最大防御] = max, [Stat.最小魔御] = min, [Stat.最大魔御] = max };
                         friends[i].AddBuff(BuffType.寒冰护甲, this, Settings.Second * 10, stats);
                     }
 

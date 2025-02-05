@@ -83,31 +83,31 @@ namespace Server.MirDatabase
 
             if (Envir.LoadVersion < 62)
             {
-                Stats[Stat.MinAC] = reader.ReadByte();
-                Stats[Stat.MaxAC] = reader.ReadByte();
-                Stats[Stat.MinMAC] = reader.ReadByte();
-                Stats[Stat.MaxMAC] = reader.ReadByte();
-                Stats[Stat.MinDC] = reader.ReadByte();
-                Stats[Stat.MaxDC] = reader.ReadByte();
-                Stats[Stat.MinMC] = reader.ReadByte();
-                Stats[Stat.MaxMC] = reader.ReadByte();
-                Stats[Stat.MinSC] = reader.ReadByte();
-                Stats[Stat.MaxSC] = reader.ReadByte();
+                Stats[Stat.最小防御] = reader.ReadByte();
+                Stats[Stat.最大防御] = reader.ReadByte();
+                Stats[Stat.最小魔御] = reader.ReadByte();
+                Stats[Stat.最大魔御] = reader.ReadByte();
+                Stats[Stat.最小攻击] = reader.ReadByte();
+                Stats[Stat.最大攻击] = reader.ReadByte();
+                Stats[Stat.最小魔法] = reader.ReadByte();
+                Stats[Stat.最大魔法] = reader.ReadByte();
+                Stats[Stat.最小道术] = reader.ReadByte();
+                Stats[Stat.最大道术] = reader.ReadByte();
             }
             else
             {
                 if (Envir.LoadVersion <= 84)
                 {
-                    Stats[Stat.MinAC] = reader.ReadUInt16();
-                    Stats[Stat.MaxAC] = reader.ReadUInt16();
-                    Stats[Stat.MinMAC] = reader.ReadUInt16();
-                    Stats[Stat.MaxMAC] = reader.ReadUInt16();
-                    Stats[Stat.MinDC] = reader.ReadUInt16();
-                    Stats[Stat.MaxDC] = reader.ReadUInt16();
-                    Stats[Stat.MinMC] = reader.ReadUInt16();
-                    Stats[Stat.MaxMC] = reader.ReadUInt16();
-                    Stats[Stat.MinSC] = reader.ReadUInt16();
-                    Stats[Stat.MaxSC] = reader.ReadUInt16();
+                    Stats[Stat.最小防御] = reader.ReadUInt16();
+                    Stats[Stat.最大防御] = reader.ReadUInt16();
+                    Stats[Stat.最小魔御] = reader.ReadUInt16();
+                    Stats[Stat.最大魔御] = reader.ReadUInt16();
+                    Stats[Stat.最小攻击] = reader.ReadUInt16();
+                    Stats[Stat.最大攻击] = reader.ReadUInt16();
+                    Stats[Stat.最小魔法] = reader.ReadUInt16();
+                    Stats[Stat.最大魔法] = reader.ReadUInt16();
+                    Stats[Stat.最小道术] = reader.ReadUInt16();
+                    Stats[Stat.最大道术] = reader.ReadUInt16();
                 }
             }
 

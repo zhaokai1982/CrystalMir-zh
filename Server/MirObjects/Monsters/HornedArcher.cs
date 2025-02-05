@@ -62,7 +62,7 @@ namespace Server.MirObjects.Monsters
 
             Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID, Type = 0 });
 
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
             if (damage == 0) return;
 
             int delay = Functions.MaxDistance(CurrentLocation, Target.CurrentLocation) * 50 + 500;
@@ -83,8 +83,8 @@ namespace Server.MirObjects.Monsters
             {
                 var friends = FindAllFriends(4, target.CurrentLocation);
 
-                var min = Stats[Stat.MinMC];
-                var max = Stats[Stat.MaxMC];
+                var min = Stats[Stat.最小魔法];
+                var max = Stats[Stat.最大魔法];
 
                 for (int i = 0; i < friends.Count; i++)
                 {
@@ -92,17 +92,17 @@ namespace Server.MirObjects.Monsters
 
                     if (Info.Effect == 0)
                     {
-                        var stats = new Stats { [Stat.MinDC] = min, [Stat.MaxDC] = max, [Stat.MinMC] = min, [Stat.MaxMC] = max };
+                        var stats = new Stats { [Stat.最小攻击] = min, [Stat.最大攻击] = max, [Stat.最小魔法] = min, [Stat.最大魔法] = max };
                         friends[i].AddBuff(BuffType.HornedArcherBuff, this, Settings.Second * 10, stats);
                     }
                     else if (Info.Effect == 1)
                     {
-                        var stats = new Stats { [Stat.MinAC] = min, [Stat.MaxAC] = max, [Stat.MinMAC] = min, [Stat.MaxMAC] = max };
+                        var stats = new Stats { [Stat.最小防御] = min, [Stat.最大防御] = max, [Stat.最小魔御] = min, [Stat.最大魔御] = max };
                         friends[i].AddBuff(BuffType.ColdArcherBuff, this, Settings.Second * 10, stats);
                     }
                     else if (Info.Effect == 2)
                     {
-                        var stats = new Stats { [Stat.MinMAC] = min, [Stat.MaxMAC] = max, [Stat.MinDC] = min, [Stat.MaxDC] = max };
+                        var stats = new Stats { [Stat.最小魔御] = min, [Stat.最大魔御] = max, [Stat.最小攻击] = min, [Stat.最大攻击] = max };
                         friends[i].AddBuff(BuffType.ColdArcherBuff, this, Settings.Second * 10, stats);
                     }
                     friends[i].OperateTime = 0;

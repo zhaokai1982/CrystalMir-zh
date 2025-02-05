@@ -7491,9 +7491,9 @@ namespace Client.MirScenes
             #endregion
 
             #region DC
-            minValue = realItem.Stats[Stat.MinDC];
-            maxValue = realItem.Stats[Stat.MaxDC];
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.MaxDC] : 0;
+            minValue = realItem.Stats[Stat.最小攻击];
+            maxValue = realItem.Stats[Stat.最大攻击];
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.最大攻击] : 0;
 
             if (minValue > 0 || maxValue > 0 || addValue > 0)
             {
@@ -7520,9 +7520,9 @@ namespace Client.MirScenes
 
             #region MC
 
-            minValue = realItem.Stats[Stat.MinMC];
-            maxValue = realItem.Stats[Stat.MaxMC];
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.MaxMC] : 0;
+            minValue = realItem.Stats[Stat.最小魔法];
+            maxValue = realItem.Stats[Stat.最大魔法];
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.最大魔法] : 0;
 
             if (minValue > 0 || maxValue > 0 || addValue > 0)
             {
@@ -7549,9 +7549,9 @@ namespace Client.MirScenes
 
             #region SC
 
-            minValue = realItem.Stats[Stat.MinSC];
-            maxValue = realItem.Stats[Stat.MaxSC];
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.MaxSC] : 0;
+            minValue = realItem.Stats[Stat.最小道术];
+            maxValue = realItem.Stats[Stat.最大道术];
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.最大道术] : 0;
 
             if (minValue > 0 || maxValue > 0 || addValue > 0)
             {
@@ -7717,9 +7717,9 @@ namespace Client.MirScenes
 
             #region FREEZING
 
-            minValue = realItem.Stats[Stat.冰冻伤害];
+            minValue = realItem.Stats[Stat.冰冻];
             maxValue = 0;
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.冰冻伤害] : 0;
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.冰冻] : 0;
 
             if (minValue > 0 || maxValue > 0 || addValue > 0)
             {
@@ -7747,9 +7747,9 @@ namespace Client.MirScenes
 
             #region POISON
 
-            minValue = realItem.Stats[Stat.毒素伤害];
+            minValue = realItem.Stats[Stat.毒攻];
             maxValue = 0;
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.毒素伤害] : 0;
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.毒攻] : 0;
 
             if (minValue > 0 || maxValue > 0 || addValue > 0)
             {
@@ -7777,9 +7777,9 @@ namespace Client.MirScenes
 
             #region CRITICALRATE / FLEXIBILITY
 
-            minValue = realItem.Stats[Stat.暴击倍率];
+            minValue = realItem.Stats[Stat.暴击率];
             maxValue = 0;
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.暴击倍率] : 0;
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.暴击率] : 0;
 
             if ((minValue > 0 || maxValue > 0 || addValue > 0) && (realItem.Type != ItemType.宝玉神珠))
             {
@@ -7834,7 +7834,7 @@ namespace Client.MirScenes
 
             #region Reflect
 
-            minValue = realItem.Stats[Stat.反弹伤害];
+            minValue = realItem.Stats[Stat.Reflect];
             maxValue = 0;
             addValue = 0;
 
@@ -7859,7 +7859,7 @@ namespace Client.MirScenes
 
             #region Hpdrain
 
-            minValue = realItem.Stats[Stat.吸血数率];
+            minValue = realItem.Stats[Stat.吸血];
             maxValue = 0;
             addValue = 0;
 
@@ -7884,9 +7884,9 @@ namespace Client.MirScenes
 
             #region Exp Rate
 
-            minValue = realItem.Stats[Stat.经验增长数率];
+            minValue = realItem.Stats[Stat.经验率百分比];
             maxValue = 0;
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.经验增长数率] : 0;
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.经验率百分比] : 0;
 
             if (minValue != 0 || maxValue != 0 || addValue != 0)
             {
@@ -7915,9 +7915,9 @@ namespace Client.MirScenes
 
             #region Drop Rate
 
-            minValue = realItem.Stats[Stat.物品掉落数率];
+            minValue = realItem.Stats[Stat.物品爆率百分比];
             maxValue = 0;
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.物品掉落数率] : 0;
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.物品爆率百分比] : 0;
 
             if (minValue != 0 || maxValue != 0 || addValue != 0)
             {
@@ -7946,9 +7946,9 @@ namespace Client.MirScenes
 
             #region Gold Rate
 
-            minValue = realItem.Stats[Stat.金币收益数率];
+            minValue = realItem.Stats[Stat.金币爆率百分比];
             maxValue = 0;
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.金币收益数率] : 0;
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.金币爆率百分比] : 0;
 
             if (minValue != 0 || maxValue != 0 || addValue != 0)
             {
@@ -8065,9 +8065,9 @@ namespace Client.MirScenes
             string text = "";
             #region AC
 
-            minValue = realItem.Stats[Stat.MinAC];
-            maxValue = realItem.Stats[Stat.MaxAC];
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.MaxAC] : 0;
+            minValue = realItem.Stats[Stat.最小防御];
+            maxValue = realItem.Stats[Stat.最大防御];
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.最大防御] : 0;
 
             if (minValue > 0 || maxValue > 0 || addValue > 0)
             {
@@ -8111,9 +8111,9 @@ namespace Client.MirScenes
 
             #region MAC
 
-            minValue = realItem.Stats[Stat.MinMAC];
-            maxValue = realItem.Stats[Stat.MaxMAC];
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.MaxMAC] : 0;
+            minValue = realItem.Stats[Stat.最小魔御];
+            maxValue = realItem.Stats[Stat.最大魔御];
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.最大魔御] : 0;
 
             if (minValue > 0 || maxValue > 0 || addValue > 0)
             {
@@ -8201,7 +8201,7 @@ namespace Client.MirScenes
 
             #region MAXHPRATE
 
-            minValue = realItem.Stats[Stat.生命值数率];
+            minValue = realItem.Stats[Stat.HPRatePercent];
             maxValue = 0;
             addValue = 0;
 
@@ -8226,7 +8226,7 @@ namespace Client.MirScenes
 
             #region MAXMPRATE
 
-            minValue = realItem.Stats[Stat.法力值数率];
+            minValue = realItem.Stats[Stat.MPRatePercent];
             maxValue = 0;
             addValue = 0;
 
@@ -8251,7 +8251,7 @@ namespace Client.MirScenes
 
             #region MAXACRATE
 
-            minValue = realItem.Stats[Stat.最大防御数率];
+            minValue = realItem.Stats[Stat.MaxACRatePercent];
             maxValue = 0;
             addValue = 0;
 
@@ -8276,7 +8276,7 @@ namespace Client.MirScenes
 
             #region MAXMACRATE
 
-            minValue = realItem.Stats[Stat.最大魔御数率];
+            minValue = realItem.Stats[Stat.MaxMACRatePercent];
             maxValue = 0;
             addValue = 0;
 
@@ -8301,9 +8301,9 @@ namespace Client.MirScenes
 
             #region HEALTH_RECOVERY
 
-            minValue = realItem.Stats[Stat.生命恢复];
+            minValue = realItem.Stats[Stat.体力恢复];
             maxValue = 0;
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.生命恢复] : 0;
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.体力恢复] : 0;
 
             if (minValue > 0 || maxValue > 0 || addValue > 0)
             {
@@ -8434,9 +8434,9 @@ namespace Client.MirScenes
 
             #region POISON_RESIST
 
-            minValue = realItem.Stats[Stat.毒物躲避];
+            minValue = realItem.Stats[Stat.毒药抵抗];
             maxValue = 0;
-            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.毒物躲避] : 0;
+            addValue = (!hideAdded && (!HoverItem.Info.NeedIdentify || HoverItem.Identified)) ? HoverItem.AddedStats[Stat.毒药抵抗] : 0;
 
             if (minValue > 0 || maxValue > 0 || addValue > 0)
             {
@@ -8493,7 +8493,7 @@ namespace Client.MirScenes
 
             #region MAX_DC_RATE
 
-            minValue = realItem.Stats[Stat.最大物理攻击数率];
+            minValue = realItem.Stats[Stat.MaxDCRatePercent];
             maxValue = 0;
             addValue = 0;
 
@@ -8517,7 +8517,7 @@ namespace Client.MirScenes
 
             #region MAX_MC_RATE
 
-            minValue = realItem.Stats[Stat.最大魔法攻击数率];
+            minValue = realItem.Stats[Stat.MaxMCRatePercent];
             maxValue = 0;
             addValue = 0;
 
@@ -8541,7 +8541,7 @@ namespace Client.MirScenes
 
             #region MAX_SC_RATE
 
-            minValue = realItem.Stats[Stat.最大道术攻击数率];
+            minValue = realItem.Stats[Stat.MaxSCRatePercent];
             maxValue = 0;
             addValue = 0;
 
@@ -8565,7 +8565,7 @@ namespace Client.MirScenes
 
             #region DAMAGE_REDUCTION
 
-            minValue = realItem.Stats[Stat.伤害降低数率];
+            minValue = realItem.Stats[Stat.伤害减少百分比];
             maxValue = 0;
             addValue = 0;
 
@@ -8628,7 +8628,7 @@ namespace Client.MirScenes
 
             #region HANDWEIGHT
 
-            minValue = realItem.Stats[Stat.腕力负重];
+            minValue = realItem.Stats[Stat.手腕负重];
             maxValue = 0;
             addValue = 0;
 
@@ -8654,7 +8654,7 @@ namespace Client.MirScenes
 
             #region WEARWEIGHT
 
-            minValue = realItem.Stats[Stat.装备负重];
+            minValue = realItem.Stats[Stat.佩戴负重];
             maxValue = 0;
             addValue = 0;
 
@@ -9007,27 +9007,27 @@ namespace Client.MirScenes
                         break;
                     case RequiredType.MaxAC:
                         text = string.Format("需要物理防御{0}", realItem.RequiredAmount);
-                        if (MapObject.User.Stats[Stat.MaxAC] < realItem.RequiredAmount)
+                        if (MapObject.User.Stats[Stat.最大防御] < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
                     case RequiredType.MaxMAC:
                         text = string.Format("需要魔法防御{0}", realItem.RequiredAmount);
-                        if (MapObject.User.Stats[Stat.MaxMAC] < realItem.RequiredAmount)
+                        if (MapObject.User.Stats[Stat.最大魔御] < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
                     case RequiredType.MaxDC:
                         text = string.Format(GameLanguage.RequiredDC, realItem.RequiredAmount);
-                        if (MapObject.User.Stats[Stat.MaxDC] < realItem.RequiredAmount)
+                        if (MapObject.User.Stats[Stat.最大攻击] < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
                     case RequiredType.MaxMC:
                         text = string.Format(GameLanguage.RequiredMC, realItem.RequiredAmount);
-                        if (MapObject.User.Stats[Stat.MaxMC] < realItem.RequiredAmount)
+                        if (MapObject.User.Stats[Stat.最大魔法] < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
                     case RequiredType.MaxSC:
                         text = string.Format(GameLanguage.RequiredSC, realItem.RequiredAmount);
-                        if (MapObject.User.Stats[Stat.MaxSC] < realItem.RequiredAmount)
+                        if (MapObject.User.Stats[Stat.最大道术] < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
                     case RequiredType.MaxLevel:
@@ -9037,27 +9037,27 @@ namespace Client.MirScenes
                         break;
                     case RequiredType.MinAC:
                         text = string.Format("需要物理防御 : {0}", realItem.RequiredAmount);
-                        if (MapObject.User.Stats[Stat.MinAC] < realItem.RequiredAmount)
+                        if (MapObject.User.Stats[Stat.最小防御] < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
                     case RequiredType.MinMAC:
                         text = string.Format("需要魔法防御 : {0}", realItem.RequiredAmount);
-                        if (MapObject.User.Stats[Stat.MinMAC] < realItem.RequiredAmount)
+                        if (MapObject.User.Stats[Stat.最小魔御] < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
                     case RequiredType.MinDC:
                         text = string.Format("需要物理攻击 : {0}", realItem.RequiredAmount);
-                        if (MapObject.User.Stats[Stat.MinDC] < realItem.RequiredAmount)
+                        if (MapObject.User.Stats[Stat.最小攻击] < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
                     case RequiredType.MinMC:
                         text = string.Format("需要魔法攻击 : {0}", realItem.RequiredAmount);
-                        if (MapObject.User.Stats[Stat.MinMC] < realItem.RequiredAmount)
+                        if (MapObject.User.Stats[Stat.最小魔法] < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
                     case RequiredType.MinSC:
                         text = string.Format("需要道术攻击 : {0}", realItem.RequiredAmount);
-                        if (MapObject.User.Stats[Stat.MinSC] < realItem.RequiredAmount)
+                        if (MapObject.User.Stats[Stat.最小道术] < realItem.RequiredAmount)
                             colour = Color.Red;
                         break;
                     default:
@@ -12222,15 +12222,15 @@ namespace Client.MirScenes
 
             if (magic.Spell == Spell.Teleport || magic.Spell == Spell.Blink || magic.Spell == Spell.StormEscape || magic.Spell == Spell.StormEscapeRare)
             {
-                if (actor.Stats[Stat.传送技法力消耗数率] > 0)
+                if (actor.Stats[Stat.TeleportManaPenaltyPercent] > 0)
                 {
-                    cost += (cost * actor.Stats[Stat.传送技法力消耗数率]) / 100;
+                    cost += (cost * actor.Stats[Stat.TeleportManaPenaltyPercent]) / 100;
                 }
             }
 
-            if (actor.Stats[Stat.法力值消耗数率] > 0)
+            if (actor.Stats[Stat.ManaPenaltyPercent] > 0)
             {
-                cost += (cost * actor.Stats[Stat.法力值消耗数率]) / 100;
+                cost += (cost * actor.Stats[Stat.ManaPenaltyPercent]) / 100;
             }
 
             if (cost > actor.MP)

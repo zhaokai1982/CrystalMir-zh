@@ -36,7 +36,7 @@ namespace Server.MirObjects.Monsters
                 {
                     Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                     if (damage == 0) return;
 
                     List<MapObject> targets = FindAllTargets(3, CurrentLocation, false);
@@ -64,7 +64,7 @@ namespace Server.MirObjects.Monsters
 
                 for (int i = 0; i < targets.Count; i++)
                 {
-                    int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     if (damage == 0) continue;
 
                     int delay = Functions.MaxDistance(CurrentLocation, targets[i].CurrentLocation) * 50 + 500; //50 MS per Step
@@ -101,7 +101,7 @@ namespace Server.MirObjects.Monsters
 
             if (target.Attacked(this, damage, DefenceType.MACAgility) <= 0) return;
 
-            PoisonTarget(target, 1, Envir.Random.Next(Stats[Stat.MaxMC]), PoisonType.Dazed, 1000);
+            PoisonTarget(target, 1, Envir.Random.Next(Stats[Stat.最大魔法]), PoisonType.Dazed, 1000);
         }
 
         protected override void ProcessTarget()

@@ -64,7 +64,7 @@ namespace Server.MirObjects.Monsters
                     foreach (var target in targets)
                     {
                         Target = target;
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
 
                         PoisonTarget(target, chanceToPoison: 15, poisonDuration: 10, PoisonType.Blindness,
@@ -86,7 +86,7 @@ namespace Server.MirObjects.Monsters
                     foreach (var target in targets)
                     {
                         Target = target;
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
 
                         DelayedAction action = new(DelayedType.RangeDamage, Envir.Time + 500, target, damage,
@@ -124,7 +124,7 @@ namespace Server.MirObjects.Monsters
                         foreach (var target in targets)
                         {
                             Target = target;
-                            int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                            int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                             if (damage == 0) return;
 
                             DelayedAction action = new(DelayedType.RangeDamage, Envir.Time + 500, target, damage,
@@ -169,7 +169,7 @@ namespace Server.MirObjects.Monsters
                         SpellObject spell = new()
                         {
                             Spell = Spell.Mon580BRoot,
-                            Value = Envir.Random.Next(Stats[Stat.MinMC], Stats[Stat.MaxMC]),
+                            Value = Envir.Random.Next(Stats[Stat.最小魔法], Stats[Stat.最大魔法]),
                             TickSpeed = 500,
                             ExpireTime = Envir.Time + 2000,
                             CurrentLocation = new Point(x, y),
@@ -207,7 +207,7 @@ namespace Server.MirObjects.Monsters
                     var cell = CurrentMap.GetCell(x, y);
                     if (!cell.Valid) continue;
 
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
 
                     Spell spellType = Envir.Random.Next(2) == 0 ? Spell.Mon580BDenseFog : Spell.Mon580BPoisonousMist;
 
@@ -244,18 +244,18 @@ namespace Server.MirObjects.Monsters
             switch (HealthPercent)
             {
                 case > 60 and <= 80:
-                    stats[Stat.MaxAC] = 30;
-                    stats[Stat.MinAC] = 30;
+                    stats[Stat.最大防御] = 30;
+                    stats[Stat.最小防御] = 30;
                     shieldTime = 30000;
                     break;
                 case > 30 and <= 50:
-                    stats[Stat.MaxAC] = 60;
-                    stats[Stat.MinAC] = 60;
+                    stats[Stat.最大防御] = 60;
+                    stats[Stat.最小防御] = 60;
                     shieldTime = 45000;
                     break;
                 case >= 20 and <= 30:
-                    stats[Stat.MaxAC] = 90;
-                    stats[Stat.MinAC] = 90;
+                    stats[Stat.最大防御] = 90;
+                    stats[Stat.最小防御] = 90;
                     shieldTime = 60000;
                     break;
                 default:

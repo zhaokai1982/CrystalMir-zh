@@ -46,7 +46,7 @@ namespace Server.MirObjects.Monsters
                     for (int i = 0; i < targets.Count; i++)
                     {
                         Target = targets[i];
-                        int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC] * 2);
+                        int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法] * 2);
                         if (damage == 0) return;
 
                         DelayedAction action = new(DelayedType.RangeDamage, Envir.Time + 500, Target, damage, DefenceType.MACAgility, false);
@@ -64,7 +64,7 @@ namespace Server.MirObjects.Monsters
                     for (int i = 0; i < targets.Count; i++)
                     {
                         Target = targets[i];
-                        int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                        int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                         if (damage == 0) return;
 
                         FullmoonAttack(damage, 600, DefenceType.MACAgility, 1, 2);
@@ -88,7 +88,7 @@ namespace Server.MirObjects.Monsters
                             for (int i = 0; i < targets.Count; i++)
                             {
                                 Target = targets[i];
-                                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                                 if (damage == 0) return;
 
                                 DelayedAction action = new(DelayedType.RangeDamage, Envir.Time + 500, Target, damage, DefenceType.MACAgility, false);
@@ -131,7 +131,7 @@ namespace Server.MirObjects.Monsters
                     var cell = CurrentMap.GetCell(x, y);
                     if (!cell.Valid) continue;
 
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                     var start = 500;
                     var time = Settings.Second * 15;
 

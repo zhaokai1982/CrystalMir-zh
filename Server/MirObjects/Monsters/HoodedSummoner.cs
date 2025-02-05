@@ -48,7 +48,7 @@ namespace Server.MirObjects.Monsters
                         ActionTime = Envir.Time + 300;
                         AttackTime = Envir.Time + AttackSpeed;
 
-                        int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                        int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                         if (damage == 0) return;
                         PoisonTarget(Target, 6, 5, PoisonType.Slow, 2000);
 
@@ -66,7 +66,7 @@ namespace Server.MirObjects.Monsters
                                 ActionTime = Envir.Time + 300;
                                 AttackTime = Envir.Time + AttackSpeed;
 
-                                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                                 if (damage == 0) return;
                                 PoisonTarget(Target, 0, 5, PoisonType.Dazed, 2000);
 
@@ -81,7 +81,7 @@ namespace Server.MirObjects.Monsters
                                 ActionTime = Envir.Time + 300;
                                 AttackTime = Envir.Time + AttackSpeed;
 
-                                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                                 if (damage == 0) return;
                                 PoisonTarget(Target, 6, 5, PoisonType.Slow, 2000);
                                 PoisonTarget(Target, 9, 5, PoisonType.Frozen, 2000);
@@ -97,7 +97,7 @@ namespace Server.MirObjects.Monsters
                                 ActionTime = Envir.Time + 300;
                                 AttackTime = Envir.Time + AttackSpeed;
 
-                                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                                 if (damage == 0) return;
                                 PoisonTarget(Target, 0, 5, PoisonType.Slow, 1000);
 

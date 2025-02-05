@@ -35,7 +35,7 @@ namespace Server.MirObjects.Monsters
             ActionTime = Envir.Time + 300;
             AttackTime = Envir.Time + AttackSpeed;
 
-            int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+            int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
             if (damage == 0) return;
 
             Direction = Functions.DirectionFromPoint(CurrentLocation, Target.CurrentLocation);

@@ -75,7 +75,7 @@ namespace Server.MirObjects.Monsters
                     case 0:
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             FullmoonAttack(damage, 600, DefenceType.ACAgility, -1, 2);
@@ -88,7 +88,7 @@ namespace Server.MirObjects.Monsters
                         if (Envir.Random.Next(10) < 3)
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             FullmoonAttack(damage, 600, DefenceType.ACAgility, 1, 2);
@@ -107,7 +107,7 @@ namespace Server.MirObjects.Monsters
                 if (targets.Count == 0) return;
 
                 int levelgap;
-                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                 if (damage == 0) return;
 
                 int poisonChance = 30 + (targets.Count - 1) * 5;

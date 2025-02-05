@@ -52,13 +52,13 @@ namespace Server.MirObjects.Monsters
             {
                 case 0:
                 default:
-                    damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     break;
                 case 1:
-                    damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                    damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                     break;
                 case 2:
-                    damage = GetAttackPower(Stats[Stat.MinSC], Stats[Stat.MaxSC]);
+                    damage = GetAttackPower(Stats[Stat.最小道术], Stats[Stat.最大道术]);
                     break;
             }
 

@@ -173,7 +173,7 @@ namespace Server
                 RISMaxAcChancetextBox.Text = stat.MaxAcChance.ToString();
                 RISMaxAcStatChancetextBox.Text = stat.MaxAcStatChance.ToString();
                 RISMaxAcMaxStattextBox.Text = stat.MaxAcMaxStat.ToString();
-                RISMaxMacChancetextBox.Text = stat.MaxMacChance.ToString();
+                RISMaxMacChancetextBox.Text = stat.MaxMacStatChance.ToString();
                 RISMaxMacStatChancetextBox.Text = stat.MaxMacStatChance.ToString();
                 RISMaxMacMaxStattextBox.Text = stat.MaxMacMaxStat.ToString();
                 RISMaxDcChancetextBox.Text = stat.MaxDcChance.ToString();

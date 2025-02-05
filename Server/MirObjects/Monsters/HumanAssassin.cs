@@ -38,12 +38,12 @@ namespace Server.MirObjects.Monsters
             RefreshBase();
 
             Stats[Stat.HP] += PetLevel * 20;
-            Stats[Stat.MinAC] += PetLevel * 2;
-            Stats[Stat.MaxAC] += PetLevel * 2;
-            Stats[Stat.MinMAC] += PetLevel * 2;
-            Stats[Stat.MaxMAC] += PetLevel * 2;
-            Stats[Stat.MinDC] += PetLevel;
-            Stats[Stat.MaxDC] += PetLevel;
+            Stats[Stat.最小防御] += PetLevel * 2;
+            Stats[Stat.最大防御] += PetLevel * 2;
+            Stats[Stat.最小魔御] += PetLevel * 2;
+            Stats[Stat.最大魔御] += PetLevel * 2;
+            Stats[Stat.最小攻击] += PetLevel;
+            Stats[Stat.最大攻击] += PetLevel;
 
             if (MoveSpeed < 100) MoveSpeed = 100;
             if (AttackSpeed < 100) AttackSpeed = 100;
@@ -249,7 +249,7 @@ namespace Server.MirObjects.Monsters
             ActionTime = Envir.Time + 300;
             AttackTime = Envir.Time + AttackSpeed;
 
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
             AttackDamage += damage;
 
             if (damage == 0) return;
@@ -294,8 +294,8 @@ namespace Server.MirObjects.Monsters
 
         private void ExplosionDie()
         {
-            int criticalDamage = Envir.Random.Next(0, 100) <= Stats[Stat.准确] ? Stats[Stat.MaxDC] * 2 : Stats[Stat.MinDC] * 2;
-            int damage = (Stats[Stat.MinDC] / 5 + 4 * (Level / 20)) * criticalDamage / 20 + Stats[Stat.MaxDC];
+            int criticalDamage = Envir.Random.Next(0, 100) <= Stats[Stat.准确] ? Stats[Stat.最大攻击] * 2 : Stats[Stat.最小攻击] * 2;
+            int damage = (Stats[Stat.最小攻击] / 5 + 4 * (Level / 20)) * criticalDamage / 20 + Stats[Stat.最大攻击];
 
             for (int i = 0; i < 16; i++)
             {

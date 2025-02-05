@@ -2132,7 +2132,7 @@ namespace Client.MirScenes.Dialogs
             Recipe = GameScene.RecipeInfoList.SingleOrDefault(x => x.Item.ItemIndex == selectedItem.ItemIndex);
 
             RecipeLabel.Text = Recipe.Item.FriendlyName;
-            PossibilityLabel.Text = (UserObject.User.Stats[Stat.大师概率数率] > 0 ? $"{Math.Min(100, Recipe.Chance + UserObject.User.Stats[Stat.大师概率数率])}% (+{UserObject.User.Stats[Stat.大师概率数率]}%)" : $"{Recipe.Chance}%") + " 成功几率";
+            PossibilityLabel.Text = (UserObject.User.Stats[Stat.工艺率百分比] > 0 ? $"{Math.Min(100, Recipe.Chance + UserObject.User.Stats[Stat.工艺率百分比])}% (+{UserObject.User.Stats[Stat.工艺率百分比]}%)" : $"{Recipe.Chance}%") + " 成功几率";
             GoldLabel.Text = Recipe.Gold.ToString("###,###,##0");
 
             for (int i = 0; i < Slots.Length; i++)

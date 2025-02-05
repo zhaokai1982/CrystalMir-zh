@@ -841,12 +841,12 @@ namespace Server.MirObjects
             RefreshBase();
 
             Stats[Stat.HP] += PetLevel * 20;
-            Stats[Stat.MinAC] += PetLevel * 2;
-            Stats[Stat.MaxAC] += PetLevel * 2;
-            Stats[Stat.MinMAC] += PetLevel * 2;
-            Stats[Stat.MaxMAC] += PetLevel * 2;
-            Stats[Stat.MinDC] += PetLevel;
-            Stats[Stat.MaxDC] += PetLevel;
+            Stats[Stat.最小防御] += PetLevel * 2;
+            Stats[Stat.最大防御] += PetLevel * 2;
+            Stats[Stat.最小魔御] += PetLevel * 2;
+            Stats[Stat.最大魔御] += PetLevel * 2;
+            Stats[Stat.最小攻击] += PetLevel;
+            Stats[Stat.最大攻击] += PetLevel;
 
             if (Info.Name == Settings.SkeletonName || Info.Name == Settings.ShinsuName || Info.Name == Settings.AngelName)
             {
@@ -1120,7 +1120,7 @@ namespace Server.MirObjects
             {
                 DropInfo drop = Info.Drops[i];
 
-                var reward = drop.AttemptDrop(EXPOwner?.Stats[Stat.物品掉落数率] ?? 0, EXPOwner?.Stats[Stat.金币收益数率] ?? 0);
+                var reward = drop.AttemptDrop(EXPOwner?.Stats[Stat.物品爆率百分比] ?? 0, EXPOwner?.Stats[Stat.金币爆率百分比] ?? 0);
 
                 if (reward != null)
                 {
@@ -2065,7 +2065,7 @@ namespace Server.MirObjects
             ActionTime = Envir.Time + 300;
             AttackTime = Envir.Time + AttackSpeed;
 
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
             if (damage == 0) return;
 
             DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 300, Target, damage, DefenceType.ACAgility);
@@ -2481,7 +2481,7 @@ namespace Server.MirObjects
 
             if (damageWeapon)
                 attacker.DamageWeapon();
-            damage += attacker.Stats[Stat.攻击增伤];
+            damage += attacker.Stats[Stat.功力];
 
             if (armour >= damage)
             {
@@ -2489,7 +2489,7 @@ namespace Server.MirObjects
                 return 0;
             }
 
-            if (Envir.Random.Next(100) < (attacker.Stats[Stat.暴击倍率] * Settings.CriticalRateWeight))
+            if (Envir.Random.Next(100) < (attacker.Stats[Stat.暴击率] * Settings.CriticalRateWeight))
             {
                 Broadcast(new S.ObjectEffect { ObjectID = ObjectID, Effect = SpellEffect.Critical });
                 damage = Math.Min(int.MaxValue, damage + (int)Math.Floor(damage * (attacker.Stats[Stat.暴击伤害] / (double)Settings.CriticalDamageWeight * 10)));
@@ -2536,9 +2536,9 @@ namespace Server.MirObjects
 
             Broadcast(new S.ObjectStruck { ObjectID = ObjectID, AttackerID = attacker.ObjectID, Direction = Direction, Location = CurrentLocation });
 
-            if (attacker.Stats[Stat.吸血数率] > 0 && damageWeapon)
+            if (attacker.Stats[Stat.吸血] > 0 && damageWeapon)
             {
-                attacker.HpDrain += Math.Max(0, ((float)(damage - armour) / 100) * attacker.Stats[Stat.吸血数率]);
+                attacker.HpDrain += Math.Max(0, ((float)(damage - armour) / 100) * attacker.Stats[Stat.吸血]);
                 if (attacker.HpDrain > 2)
                 {
                     int hpGain = (int)Math.Floor(attacker.HpDrain);
@@ -2558,7 +2558,7 @@ namespace Server.MirObjects
                     if (player != null && player.CurrentMap == attacker.CurrentMap && Functions.InRange(player.CurrentLocation, attacker.CurrentLocation, Globals.DataRange) && !player.Dead)
                     {
                         if (GroupMembers != null && GroupMembers.Contains(player))
-                            damage += (int)Math.Round((double)(damage * attacker.Stats[Stat.师徒专享伤害数率]) / 100);
+                            damage += (int)Math.Round((double)(damage * attacker.Stats[Stat.MentorDamageRatePercent]) / 100);
                     }
                 }
             }
@@ -2652,16 +2652,16 @@ namespace Server.MirObjects
             switch (type)
             {
                 case DefenceType.ACAgility:
-                    armour = GetAttackPower(Stats[Stat.MinAC], Stats[Stat.MaxAC]);
+                    armour = GetAttackPower(Stats[Stat.最小防御], Stats[Stat.最大防御]);
                     break;
                 case DefenceType.AC:
-                    armour = GetAttackPower(Stats[Stat.MinAC], Stats[Stat.MaxAC]);
+                    armour = GetAttackPower(Stats[Stat.最小防御], Stats[Stat.最大防御]);
                     break;
                 case DefenceType.MACAgility:
-                    armour = GetAttackPower(Stats[Stat.MinMAC], Stats[Stat.MaxMAC]);
+                    armour = GetAttackPower(Stats[Stat.最小魔御], Stats[Stat.最大魔御]);
                     break;
                 case DefenceType.MAC:
-                    armour = GetAttackPower(Stats[Stat.MinMAC], Stats[Stat.MaxMAC]);
+                    armour = GetAttackPower(Stats[Stat.最小魔御], Stats[Stat.最大魔御]);
                     break;
                 case DefenceType.Agility:
                     break;
@@ -2690,7 +2690,7 @@ namespace Server.MirObjects
 
             if (!ignoreDefence && (p.PType == PoisonType.Green))
             {
-                int armour = GetAttackPower(Stats[Stat.MinMAC], Stats[Stat.MaxMAC]);
+                int armour = GetAttackPower(Stats[Stat.最小魔御], Stats[Stat.最大魔御]);
 
                 if (p.Value < armour)
                     p.PType = PoisonType.None;
@@ -3422,9 +3422,9 @@ namespace Server.MirObjects
         // MONSTER AI ATTACKS \\\
         protected virtual void PoisonTarget(MapObject target, int chanceToPoison, long poisonDuration, PoisonType poison, long poisonTickSpeed = 1000, bool noResist = false, bool ignoreDefence = true)
         {
-            int value = GetAttackPower(Stats[Stat.MinSC], Stats[Stat.MaxSC]);
+            int value = GetAttackPower(Stats[Stat.最小道术], Stats[Stat.最大道术]);
 
-            if (Envir.Random.Next(Settings.PoisonResistWeight) >= target.Stats[Stat.毒物躲避])
+            if (Envir.Random.Next(Settings.PoisonResistWeight) >= target.Stats[Stat.毒药抵抗])
             {
                 if (Envir.Random.Next(chanceToPoison) == 0)
                 {

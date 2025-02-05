@@ -38,7 +38,7 @@ namespace Server.MirObjects.Monsters
 
             if (!ranged && Envir.Random.Next(3) == 0)
             {
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation });
                 if (damage == 0) return;
@@ -48,7 +48,7 @@ namespace Server.MirObjects.Monsters
             }
             else
             {
-                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
 
                 Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID });
                 AttackTime = Envir.Time + AttackSpeed + 500;

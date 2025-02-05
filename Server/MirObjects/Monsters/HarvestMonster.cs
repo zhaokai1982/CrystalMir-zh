@@ -58,7 +58,7 @@ namespace Server.MirObjects.Monsters
             {
                 DropInfo drop = Info.Drops[i];
 
-                var reward = drop.AttemptDrop(EXPOwner?.Stats[Stat.物品掉落数率] ?? 0, EXPOwner?.Stats[Stat.金币收益数率] ?? 0);
+                var reward = drop.AttemptDrop(EXPOwner?.Stats[Stat.物品爆率百分比] ?? 0, EXPOwner?.Stats[Stat.金币爆率百分比] ?? 0);
 
                 if (reward != null)
                 {

@@ -38,7 +38,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             HalfmoonAttack(damage);
@@ -51,7 +51,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             TriangleAttack(damage, 3, 2, 500);
@@ -64,7 +64,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 2 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             WideLineAttack(damage, 3, 500, DefenceType.ACAgility, false, 3);
@@ -97,7 +97,7 @@ namespace Server.MirObjects.Monsters
                                 CurrentMap.GetCell(CurrentLocation).Add(this);
                                 AddObjects(jumpDir, 1);
 
-                                int damage = Stats[Stat.MaxDC];
+                                int damage = Stats[Stat.最大攻击];
                                 if (damage > 0)
 
                                     FullmoonAttack(damage);
@@ -142,7 +142,7 @@ namespace Server.MirObjects.Monsters
                                     CurrentMap.GetCell(CurrentLocation).Add(this);
                                     AddObjects(Direction, 1);
                                 }
-                                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                                 if (damage == 0) return;
 
                                 PoisonTarget(Target, 4, 5, PoisonType.Frozen, 800);
@@ -156,7 +156,7 @@ namespace Server.MirObjects.Monsters
                         case 1:
                             {
                                 Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID, Type = 1 });
-                                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                                 if (damage == 0) return;
 
                                 PoisonTarget(Target, 6, 5, PoisonType.Frozen, 1000);

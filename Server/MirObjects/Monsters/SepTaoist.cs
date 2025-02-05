@@ -34,7 +34,7 @@ namespace Server.MirObjects.Monsters
             ActionTime = Envir.Time + 300;
             AttackTime = Envir.Time + AttackSpeed;
 
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
             if (damage == 0) return;
 
             Direction = Functions.DirectionFromPoint(CurrentLocation, Target.CurrentLocation);
@@ -46,7 +46,7 @@ namespace Server.MirObjects.Monsters
             if (!Target.PoisonList.Any(x => x.PType == PoisonType.Green) && !Target.PoisonList.Any(x => x.PType == PoisonType.Red))
             {
                 Broadcast(new S.ObjectMagic { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Spell = Spell.Poisoning, TargetID = Target.ObjectID, Target = Target.CurrentLocation, Cast = true, Level = 3 });
-                int power = GetAttackPower(Stats[Stat.MinSC], Stats[Stat.MaxSC]);
+                int power = GetAttackPower(Stats[Stat.最小道术], Stats[Stat.最大道术]);
                 Target.ApplyPoison(new Poison
                 {
                     Duration = power + ((Envir.Random.Next(0, 3) + 1) * 7),
@@ -61,7 +61,7 @@ namespace Server.MirObjects.Monsters
             else if (Target.PoisonList.Any(x => x.PType == PoisonType.Green) && !Target.PoisonList.Any(x => x.PType == PoisonType.Red))
             {
                 Broadcast(new S.ObjectMagic { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Spell = Spell.Poisoning, TargetID = Target.ObjectID, Target = Target.CurrentLocation, Cast = true, Level = 3 });
-                int power = GetAttackPower(Stats[Stat.MinSC], Stats[Stat.MaxSC]);
+                int power = GetAttackPower(Stats[Stat.最小道术], Stats[Stat.最大道术]);
                 Target.ApplyPoison(new Poison
                 {
                     Duration = power + ((Envir.Random.Next(0, 3) + 1) * 7),
@@ -75,7 +75,7 @@ namespace Server.MirObjects.Monsters
             else if (!Target.PoisonList.Any(x => x.PType == PoisonType.Green) && Target.PoisonList.Any(x => x.PType == PoisonType.Red))
             {
                 Broadcast(new S.ObjectMagic { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Spell = Spell.Poisoning, TargetID = Target.ObjectID, Target = Target.CurrentLocation, Cast = true, Level = 3 });
-                int power = GetAttackPower(Stats[Stat.MinSC], Stats[Stat.MaxSC]);
+                int power = GetAttackPower(Stats[Stat.最小道术], Stats[Stat.最大道术]);
                 Target.ApplyPoison(new Poison
                 {
                     Duration = power + ((Envir.Random.Next(0, 3) + 1) * 7),

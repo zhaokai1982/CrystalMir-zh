@@ -44,7 +44,7 @@ namespace Server.MirObjects.Monsters
                 {
                     Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation });
 
-                    int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     if (damage == 0) return;
                     TriangleAttack(damage, 3, 1, 800);
 
@@ -55,7 +55,7 @@ namespace Server.MirObjects.Monsters
                 {
                     Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                    int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC] * 2);
+                    int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击] * 2);
                     if (damage == 0) return;
                     TriangleAttack(damage, 3, 2, 500, DefenceType.ACAgility, false);
 
@@ -71,7 +71,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID });
                             AttackTime = Envir.Time + AttackSpeed + 500;
-                            int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                            int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                             if (damage == 0) return;
 
                             DelayedAction action = new(DelayedType.RangeDamage, Envir.Time + 500, Target, damage, DefenceType.MAC, false);
@@ -84,7 +84,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID });
 
-                            int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC] * 2);
+                            int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法] * 2);
                             if (damage == 0) return;
 
                             BigCobweb();
@@ -103,7 +103,7 @@ namespace Server.MirObjects.Monsters
                             for (int i = 0; i < targets.Count; i++)
                             {
                                 Target = targets[i];
-                                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                                 if (damage == 0) return;
 
                                 DelayedAction action = new(DelayedType.RangeDamage, Envir.Time + 500, Target, damage, DefenceType.MACAgility, false);
@@ -128,8 +128,8 @@ namespace Server.MirObjects.Monsters
 
                                 var stats = new Stats
                                 {
-                                    [Stat.MaxAC] = maxAC * -1,
-                                    [Stat.MaxMAC] = maxMAC * -1
+                                    [Stat.最大防御] = maxAC * -1,
+                                    [Stat.最大魔御] = maxMAC * -1
                                 };
                                 Target.AddBuff(BuffType.防御诅咒, this, Settings.Second * 10, stats);
                             }
@@ -140,7 +140,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectRangeAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, TargetID = Target.ObjectID, Type = 1 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                            int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                             if (damage == 0) return;
 
                             WakeAll(11);
@@ -180,7 +180,7 @@ namespace Server.MirObjects.Monsters
                     var cell = CurrentMap.GetCell(x, y);
                     if (!cell.Valid) continue;
 
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                     var start = 500;
                     var time = Settings.Second * 15;
 

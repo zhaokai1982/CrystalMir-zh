@@ -29,7 +29,7 @@ namespace Server.MirObjects.Monsters
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 300, Target, damage, DefenceType.ACAgility, false);
@@ -60,7 +60,7 @@ namespace Server.MirObjects.Monsters
 
                 for (int i = 0; i < targets.Count; i++)
                 {
-                    PoisonTarget(targets[i], 1, Envir.Random.Next(GetAttackPower(Stats[Stat.MinSC], Stats[Stat.MaxSC]) / 2), PoisonType.Red, 1000);
+                    PoisonTarget(targets[i], 1, Envir.Random.Next(GetAttackPower(Stats[Stat.最小道术], Stats[Stat.最大道术]) / 2), PoisonType.Red, 1000);
                 }
             }
             else

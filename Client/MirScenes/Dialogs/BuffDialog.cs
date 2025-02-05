@@ -319,7 +319,7 @@ namespace Client.MirScenes.Dialogs
                     break;
                 case BuffType.先天气功:
                     overridestats = true;
-                    text += string.Format("被攻击后有 {0}%几率\n恢复 {1}点生命值\n", buff.Stats[Stat.气功盾恢复数率], buff.Stats[Stat.气功盾恢复生命值]);
+                    text += string.Format("被攻击后有 {0}%几率\n恢复 {1}点生命值\n", buff.Stats[Stat.EnergyShieldPercent], buff.Stats[Stat.EnergyShieldHPGain]);
                     break;
                 case BuffType.烈火身:
                     text += "召唤替身进行一次爆炸攻击\n对非反隐怪物隐身并可移动\n";
@@ -335,7 +335,7 @@ namespace Client.MirScenes.Dialogs
                     break;
                 case BuffType.深延术:
                     overridestats = true;
-                    text += string.Format("增加魔法攻击: {0}-{1}\n法力值消耗增加 {2}%\n", buff.Stats[Stat.MinMC], buff.Stats[Stat.MaxMC], buff.Stats[Stat.法力值消耗数率]);
+                    text += string.Format("增加魔法攻击: {0}-{1}\n法力值消耗增加 {2}%\n", buff.Stats[Stat.最小魔法], buff.Stats[Stat.最大魔法], buff.Stats[Stat.ManaPenaltyPercent]);
                     break;
                 case BuffType.天上秘术:
                     text += "开启后(天霜冰环)和(流星火雨)\n无需引导\n";

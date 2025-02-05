@@ -64,7 +64,7 @@ namespace Server.MirObjects.Monsters
             ActionTime = Envir.Time + 300;
             AttackTime = Envir.Time + AttackSpeed;
 
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
             if (damage == 0) return;
 
@@ -75,7 +75,7 @@ namespace Server.MirObjects.Monsters
                 Target.Attacked(this, (int)(damage * 0.8), DefenceType.ACAgility);
                 ProjectileAttack((int)(damage * 0.8),DefenceType.ACAgility);
 
-                if (((Target.Race != ObjectType.Player || Settings.PvpCanResistPoison) && (Envir.Random.Next(Settings.PoisonAttackWeight) >= Target.Stats[Stat.毒物躲避])) && (Target.Level <= Level + 8 && Envir.Random.Next(20) <= 5))
+                if (((Target.Race != ObjectType.Player || Settings.PvpCanResistPoison) && (Envir.Random.Next(Settings.PoisonAttackWeight) >= Target.Stats[Stat.毒药抵抗])) && (Target.Level <= Level + 8 && Envir.Random.Next(20) <= 5))
                 {
                     Target.ApplyPoison(new Poison { PType = PoisonType.Stun, Duration = 5, TickSpeed = 1000 }, this);
                     Target.Broadcast(new S.ObjectEffect { ObjectID = Target.ObjectID, Effect = SpellEffect.TwinDrakeBlade });

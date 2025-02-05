@@ -138,7 +138,7 @@ namespace Server.MirObjects.Monsters
 
         protected override void Attack()
         {
-            int damage = GetAttackPower(Stats[Stat.MinDC], DragonLink ? Stats[Stat.MaxDC] + (Envir.DragonSystem.Info.Level - 1 * 10) : Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], DragonLink ? Stats[Stat.最大攻击] + (Envir.DragonSystem.Info.Level - 1 * 10) : Stats[Stat.最大攻击]);
             if (!MassAttack)
                 damage = (int)(damage * 0.75);//make mass attacking do slightly more dmg then targeted
             if (damage == 0) return;

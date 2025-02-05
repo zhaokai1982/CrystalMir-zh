@@ -61,7 +61,7 @@ namespace Server.MirObjects.Monsters
         {
             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = (byte)attackType });
 
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
             if (damage == 0) return;
 
             LineAttack(damage, range, 300, DefenceType.ACAgility, false);

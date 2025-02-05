@@ -1439,7 +1439,7 @@ namespace Server.MirObjects
             player.Account.Gold -= (recipe.Gold * count);
             player.Enqueue(new S.LoseGold { Gold = (recipe.Gold * count) });
 
-            if (Envir.Random.Next(100) >= recipe.Chance + player.Stats[Stat.大师概率数率])
+            if (Envir.Random.Next(100) >= recipe.Chance + player.Stats[Stat.工艺率百分比])
             {
                 player.ReceiveChat("制作失败", ChatType.System);
             }

@@ -166,7 +166,7 @@ namespace Server.MirObjects
                                 Owner = Caster,
                                 PType = PoisonType.Green,
                                 TickSpeed = TickSpeed,
-                                Value = (Caster.Stats[Stat.MinSC] + Caster.Stats[Stat.MaxSC]) / 2 + BonusDmg
+                                Value = (Caster.Stats[Stat.最小道术] + Caster.Stats[Stat.最大道术]) / 2 + BonusDmg
                             }, Caster, false, false);
                     }
                     break;
@@ -180,7 +180,7 @@ namespace Server.MirObjects
                         if (!ob.Dead && Envir.Random.Next(8) == 0)
                             ob.ApplyPoison(new Poison
                             {
-                                Duration = 5 + Envir.Random.Next(Caster.Stats[Stat.冰冻伤害]),
+                                Duration = 5 + Envir.Random.Next(Caster.Stats[Stat.冰冻]),
                                 Owner = Caster,
                                 PType = PoisonType.Slow,
                                 TickSpeed = 2000,

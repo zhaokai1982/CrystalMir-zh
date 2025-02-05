@@ -130,24 +130,24 @@ public class GuildBuffInfo
         ActivationCost = reader.ReadInt32("Buff-" + i.ToString(), "ActivationCost", 0);
 
         Stats = new Stats();
-        Stats[Stat.MaxAC] = reader.ReadByte("Buff-" + i.ToString(), "BuffAc", 0);
-        Stats[Stat.MaxMAC] = reader.ReadByte("Buff-" + i.ToString(), "BuffMAC", 0);
-        Stats[Stat.MaxDC] = reader.ReadByte("Buff-" + i.ToString(), "BuffDc", 0);
-        Stats[Stat.MaxMC] = reader.ReadByte("Buff-" + i.ToString(), "BuffMc", 0);
-        Stats[Stat.MaxSC] = reader.ReadByte("Buff-" + i.ToString(), "BuffSc", 0);
+        Stats[Stat.最大防御] = reader.ReadByte("Buff-" + i.ToString(), "BuffAc", 0);
+        Stats[Stat.最大魔御] = reader.ReadByte("Buff-" + i.ToString(), "BuffMAC", 0);
+        Stats[Stat.最大攻击] = reader.ReadByte("Buff-" + i.ToString(), "BuffDc", 0);
+        Stats[Stat.最大魔法] = reader.ReadByte("Buff-" + i.ToString(), "BuffMc", 0);
+        Stats[Stat.最大道术] = reader.ReadByte("Buff-" + i.ToString(), "BuffSc", 0);
         Stats[Stat.HP] = reader.ReadInt32("Buff-" + i.ToString(), "BuffMaxHp", 0);
         Stats[Stat.MP] = reader.ReadInt32("Buff-" + i.ToString(), "BuffMaxMp", 0);
-        Stats[Stat.采矿出矿数率] = reader.ReadByte("Buff-" + i.ToString(), "BuffMineRate", 0);
-        Stats[Stat.宝石成功数率] = reader.ReadByte("Buff-" + i.ToString(), "BuffGemRate", 0);
-        Stats[Stat.钓鱼成功数率] = reader.ReadByte("Buff-" + i.ToString(), "BuffFishRate", 0);
-        Stats[Stat.经验增长数率] = reader.ReadByte("Buff-" + i.ToString(), "BuffExpRate", 0);
-        Stats[Stat.大师概率数率] = reader.ReadByte("Buff-" + i.ToString(), "BuffCraftRate", 0);
-        Stats[Stat.技能熟练度倍率] = reader.ReadByte("Buff-" + i.ToString(), "BuffSkillRate", 0);
-        Stats[Stat.生命恢复] = reader.ReadByte("Buff-" + i.ToString(), "BuffHpRegen", 0);
+        Stats[Stat.采矿率百分比] = reader.ReadByte("Buff-" + i.ToString(), "BuffMineRate", 0);
+        Stats[Stat.宝玉成功率] = reader.ReadByte("Buff-" + i.ToString(), "BuffGemRate", 0);
+        Stats[Stat.捕鱼率百分比] = reader.ReadByte("Buff-" + i.ToString(), "BuffFishRate", 0);
+        Stats[Stat.经验率百分比] = reader.ReadByte("Buff-" + i.ToString(), "BuffExpRate", 0);
+        Stats[Stat.工艺率百分比] = reader.ReadByte("Buff-" + i.ToString(), "BuffCraftRate", 0);
+        Stats[Stat.技能熟练度] = reader.ReadByte("Buff-" + i.ToString(), "BuffSkillRate", 0);
+        Stats[Stat.体力恢复] = reader.ReadByte("Buff-" + i.ToString(), "BuffHpRegen", 0);
         Stats[Stat.法力恢复] = reader.ReadByte("Buff-" + i.ToString(), "BuffMpRegen", 0);
-        Stats[Stat.攻击增伤] = reader.ReadByte("Buff-" + i.ToString(), "BuffAttack", 0);
-        Stats[Stat.物品掉落数率] = reader.ReadByte("Buff-" + i.ToString(), "BuffDropRate", 0);
-        Stats[Stat.金币收益数率] = reader.ReadByte("Buff-" + i.ToString(), "BuffGoldRate", 0);
+        Stats[Stat.功力] = reader.ReadByte("Buff-" + i.ToString(), "BuffAttack", 0);
+        Stats[Stat.物品爆率百分比] = reader.ReadByte("Buff-" + i.ToString(), "BuffDropRate", 0);
+        Stats[Stat.金币爆率百分比] = reader.ReadByte("Buff-" + i.ToString(), "BuffGoldRate", 0);
     }
 
     public void Save(InIReader reader, int i)
@@ -159,24 +159,24 @@ public class GuildBuffInfo
         reader.Write("Buff-" + i.ToString(), "PointsReq", PointsRequirement);
         reader.Write("Buff-" + i.ToString(), "TimeLimit", TimeLimit);
         reader.Write("Buff-" + i.ToString(), "ActivationCost", ActivationCost);
-        reader.Write("Buff-" + i.ToString(), "BuffAc", Stats[Stat.MaxAC]);
-        reader.Write("Buff-" + i.ToString(), "BuffMAC", Stats[Stat.MaxMAC]);
-        reader.Write("Buff-" + i.ToString(), "BuffDc", Stats[Stat.MaxDC]);
-        reader.Write("Buff-" + i.ToString(), "BuffMc", Stats[Stat.MaxMC]);
-        reader.Write("Buff-" + i.ToString(), "BuffSc", Stats[Stat.MaxSC]);
+        reader.Write("Buff-" + i.ToString(), "BuffAc", Stats[Stat.最大防御]);
+        reader.Write("Buff-" + i.ToString(), "BuffMAC", Stats[Stat.最大魔御]);
+        reader.Write("Buff-" + i.ToString(), "BuffDc", Stats[Stat.最大攻击]);
+        reader.Write("Buff-" + i.ToString(), "BuffMc", Stats[Stat.最大魔法]);
+        reader.Write("Buff-" + i.ToString(), "BuffSc", Stats[Stat.最大道术]);
         reader.Write("Buff-" + i.ToString(), "BuffMaxHp", Stats[Stat.HP]);
         reader.Write("Buff-" + i.ToString(), "BuffMaxMp", Stats[Stat.MP]);
-        reader.Write("Buff-" + i.ToString(), "BuffMineRate", Stats[Stat.采矿出矿数率]);
-        reader.Write("Buff-" + i.ToString(), "BuffGemRate", Stats[Stat.宝石成功数率]);
-        reader.Write("Buff-" + i.ToString(), "BuffFishRate", Stats[Stat.钓鱼成功数率]);
-        reader.Write("Buff-" + i.ToString(), "BuffExpRate", Stats[Stat.经验增长数率]); ;
-        reader.Write("Buff-" + i.ToString(), "BuffCraftRate", Stats[Stat.大师概率数率]);
-        reader.Write("Buff-" + i.ToString(), "BuffSkillRate", Stats[Stat.技能熟练度倍率]);
-        reader.Write("Buff-" + i.ToString(), "BuffHpRegen", Stats[Stat.生命恢复]);
+        reader.Write("Buff-" + i.ToString(), "BuffMineRate", Stats[Stat.采矿率百分比]);
+        reader.Write("Buff-" + i.ToString(), "BuffGemRate", Stats[Stat.宝玉成功率]);
+        reader.Write("Buff-" + i.ToString(), "BuffFishRate", Stats[Stat.捕鱼率百分比]);
+        reader.Write("Buff-" + i.ToString(), "BuffExpRate", Stats[Stat.经验率百分比]); ;
+        reader.Write("Buff-" + i.ToString(), "BuffCraftRate", Stats[Stat.工艺率百分比]);
+        reader.Write("Buff-" + i.ToString(), "BuffSkillRate", Stats[Stat.技能熟练度]);
+        reader.Write("Buff-" + i.ToString(), "BuffHpRegen", Stats[Stat.体力恢复]);
         reader.Write("Buff-" + i.ToString(), "BuffMpRegen", Stats[Stat.法力恢复]);
-        reader.Write("Buff-" + i.ToString(), "BuffAttack", Stats[Stat.攻击增伤]);
-        reader.Write("Buff-" + i.ToString(), "BuffDropRate", Stats[Stat.物品掉落数率]);
-        reader.Write("Buff-" + i.ToString(), "BuffGoldRate", Stats[Stat.金币收益数率]);
+        reader.Write("Buff-" + i.ToString(), "BuffAttack", Stats[Stat.功力]);
+        reader.Write("Buff-" + i.ToString(), "BuffDropRate", Stats[Stat.物品爆率百分比]);
+        reader.Write("Buff-" + i.ToString(), "BuffGoldRate", Stats[Stat.金币爆率百分比]);
     }
 
     public void Save(BinaryWriter writer)

@@ -33,7 +33,7 @@ namespace Server.MirObjects.Monsters
                 ActionTime = Envir.Time + 300;
                 AttackTime = Envir.Time + AttackSpeed;
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                 if (damage == 0) return;
 
                 DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 300, Target, damage, DefenceType.ACAgility);
@@ -51,7 +51,7 @@ namespace Server.MirObjects.Monsters
 
             if (target.Attacked(this, damage, defence) <= 0) return;
 
-            PoisonTarget(target, 4, GetAttackPower(Stats[Stat.MinSC], Stats[Stat.MaxSC]), PoisonType.Green, 1000);
+            PoisonTarget(target, 4, GetAttackPower(Stats[Stat.最小道术], Stats[Stat.最大道术]), PoisonType.Green, 1000);
         }
     }
 }

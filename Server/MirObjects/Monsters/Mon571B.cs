@@ -44,7 +44,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             TriangleAttack(damage, 3, 1, 600);
@@ -56,7 +56,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             LineAttack(damage, 2, 300, DefenceType.ACAgility, true);
@@ -68,7 +68,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 2 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             FullmoonAttack(damage, 600, DefenceType.ACAgility, 1, 2);
@@ -91,7 +91,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             TriangleAttack(damage, 3, 1, 900);
@@ -104,7 +104,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             LineAttack(damage, 3, 300, DefenceType.ACAgility, true);
@@ -137,7 +137,7 @@ namespace Server.MirObjects.Monsters
                         {
                             Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 2 });
 
-                            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                             if (damage == 0) return;
 
                             FullmoonAttack(damage, 600, DefenceType.ACAgility, -1, 2);
@@ -171,7 +171,7 @@ namespace Server.MirObjects.Monsters
                     var cell = CurrentMap.GetCell(x, y);
                     if (!cell.Valid) continue;
 
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                     var start = 500;
                     var time = Settings.Second * 15;
 
@@ -208,7 +208,7 @@ namespace Server.MirObjects.Monsters
             CurrentMap.GetCell(CurrentLocation).Add(this);
             AddObjects(jumpDir, distance);
 
-            int damage = Stats[Stat.MaxDC];
+            int damage = Stats[Stat.最大攻击];
             if (damage > 0)
             {
                 DelayedAction action = new DelayedAction(DelayedType.RangeDamage, Envir.Time + 500, new object[] { location, damage, DefenceType.AC });
@@ -295,7 +295,7 @@ namespace Server.MirObjects.Monsters
 
             for (int i = 0; i < targets.Count; i++)
             {
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC] * 2);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击] * 2);
                 if (damage == 0) return;
 
                 if (targets[i].Attacked(this, damage, DefenceType.ACAgility) <= 0) continue;

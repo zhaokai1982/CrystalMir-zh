@@ -47,7 +47,7 @@ namespace Server.MirObjects.Monsters
 
         protected override void CompleteRangeAttack(IList<object> data)
         {
-            int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]) * 3;
+            int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]) * 3;
             if (damage == 0) return;
 
             List<MapObject> targets = FindAllTargets(1, Functions.PointMove(CurrentLocation, Direction, 2));

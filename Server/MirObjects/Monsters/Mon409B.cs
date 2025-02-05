@@ -198,7 +198,7 @@ namespace Server.MirObjects.Monsters
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 0 });
 
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
 
                         HalfmoonAttack(damage);
@@ -210,7 +210,7 @@ namespace Server.MirObjects.Monsters
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
 
                         TriangleAttack(damage, 3, 2, 500, DefenceType.ACAgility, false);
@@ -222,7 +222,7 @@ namespace Server.MirObjects.Monsters
                     {
                         Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 3 });
 
-                        int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                        int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                         if (damage == 0) return;
 
                         WideLineAttack(damage, 3, 500, DefenceType.ACAgility, false, 3);
@@ -242,7 +242,7 @@ namespace Server.MirObjects.Monsters
 
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 2, Level = (byte)(spinLoops - 6) });
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]) * spinLoops;
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]) * spinLoops;
                 if (damage == 0) return;
 
                 FullmoonAttack(damage, 600, DefenceType.ACAgility, -1, 2);
@@ -261,7 +261,7 @@ namespace Server.MirObjects.Monsters
 
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 4, Level = (byte)(HammerLoops - 10) });
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]) * HammerLoops;
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]) * HammerLoops;
                 if (damage == 0) return;
 
                 WideLineAttack(damage, 4, 500, DefenceType.ACAgility, false, 4);
@@ -446,7 +446,7 @@ namespace Server.MirObjects.Monsters
                         spawned = true;
                     }
 
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
 
                     var start = 500;
 

@@ -75,7 +75,7 @@ namespace Server.MirObjects.Monsters
 
                 ActionTime = Envir.Time + AttackSpeed + 300;
 
-                int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                 if (damage == 0) return;
 
                 DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 300, Target, damage, DefenceType.ACAgility, true);
@@ -92,7 +92,7 @@ namespace Server.MirObjects.Monsters
 
                     ActionTime = Envir.Time + AttackSpeed + 300;
 
-                    int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     if (damage == 0) return;
 
                     DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 300, Target, damage, DefenceType.ACAgility);
@@ -104,7 +104,7 @@ namespace Server.MirObjects.Monsters
 
                     ActionTime = Envir.Time + AttackSpeed + 3400;
 
-                    int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     if (damage == 0) return;
 
                     FullmoonAttack(damage, 500, DefenceType.ACAgility, 1, 2);
@@ -116,7 +116,7 @@ namespace Server.MirObjects.Monsters
                     SpellObject ob = new SpellObject
                     {
                         Spell = Spell.DarkOmaKingNuke,
-                        Value = Stats[Stat.MaxDC],
+                        Value = Stats[Stat.最大攻击],
                         ExpireTime = Envir.Time + 900 + start,
                         TickSpeed = 1000,
                         Direction = Direction,
@@ -139,7 +139,7 @@ namespace Server.MirObjects.Monsters
 
                     ActionTime = Envir.Time + AttackSpeed + 300;
 
-                    int damage = GetAttackPower(Stats[Stat.MinMC], Stats[Stat.MaxMC]);
+                    int damage = GetAttackPower(Stats[Stat.最小魔法], Stats[Stat.最大魔法]);
                     if (damage == 0) return;
 
                     DelayedAction action = new DelayedAction(DelayedType.Damage, Envir.Time + 300, Target, damage, DefenceType.MAC);

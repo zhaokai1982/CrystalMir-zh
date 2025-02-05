@@ -51,7 +51,7 @@ namespace Server.MirObjects.Monsters
             {
                 Broadcast(new S.ObjectAttack { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation, Type = 1 });
 
-                int damage = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                int damage = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
 
                 SinglePushAttack(damage);
             }
@@ -73,7 +73,7 @@ namespace Server.MirObjects.Monsters
 
                 for (int i = 0; i < targets.Count; i++)
                 {
-                    int damage2 = GetAttackPower(Stats[Stat.MinDC], Stats[Stat.MaxDC]);
+                    int damage2 = GetAttackPower(Stats[Stat.最小攻击], Stats[Stat.最大攻击]);
                     if (damage2 == 0) return;
                     if (targets[i].Attacked(this, damage2, defence) <= 0) return;
                 }

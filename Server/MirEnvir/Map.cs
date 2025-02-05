@@ -1103,7 +1103,7 @@ namespace Server.MirEnvir
                                         {
                                             var stats = new Stats
                                             {
-                                                [type == BuffType.幽灵盾 ? Stat.MaxMAC : Stat.MaxAC] = target.Level / 7 + 4
+                                                [type == BuffType.幽灵盾 ? Stat.最大魔御 : Stat.最大防御] = target.Level / 7 + 4
                                             };
 
                                             target.AddBuff(type, player, Settings.Second * value, stats);
@@ -1699,7 +1699,7 @@ namespace Server.MirEnvir
                                                         target.ApplyPoison(new Poison
                                                         {
                                                             Owner = player,
-                                                            Duration = target.Race == ObjectType.Player ? 2 : 5 + Envir.Random.Next(player.Stats[Stat.冰冻伤害]),
+                                                            Duration = target.Race == ObjectType.Player ? 2 : 5 + Envir.Random.Next(player.Stats[Stat.冰冻]),
                                                             PType = PoisonType.Frozen,
                                                             TickSpeed = 1000,
                                                         }, player);
@@ -2109,10 +2109,10 @@ namespace Server.MirEnvir
 
                                             var stats = new Stats
                                             {
-                                                [Stat.最大物理攻击数率] = value2 * -1,
-                                                [Stat.最大魔法攻击数率] = value2 * -1,
-                                                [Stat.最大道术攻击数率] = value2 * -1,
-                                                [Stat.攻击速度数率] = target.Race == ObjectType.Player ? value2 * -1 : 0
+                                                [Stat.MaxDCRatePercent] = value2 * -1,
+                                                [Stat.MaxMCRatePercent] = value2 * -1,
+                                                [Stat.MaxSCRatePercent] = value2 * -1,
+                                                [Stat.AttackSpeedRatePercent] = target.Race == ObjectType.Player ? value2 * -1 : 0
                                             };
 
                                             target.AddBuff(BuffType.诅咒术, player, Settings.Second * value, stats);
@@ -2206,8 +2206,8 @@ namespace Server.MirEnvir
                 #region Plague
 
                 case Spell.Plague:
-                    // DelayedAction action = new DelayedAction(DelayedType.Magic, Envir.Time + delay, this, magic, magic.GetDamage(GetAttackPower(Stats[Stat.MinSC], Stats[Stat.MaxSC])), location, pType);
-                    // (int)data[2] === magic.GetDamage(GetAttackPower(Stats[Stat.MinSC], Stats[Stat.MaxSC]))
+                    // DelayedAction action = new DelayedAction(DelayedType.Magic, Envir.Time + delay, this, magic, magic.GetDamage(GetAttackPower(Stats[Stat.最小道术], Stats[Stat.最大道术])), location, pType);
+                    // (int)data[2] === magic.GetDamage(GetAttackPower(Stats[Stat.最小道术], Stats[Stat.最大道术]))
                     // (Point)data[3] === location
                     // (PoisonType)data[4] === pType
                     value = (int)data[2];
@@ -2267,7 +2267,7 @@ namespace Server.MirEnvir
                                             tempOb.ChangeMP(-tempValue);
                                         }
 
-                                        target.Attacked(player, player.Stats[Stat.MaxSC] * 2, DefenceType.MAC, true);
+                                        target.Attacked(player, player.Stats[Stat.最大道术] * 2, DefenceType.MAC, true);
 
                                         train = true;
                                     }
@@ -2386,7 +2386,7 @@ namespace Server.MirEnvir
                                                 Owner = player,
                                                 PType = PoisonType.Green,
                                                 TickSpeed = 2000,
-                                                Value = value / 15 + magic.Level + 1 + Envir.Random.Next(player.Stats[Stat.毒素伤害])
+                                                Value = value / 15 + magic.Level + 1 + Envir.Random.Next(player.Stats[Stat.毒攻])
                                             }, player);
                                             target.OperateTime = 0;
                                         }
