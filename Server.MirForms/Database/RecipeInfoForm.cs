@@ -13,7 +13,7 @@ namespace Server.Database
         {
             InitializeComponent();
             this.Load += RecipeInfoForm_Load;
-            SaveButton.Click += SaveButton_Click;
+            //SaveButton.Click += SaveButton_Click;
         }
 
         #region Form Load
@@ -705,7 +705,7 @@ namespace Server.Database
                     WriteIngredient(writer, IngredientName6ComboBox, IngredientAmount6TextBox, IngredientDura6TextBox);
                 }
 
-                MessageBox.Show("Recipe saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("配方保存成功.", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -732,7 +732,7 @@ namespace Server.Database
             // Check if a recipe is selected
             if (RecipeList.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a recipe to delete.", "No Recipe Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("请选择一个配方删除.", "未选择配方", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -743,7 +743,7 @@ namespace Server.Database
             string filePath = Path.Combine(directoryPath, $"{selectedRecipeName}.txt");
 
             // Confirm deletion
-            var result = MessageBox.Show($"Are you sure you want to delete the recipe: {selectedRecipeName}?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show($"确定要删除配方: {selectedRecipeName}?", "确认删除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result != DialogResult.Yes) return;
 
             // Delete the file
@@ -753,19 +753,19 @@ namespace Server.Database
                 {
                     File.Delete(filePath);
                     RecipeList.Items.Remove(selectedRecipeName); // Remove from the list
-                    MessageBox.Show($"Recipe deleted: {selectedRecipeName}.txt", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"配方已删除: {selectedRecipeName}.txt", "删除成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Clear the form and reset controls
                     ClearForm();
                 }
                 else
                 {
-                    MessageBox.Show("The selected recipe file does not exist.", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("所选的配方文件不存在.", "文件不存在", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to delete the recipe file. Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"删除出错. Error: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             // Update the recipe count
