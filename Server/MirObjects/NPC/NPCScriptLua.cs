@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using S = ServerPackets;
 using NLua;
 using System.Text;
+using System.IO;
 
 
 
@@ -140,7 +141,9 @@ namespace Server.MirObjects
                 "CHECKPKPOINT",
                 "LEVEL",
                 "INGUILD",
-                "ADDTOGUILD"
+                "ADDTOGUILD",
+                "CHECKQUEST",
+                "SETQUEST"
             };
 
             foreach (var functionName in functions)
@@ -816,6 +819,54 @@ namespace Server.MirObjects
 
             player.PendingGuildInvite = guild;
             player.GuildInvite(true);
+        }
+
+        public bool CHECKQUEST(int questID, string status)
+        {
+            var player = lua["player"] as PlayerObject;
+            var failed = false;
+            string tempString = status.ToUpper();
+            if (tempString == "ACTIVE")
+            {
+                failed = !player.CurrentQuests.Any(e => e.Index == questID);
+            }
+            else //COMPLETE
+            {
+                failed = !player.CompletedQuests.Contains(questID);
+            }
+            return !failed;
+        }
+        public void SETQUEST(int questID, string status) { 
+            var player = lua["player"] as PlayerObject;
+            int.TryParse(status, out int questState);
+
+            if (questID < 1) return;
+
+            var activeQuest = player.CurrentQuests.FirstOrDefault(e => e.Index == questID);
+
+            //remove from active list
+            if (activeQuest != null)
+            {
+                player.SendUpdateQuest(activeQuest, QuestState.Remove);
+            }
+
+            switch (questState)
+            {
+                case 0: //cancel
+                    if (player.CompletedQuests.Contains(questID))
+                    {
+                        player.CompletedQuests.Remove(questID);
+                    }
+                    break;
+                case 1: //complete
+                    if (!player.CompletedQuests.Contains(questID))
+                    {
+                        player.CompletedQuests.Add(questID);
+                    }
+                    break;
+            }
+
+            player.GetCompletedQuests();
         }
     }
 }
