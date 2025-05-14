@@ -202,7 +202,7 @@ namespace Client.MirControls
             }
             if (pType == -1)
             {
-                GameScene.Scene.ChatDialog.ReceiveChat("选择适合的付款方式", ChatType.System);
+                GameScene.Scene.ChatDialog.ReceiveChat("请在下方选择使用何种货币进行付款", ChatType.System);
                 return;
             }
             switch (pType)
@@ -325,7 +325,7 @@ namespace Client.MirControls
         public GameShopViewer()
         {
             Index = 785;// 314;
-            Library = Libraries.Title;// Libraries.Prguse2;
+            Library = Libraries.Title;// Libraries.Prguse2; 可以使用旧版界面文件
             Location = new Point(405, 108);
             BeforeDraw += GameShopViewer_BeforeDraw;
             //Click += (o, e) =>

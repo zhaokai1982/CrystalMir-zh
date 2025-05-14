@@ -87,13 +87,13 @@ namespace Launcher
             }
             catch (EndOfStreamException ex)
             {
-                MessageBox.Show("发现数据流已结束。主机可能正在使用早于版本 1.1.0.0 的补丁系统");
+                MessageBox.Show("已找到数据源.主机可能使用1.1.0.0之前的补丁系统");
                 Completed = true;
                 SaveError(ex.ToString());
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error");
+                MessageBox.Show("连接自动更新服务器失败.但不影响游戏登录.", "提示！");  //修复连接失败错误提示
                 Completed = true;
                 SaveError(ex.ToString());
             }
@@ -125,7 +125,7 @@ namespace Launcher
             string fileName;
             for (int i = 0; i < fileNames.Length; i++)
             {
-                if (fileNames[i].StartsWith(".\\Screenshots\\")) continue;
+                if (fileNames[i].StartsWith(".\\Screenshots\\")) continue;  //截图保存目录
 
                 fileName = Path.GetFileName(fileNames[i]);
 
@@ -162,7 +162,7 @@ namespace Launcher
 
                 if (reader.ReadByte() == 60)
                 {
-                    //assume we got a html page back with an error code so it's not a patchlist
+                    //假设反馈了一个带有错误代码的html页面，并非是补丁列表连接报错
                     return;
                 }
                 reader.BaseStream.Seek(0,SeekOrigin.Begin);
@@ -257,7 +257,7 @@ namespace Launcher
                     if (!Directory.Exists(dirName))
                         Directory.CreateDirectory(dirName);
 
-                    //first remove the original file if needed
+                    //如果需要，请先删除原始文件
                     string[] specialfiles = { ".dll", ".exe", ".pdb" };
                     if (File.Exists(fileNameOut) && ( specialfiles.Contains( Path.GetExtension(fileNameOut).ToLower() )))
                     {
@@ -265,7 +265,7 @@ namespace Launcher
 
                         try
                         {
-                            //if there's another previous backup: delete it first
+                            //如果有另一个以前版本的备份：请先删除它
                             if (File.Exists(oldFilename))
                             {
                                 File.Delete(oldFilename);   
@@ -292,7 +292,7 @@ namespace Launcher
                         }
                         finally
                         {
-                            //Might cause an infinite loop if it can never gain access
+                            //如果长时间无法访问，可能会导致无限循环，卡在检测
                             Restart = true;
                         }
                     }
@@ -582,7 +582,7 @@ namespace Launcher
                 var currentBytes = 0L;
                 FileInformation currentFile = null;
 
-                // Remove completed downloads..
+                // 删除已完成的下载..
                 for (var i = ActiveDownloads.Count - 1; i >= 0; i--)
                 {
                     var dl = ActiveDownloads[i];
@@ -603,7 +603,7 @@ namespace Launcher
 
                 if (Settings.P_Concurrency == 1)
                 {
-                    // Note: Just mimic old behaviour for now until a better UI is done.
+                    // 注意：在完成更好的UI之前，现在只需模仿旧的行为.
                     if (ActiveDownloads.Count > 0)
                         currentFile = ActiveDownloads[0].Info;
                 }
@@ -659,8 +659,8 @@ namespace Launcher
 
         private void Credit_label_Click(object sender, EventArgs e)
         {
-            if (Credit_label.Text == "技术支持水晶传奇：CrystalM2") Credit_label.Text = "致敬设计者：Breezer";
-            else Credit_label.Text = "技术支持水晶传奇：CrystalM2";
+            if (Credit_label.Text == "Powered by Rxwx M2") Credit_label.Text = "致敬:Breezer";
+            else Credit_label.Text = "技术支持水晶传奇:CrystalM2";
         }
 
         private void AMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -675,17 +675,17 @@ namespace Launcher
 
         private string ToSize(double number, int precision = 2)
         {
-            // unit's number of bytes
+            // 单位的字节数
             const double unit = 1024;
-            // suffix counter
+            // 后缀计数器
             int i = 0;
-            // as long as we're bigger than a unit, keep going
+            // 只要我们比一个单位大，就继续前进
             while (number > unit)
             {
                 number /= unit;
                 i++;
             }
-            // apply precision and current suffix
+            // 应用精度和当前后缀
             return Math.Round(number, precision) + suffixes[i];
         }
 

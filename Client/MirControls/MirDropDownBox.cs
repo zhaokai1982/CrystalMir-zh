@@ -240,7 +240,7 @@ namespace Client.MirControls
         }
         public void Update()
         {
-            // Member is not implemented.
+            // 会员功能未实现.
         }
         public void DropDownClick()
         {

@@ -285,7 +285,7 @@ namespace Client.MirMagic
                 return spellConfs[spell];
 
             File.AppendAllText(@".\Error.txt",
-                        string.Format("[{0}] spell config is null {1}{2}", DateTime.Now, spell.ToString(), Environment.NewLine));
+                        string.Format("[{0}] 拼写配置为空 {1}{2}", DateTime.Now, spell.ToString(), Environment.NewLine));
             return null;
         }
 

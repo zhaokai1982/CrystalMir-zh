@@ -16,7 +16,7 @@ namespace Client.MirSounds.Libraries
             fileName = Path.Combine(Settings.SoundPath, fileName);
             string fileType = Path.GetExtension(fileName);
 
-            // attempt to find file
+            // 尝试查找文件
             if (String.IsNullOrEmpty(fileType))
             {
                 foreach (String ext in SoundManager.SupportedFileTypes)

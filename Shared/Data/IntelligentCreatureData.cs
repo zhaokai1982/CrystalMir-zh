@@ -64,7 +64,7 @@ public class IntelligentCreatureItemFilter
     {
         switch (idx)
         {
-            case 0://all items
+            case 0://所有物品
                 PetPickupAll = true;
                 PetPickupGold = false;
                 PetPickupWeapons = false;
@@ -75,35 +75,35 @@ public class IntelligentCreatureItemFilter
                 PetPickupAccessories = false;
                 PetPickupOthers = false;
                 break;
-            case 1://gold
+            case 1://金币
                 PetPickupAll = false;
                 PetPickupGold = !PetPickupGold;
                 break;
-            case 2://weapons
+            case 2://武器
                 PetPickupAll = false;
                 PetPickupWeapons = !PetPickupWeapons;
                 break;
-            case 3://armours
+            case 3://盔甲
                 PetPickupAll = false;
                 PetPickupArmours = !PetPickupArmours;
                 break;
-            case 4://helmets
+            case 4://头盔
                 PetPickupAll = false;
                 PetPickupHelmets = !PetPickupHelmets;
                 break;
-            case 5://boots
+            case 5://靴子
                 PetPickupAll = false;
                 PetPickupBoots = !PetPickupBoots;
                 break;
-            case 6://belts
+            case 6://腰带
                 PetPickupAll = false;
                 PetPickupBelts = !PetPickupBelts;
                 break;
-            case 7://jewelry
+            case 7://首饰
                 PetPickupAll = false;
                 PetPickupAccessories = !PetPickupAccessories;
                 break;
-            case 8://others
+            case 8://其他
                 PetPickupAll = false;
                 PetPickupOthers = !PetPickupOthers;
                 break;

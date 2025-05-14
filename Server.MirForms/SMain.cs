@@ -407,7 +407,7 @@ namespace Server
         {
             if (!SMain.Envir.Running)
             {
-                MessageBox.Show("服务器运行必须调整怪物", "注意",
+                MessageBox.Show("服务器须在运行状态才能调整怪物", "警告",
                 MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
@@ -464,7 +464,7 @@ namespace Server
             Envir.ReloadLineMessages();
         }
 
-        #region Guild View Tab
+        #region 公会视图选项卡
         public void ProcessGuildViewTab(bool forced = false)
         {
             if (GuildListView.Items.Count != Envir.GuildList.Count || forced == true)

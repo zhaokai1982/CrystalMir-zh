@@ -170,12 +170,14 @@ namespace Server
             tabPage1.Padding = new Padding(4, 3, 4, 3);
             tabPage1.Size = new Size(558, 435);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "日志";
+            tabPage1.Text = "启动日志";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // LogTextBox
             // 
+            LogTextBox.BackColor = SystemColors.Desktop;
             LogTextBox.Dock = DockStyle.Fill;
+            LogTextBox.ForeColor = Color.LawnGreen;
             LogTextBox.Location = new Point(4, 3);
             LogTextBox.Margin = new Padding(4, 3, 4, 3);
             LogTextBox.Multiline = true;
@@ -199,7 +201,9 @@ namespace Server
             // 
             // DebugLogTextBox
             // 
+            DebugLogTextBox.BackColor = SystemColors.Desktop;
             DebugLogTextBox.Dock = DockStyle.Fill;
+            DebugLogTextBox.ForeColor = Color.Yellow;
             DebugLogTextBox.Location = new Point(4, 3);
             DebugLogTextBox.Margin = new Padding(4, 3, 4, 3);
             DebugLogTextBox.Multiline = true;
@@ -234,7 +238,7 @@ namespace Server
             groupBox1.Size = new Size(550, 60);
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
-            groupBox1.Text = "发送信息";
+            groupBox1.Text = "发送消息";
             // 
             // GlobalMessageButton
             // 
@@ -537,7 +541,7 @@ namespace Server
             // 
             clearBlockedIPsToolStripMenuItem.Name = "clearBlockedIPsToolStripMenuItem";
             clearBlockedIPsToolStripMenuItem.Size = new Size(180, 22);
-            clearBlockedIPsToolStripMenuItem.Text = "清除锁定 IPs";
+            clearBlockedIPsToolStripMenuItem.Text = "清除阻止IP";
             clearBlockedIPsToolStripMenuItem.Click += clearBlockedIPsToolStripMenuItem_Click;
             // 
             // toolStripMenuItem1
@@ -764,21 +768,21 @@ namespace Server
             // 
             miningToolStripMenuItem.Name = "miningToolStripMenuItem";
             miningToolStripMenuItem.Size = new Size(124, 22);
-            miningToolStripMenuItem.Text = "矿石";
+            miningToolStripMenuItem.Text = "采矿设定";
             miningToolStripMenuItem.Click += miningToolStripMenuItem_Click;
             // 
             // guildsToolStripMenuItem
             // 
             guildsToolStripMenuItem.Name = "guildsToolStripMenuItem";
             guildsToolStripMenuItem.Size = new Size(124, 22);
-            guildsToolStripMenuItem.Text = "行会系统";
+            guildsToolStripMenuItem.Text = "行会功能";
             guildsToolStripMenuItem.Click += guildsToolStripMenuItem_Click;
             // 
             // fishingToolStripMenuItem
             // 
             fishingToolStripMenuItem.Name = "fishingToolStripMenuItem";
             fishingToolStripMenuItem.Size = new Size(124, 22);
-            fishingToolStripMenuItem.Text = "钓鱼";
+            fishingToolStripMenuItem.Text = "钓鱼设定";
             fishingToolStripMenuItem.Click += fishingToolStripMenuItem_Click;
             // 
             // mailToolStripMenuItem
@@ -806,14 +810,14 @@ namespace Server
             // 
             relationshipToolStripMenuItem.Name = "relationshipToolStripMenuItem";
             relationshipToolStripMenuItem.Size = new Size(124, 22);
-            relationshipToolStripMenuItem.Text = "结婚";
+            relationshipToolStripMenuItem.Text = "结婚设定";
             relationshipToolStripMenuItem.Click += relationshipToolStripMenuItem_Click;
             // 
             // mentorToolStripMenuItem
             // 
             mentorToolStripMenuItem.Name = "mentorToolStripMenuItem";
             mentorToolStripMenuItem.Size = new Size(124, 22);
-            mentorToolStripMenuItem.Text = "师徒";
+            mentorToolStripMenuItem.Text = "拜师设定";
             mentorToolStripMenuItem.Click += mentorToolStripMenuItem_Click;
             // 
             // gemToolStripMenuItem

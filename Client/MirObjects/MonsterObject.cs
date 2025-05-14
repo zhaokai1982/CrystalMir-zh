@@ -209,6 +209,7 @@ namespace Client.MirObjects
 
             BaseSound = (ushort)BaseImage * 10;
 
+            //特效动作
             switch (BaseImage)
             {
                 case Monster.BoneFamiliar:

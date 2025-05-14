@@ -6,7 +6,7 @@ namespace Client
     {
         public const long CleanDelay = 600000;
 
-        public static int ScreenWidth = 800, ScreenHeight = 600; //ScreenWidth = 1024, ScreenHeight = 768
+        public static int ScreenWidth = 1280, ScreenHeight = 768; //屏幕宽度 = 1024，屏幕高度 = 768  起始创建游戏窗口分辨率
         private static InIReader Reader = new InIReader(@".\Mir2Config.ini");
         private static InIReader QuestTrackingReader = new InIReader(Path.Combine(UserDataPath, @".\QuestTracking.ini"));
 

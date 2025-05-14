@@ -13,16 +13,17 @@ namespace Client.MirGraphics
         public static int Count, Progress;
 
         public static readonly MLibrary
-            ChrSel = new MLibrary(Settings.DataPath + "ChrSel"),
-            Prguse = new MLibrary(Settings.DataPath + "Prguse"),
-            Prguse2 = new MLibrary(Settings.DataPath + "Prguse2"),
-            Prguse3 = new MLibrary(Settings.DataPath + "Prguse3"),
+            ChrSel = new MLibrary(Settings.DataPath + "Prguse/ChrSel"),      //读取客户端文件位置
+            Prguse = new MLibrary(Settings.DataPath + "Prguse/Prguse"),
+            Prguse2 = new MLibrary(Settings.DataPath + "Prguse/Prguse2"),
+            Prguse3 = new MLibrary(Settings.DataPath + "Prguse/Prguse3"),
+
             StateitemEffect = new MLibrary(Settings.DataPath + "StateitemEffect"),
             BuffIcon = new MLibrary(Settings.DataPath + "BuffIcon"),
-            Help = new MLibrary(Settings.DataPath + "Help"),
-            MiniMap = new MLibrary(Settings.DataPath + "MMap"),
-            MapLinkIcon = new MLibrary(Settings.DataPath + "MapLinkIcon"),
-            Title = new MLibrary(Settings.DataPath + "Title"),
+            Help = new MLibrary(Settings.DataPath + "Prguse/Help"),
+            MiniMap = new MLibrary(Settings.DataPath + "Prguse/MMap"),
+            MapLinkIcon = new MLibrary(Settings.DataPath + "Prguse/MapLinkIcon"),
+            Title = new MLibrary(Settings.DataPath + "Prguse/Title"),
             MagIcon = new MLibrary(Settings.DataPath + "MagIcon"),
             MagIcon2 = new MLibrary(Settings.DataPath + "MagIcon2"),
             Magic = new MLibrary(Settings.DataPath + "Magic"),
@@ -130,7 +131,7 @@ namespace Client.MirGraphics
             InitLibrary(ref TransformWeaponEffect, Settings.TransformWeaponEffectPath, "00");
 
             #region Maplibs
-            //wemade mir2 (allowed from 0-99)
+            //韩国版本 mir2 （支持从0到99）
             MapLibs[0] = new MLibrary(Settings.DataPath + "Map\\WemadeMir2\\Tiles");
             MapLibs[1] = new MLibrary(Settings.DataPath + "Map\\WemadeMir2\\Smtiles");
             MapLibs[2] = new MLibrary(Settings.DataPath + "Map\\WemadeMir2\\Objects");
@@ -140,7 +141,7 @@ namespace Client.MirGraphics
             }
             MapLibs[90] = new MLibrary(Settings.DataPath + "Map\\WemadeMir2\\Objects_32bit");
 
-            //shanda mir2 (allowed from 100-199)
+            //盛大 mir2 (支持100-199)
             MapLibs[100] = new MLibrary(Settings.DataPath + "Map\\ShandaMir2\\Tiles");
             for (int i = 1; i < 10; i++)
             {
@@ -157,7 +158,7 @@ namespace Client.MirGraphics
                 MapLibs[120 + i] = new MLibrary(Settings.DataPath + "Map\\ShandaMir2\\Objects" + (i + 1));
             }
             MapLibs[190] = new MLibrary(Settings.DataPath + "Map\\ShandaMir2\\AniTiles1");
-            //wemade mir3 (allowed from 200-299)
+            //韩国 mir3 (支持 200-299)
             string[] Mapstate = { "", "wood\\", "sand\\", "snow\\", "forest\\"};
             for (int i = 0; i < Mapstate.Length; i++)
             {
@@ -177,7 +178,7 @@ namespace Client.MirGraphics
                 MapLibs[213 + (i * 15)] = new MLibrary(Settings.DataPath + "Map\\WemadeMir3\\" + Mapstate[i] + "Object2c");
             }
             Mapstate = new string[] { "", "wood", "sand", "snow", "forest"};
-            //shanda mir3 (allowed from 300-399)
+            //盛大 mir3 (allowed from 300-399)
             for (int i = 0; i < Mapstate.Length; i++)
             {
                 MapLibs[300 + (i * 15)] = new MLibrary(Settings.DataPath + "Map\\ShandaMir3\\" + "Tilesc" + Mapstate[i]);

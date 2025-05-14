@@ -776,7 +776,7 @@ public enum Monster : ushort
     Mon610B = 610,
     //B=Boss D=Door N=Normal P=Peculiar S=Stoned T=Tree
 
-    //Special
+    //特殊类
     EvilMir = 900,
     EvilMirBody = 901,
     DragonStatue = 902,
@@ -784,14 +784,14 @@ public enum Monster : ushort
     HellBomb2 = 904,
     HellBomb3 = 905,
 
-    //Siege
+    //攻城
     Catapult = 940,
     ChariotBallista = 941,
     Ballista = 942,
     Trebuchet = 943,
     CanonTrebuchet = 944,
 
-    //Gates
+    //公会
     SabukGate = 950,
     PalaceWallLeft = 951,
     PalaceWall1 = 952,
@@ -1504,8 +1504,8 @@ public enum BuffType : byte
     金刚术,
     天上秘术,
 
-    //Monster
-    HornedArcherBuff,
+    //怪物技能
+    HornedArcherBuff = 50,
     ColdArcherBuff,
     //HornedColdArcherBuff,
     GeneralMeowMeowShield,

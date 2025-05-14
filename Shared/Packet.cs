@@ -26,8 +26,8 @@ public abstract class Packet
             p = IsServer ? GetClientPacket(id) : GetServerPacket(id);
             if (p == null)
             {
-                //prevents server from getting stuck in a 'loop' (only on this connection)
-                //if the incomming data is corrupt/invalid > simply remove all data instead of trying to process it over and over again
+                //防止服务器陷入“循环”（仅在此连接上）
+                //如果干扰数据损坏/无效>只需删除所有数据，而不是反复处理
                 extra = new byte[0];
                 return null;
             }

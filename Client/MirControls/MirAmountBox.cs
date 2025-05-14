@@ -103,7 +103,7 @@ namespace Client.MirControls
             Index = 238;
             Library = Libraries.Prguse;
 
-            Location = new Point((800 - Size.Width) / 2, (600 - Size.Height) / 2);
+            Location = new Point((1280 - Size.Width) / 2, (768 - Size.Height) / 2);  //创建游戏界面窗口大小
 
 
 

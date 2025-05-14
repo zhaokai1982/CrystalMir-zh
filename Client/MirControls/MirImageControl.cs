@@ -29,7 +29,7 @@ namespace Client.MirControls
         }
         #endregion
 
-        #region DrawImage
+        #region 绘制图像
         private bool _drawImage;
         public bool DrawImage
         {

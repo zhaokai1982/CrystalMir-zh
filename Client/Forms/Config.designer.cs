@@ -67,7 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Res5_pb)).BeginInit();
             this.SuspendLayout();
             // 
-            // AccountLogin_txt
+            // AccountLogin_txt = 帐户登录文本内容端
             // 
             this.AccountLogin_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.AccountLogin_txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -84,7 +84,7 @@
             this.AccountLogin_txt.TextChanged += new System.EventHandler(this.AccountLogin_txt_TextChanged);
             this.AccountLogin_txt.Leave += new System.EventHandler(this.AccountLogin_txt_TextChanged);
             // 
-            // AccountPass_txt
+            // AccountPass_txt  =密码段
             // 
             this.AccountPass_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.AccountPass_txt.BorderStyle = System.Windows.Forms.BorderStyle.None;

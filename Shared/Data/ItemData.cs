@@ -200,7 +200,7 @@ public class ItemInfo
             ToolTip = reader.ReadString();
         }
 
-        if (version < 70) //before db version 70 all specialitems had wedding rings disabled, after that it became a server option
+        if (version < 70) //在db70版本之前，所有特殊物品都禁用了结婚戒指，之后增加它成为服务器自行设置选项
         {
             if ((Type == ItemType.戒指) && (Unique != SpecialItemMode.None))
                 Bind |= BindMode.NoWeddingRing;

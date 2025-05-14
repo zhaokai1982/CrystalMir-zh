@@ -32,24 +32,24 @@ namespace Client.MirScenes
 
             Background = new MirImageControl
             {
-                Index = 64,
+                Index = 67,                 //人物选择创建界面背景图片，更改整体分辨率需要修改
                 Library = Libraries.Prguse,
                 Parent = this,
             };
 
             Title = new MirImageControl
             {
-                Index = 40,
+                Index = 40,                 //人物选择创建界面标题图片
                 Library = Libraries.Title,
                 Parent = this,
-                Location = new Point(358, 15)
-				//Location = new Point(468, 20)
+                Location = new Point(600, 200)     //放置位置 Location = new Point(358, 15)
+
             };
 
             ServerLabel = new MirLabel
             {
-                Location = new Point(322, 44),
-				//Location = new Point(432, 60),
+                Location = new Point(560, 60),  //选择人物界面上方标题栏位置1280X768位置  Location = new Point(322, 44),
+                //Location = new Point(322, 44),
                 Parent = Background,
                 Size = new Size(155, 17),
                 Text = "Legend of Mir 2",
@@ -207,7 +207,7 @@ namespace Client.MirScenes
             };
             LastAccessLabelLabel = new MirLabel
             {
-                Location = new Point(-80, -1),
+                Location = new Point(-80, -1),   //底部登录时间显示位置
                 Parent = LastAccessLabel,
                 Text = "上次联机:",
                 Size = new Size(100, 21),
@@ -478,10 +478,10 @@ namespace Client.MirScenes
                         default:
                         case 1024:
                             Settings.Resolution = 1024;
-                            CMain.SetResolution(1024, 768);
+                            CMain.SetResolution(1024, 768);      //分辨率修改,进入游戏后窗口的分辨率设置
                             break;
                         case 1280:
-                            CMain.SetResolution(1280, 800);
+                            CMain.SetResolution(1280, 768);
                             break;
                         case 1366:
                             CMain.SetResolution(1366, 768);

@@ -4,7 +4,7 @@ namespace Client.MirControls
 {
     public class MirButton : MirImageControl
     {
-        #region Font Colour
+        #region 字体颜色
         public virtual Color FontColour
         {
             get
@@ -21,7 +21,7 @@ namespace Client.MirControls
         }
         #endregion
 
-        #region Hover Index
+        #region 悬停指数
         private int _hoverIndex;
         public int HoverIndex
         {
@@ -66,7 +66,7 @@ namespace Client.MirControls
         protected MirLabel _label;
         #endregion
 
-        #region CenterText
+        #region 中心文本
         protected bool _center;
         public virtual bool CenterText
         {
@@ -88,7 +88,7 @@ namespace Client.MirControls
         }
         #endregion
 
-        #region Pressed Index
+        #region 压制指数
         private int _pressedIndex;
         public int PressedIndex
         {
@@ -110,7 +110,7 @@ namespace Client.MirControls
         }
         #endregion
 
-        #region Disabled Index
+        #region 禁用索引
         private int _disabledIndex;
         public int DisabledIndex
         {

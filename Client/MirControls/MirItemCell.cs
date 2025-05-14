@@ -197,7 +197,7 @@ namespace Client.MirControls
 
         public void SetEffect()
         {
-            //put effect stuff here??
+            //在这里放特效药？？
         }
 
 
@@ -279,14 +279,14 @@ namespace Client.MirControls
                         }
                     }
                     
-                    //Add support for ALT + click to sell quickly
-                    else if (CMain.Alt && GameScene.Scene.NPCDropDialog.Visible && GridType == MirGridType.Inventory) // alt sell/repair
+                    //添加ALT+点击快速销售支持
+                    else if (CMain.Alt && GameScene.Scene.NPCDropDialog.Visible && GridType == MirGridType.Inventory) // alt 销售/维修
                     {
-                        MoveItem(); // pickup item
-                        GameScene.Scene.NPCDropDialog.ItemCell.OnMouseClick(e); // emulate click to drop control
-                        GameScene.Scene.NPCDropDialog.ConfirmButton.OnMouseClick(e); //emulate OK to confirm trade
+                        MoveItem(); // 取货物品
+                        GameScene.Scene.NPCDropDialog.ItemCell.OnMouseClick(e); // 模拟点击放弃控制
+                        GameScene.Scene.NPCDropDialog.ConfirmButton.OnMouseClick(e); //模拟OK以确认交易
                     }
-                    //Add support for ALT + click to sell quickly
+                    //添加ALT+点击快速销售支持
 
                     else if ((GridType == MirGridType.HeroHPItem || GridType == MirGridType.HeroMPItem) && GameScene.SelectedCell == null && Item != null)
                         Network.Enqueue(new C.SetAutoPotItem { Grid = GridType, ItemIndex = 0 });

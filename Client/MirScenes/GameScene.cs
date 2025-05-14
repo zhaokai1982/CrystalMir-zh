@@ -3211,13 +3211,13 @@ namespace Client.MirScenes
         }
         private void LogOutSuccess(S.LogOutSuccess p)
         {
-            for (int i = 0; i <= 3; i++)//Fix for orbs sound
+            for (int i = 0; i <= 3; i++)//开门动画声音已修复
                 SoundManager.StopSound(20000 + 126 * 10 + 5 + i);
 
             User = null;
-            if (Settings.Resolution != 800) //Default: != 1024
+            if (Settings.Resolution != 1280) //Default: != 1024    观察模式初始分辨率调整
             {
-                CMain.SetResolution(800, 600); //Default: (1024, 768)
+                CMain.SetResolution(1280, 768); //Default: (1024, 768)  观察模式初始分辨率调整
             }
 
             ActiveScene = new SelectScene(p.Characters);
@@ -3232,8 +3232,8 @@ namespace Client.MirScenes
         private void ReturnToLogin(S.ReturnToLogin p)
         {
             User = null;
-            if (Settings.Resolution != 1024)
-                CMain.SetResolution(1024, 768);
+            if (Settings.Resolution != 1280)       //Default: (1024)  观察模注销或者玩家下线后返回人物选择界面分辨率调整
+                CMain.SetResolution(1280, 768);    //Default: (1024, 768)  观察模注销或者玩家下线后返回人物选择界面分辨率调整
 
             ActiveScene = new LoginScene();
             Dispose();
@@ -3544,7 +3544,7 @@ namespace Client.MirScenes
 
                     switch (p.Type)
                     {
-                        case DamageType.Hit: //add damage level colours
+                        case DamageType.Hit: //添加伤害等级颜色
                             obj.Damages.Add(new Damage(p.Damage.ToString("#,##0"), 1000, obj.Race == ObjectType.Player ? Color.Red : Color.White, 50));
                             break;
                         case DamageType.Miss:
@@ -5991,7 +5991,7 @@ namespace Client.MirScenes
                     MirMessageBox.Show("死亡状态不能使用");
                     break;
                 case 1:
-                    MirMessageBox.Show("完成购买不支持元宝币");
+                    MirMessageBox.Show("完成购买不支持元宝");
                     break;
                 case 2:
                     MirMessageBox.Show("商品已售出");

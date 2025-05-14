@@ -470,7 +470,7 @@ public static class Functions
             _tempChunks.Add(originalList);
         else
         {
-            // Determine how many lists are required 
+            // 确定需要多少个列表
             var numberOfLists = (originalList.Count / width);
 
             for (var i = 0; i <= numberOfLists; i++)

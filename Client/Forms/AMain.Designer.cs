@@ -71,7 +71,7 @@ namespace Launcher
             ((System.ComponentModel.ISupportInitialize)(this.Main_browser)).BeginInit();
             this.SuspendLayout();
             // 
-            // ActionLabel
+            // 进度条标签
             // 
             this.ActionLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.ActionLabel.BackColor = System.Drawing.Color.Transparent;
@@ -87,7 +87,7 @@ namespace Launcher
             this.ActionLabel.Visible = false;
             this.ActionLabel.Click += new System.EventHandler(this.ActionLabel_Click);
             // 
-            // SpeedLabel
+            // SpeedLabel=速度标签
             // 
             this.SpeedLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.SpeedLabel.BackColor = System.Drawing.Color.Transparent;
@@ -103,13 +103,13 @@ namespace Launcher
             this.SpeedLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.SpeedLabel.Visible = false;
             // 
-            // InterfaceTimer
+            // InterfaceTimer=接口计时器
             // 
             this.InterfaceTimer.Enabled = true;
             this.InterfaceTimer.Interval = 50;
             this.InterfaceTimer.Tick += new System.EventHandler(this.InterfaceTimer_Tick);
             // 
-            // Movement_panel
+            // Movement_panel=移动面板
             // 
             this.Movement_panel.BackColor = System.Drawing.Color.Transparent;
             this.Movement_panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -127,7 +127,7 @@ namespace Launcher
             this.Movement_panel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Movement_panel_MouseMove);
             this.Movement_panel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Movement_panel_MouseUp);
             // 
-            // Name_label
+            // Name_label=名称标签
             // 
             this.Name_label.BackColor = System.Drawing.Color.Transparent;
             this.Name_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -142,7 +142,7 @@ namespace Launcher
             this.Name_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Name_label.Visible = false;
             // 
-            // pictureBox1
+            // pictureBox1 =图片框
             // 
             this.pictureBox1.Image = global::Client.Resources.Images.server_base;
             this.pictureBox1.Location = new System.Drawing.Point(358, -52);

@@ -212,7 +212,7 @@ namespace Client.MirNetwork
                 return;
             }
 
-            if (!Connected && TimeConnected > 0 && CMain.Time > TimeConnected + 5000)
+            if (!Connected && TimeConnected > 0 && CMain.Time > TimeConnected + 5000) //服务断开连接重连时间
             {
                 Disconnect();
                 Connect();

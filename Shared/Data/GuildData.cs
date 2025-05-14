@@ -242,7 +242,7 @@ public class GuildBuff
     }
 }
 
-//outdated but cant delete it or old db's wont load
+//过时但无法删除删除后旧数据库可能会无法加载
 public class GuildBuffOld
 {
     public GuildBuffOld() { }

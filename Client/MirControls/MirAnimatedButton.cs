@@ -4,7 +4,7 @@
     {
         public static List<MirAnimatedButton> Animations = new List<MirAnimatedButton>();
 
-        #region Animated
+        #region 动画
 
         private bool _animated;
         public event EventHandler AnimatedChanged;
@@ -28,7 +28,7 @@
 
         #endregion
 
-        #region Animation Count
+        #region 动画计数
 
         private int _animationCount;
         public event EventHandler AnimationCountChanged;
@@ -50,7 +50,7 @@
 
         #endregion
 
-        #region Animation Delay
+        #region 动画延迟
 
         private long _animationDelay;
         public event EventHandler AnimationDelayChanged;
@@ -72,7 +72,7 @@
 
         #endregion
 
-        #region FadeIn
+        #region 淡入效果
 
         private long _nextFadeTime;
         private bool _fadeIn;
@@ -96,7 +96,7 @@
 
         #endregion
 
-        #region FadeIn Rate
+        #region 淡入速率
 
         private float _fadeInRate;
         public event EventHandler FadeInRateChanged;
@@ -118,7 +118,7 @@
 
         #endregion
 
-        #region FadeIn Delay
+        #region 淡入延迟
 
         private long _fadeInDelay;
         public event EventHandler FadeInDelayChanged;
@@ -164,7 +164,7 @@
             set { base.Index = value; }
         }
 
-        #region Loop
+        #region 循环播放
 
         private bool _loop;
         public event EventHandler LoopChanged;
