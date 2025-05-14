@@ -1,4 +1,4 @@
-![4.png](https://img.remit.ee/api/file/AgACAgUAAyEGAASHRsPbAAIKmWgkiWsO0KW0qJk9ombCUqjA0r5zAAJHxjEbmbopVdkIPpAzcca9AQADAgADeQADNgQ.png '4.png')
+
 ## <span style="color:#e60000;">**The Legend of Mir 2**</span>
 本《<span style="color:#e60000;">The Legend of Mir 2</span>》是一个基于韩国<span style="color:#e60000;">The Legend of Mir 2</span>开发，本托管为汉化修正版本。
 
