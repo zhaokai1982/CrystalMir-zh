@@ -25,7 +25,7 @@ namespace AutoPatche
             VersionNO = textBox6;
             LoadSettings();
             InitializeDataGridView();
-            // Ìí¼Ó DragEnter ºÍ DragDrop ÊÂ¼ş´¦Àí³ÌĞò
+            // æ·»åŠ  DragEnter å’Œ DragDrop äº‹ä»¶å¤„ç†ç¨‹åº
             dataGridView1.DragEnter += new DragEventHandler(dataGridView1_DragEnter);
             dataGridView1.DragDrop += new DragEventHandler(dataGridView1_DragDrop);
         
@@ -33,9 +33,9 @@ namespace AutoPatche
 
         private void InitializeDataGridView()
         {
-            dataGridView1.Columns.Add("FileName", "ÎÄ¼şÃû");
+            dataGridView1.Columns.Add("FileName", "æ–‡ä»¶å");
             dataGridView1.Columns.Add("Md5", "MD5");
-            dataGridView1.Columns.Add("Size", "ÎÄ¼ş´óĞ¡");
+            dataGridView1.Columns.Add("Size", "æ–‡ä»¶å¤§å°");
         }
         private void dataGridView1_DragEnter(object sender, DragEventArgs e)
         {
@@ -99,7 +99,7 @@ namespace AutoPatche
             string FILE = SelectDirectory();
             if (string.IsNullOrEmpty(FILE))
             {
-                MessageBox.Show("Ä¿Â¼Â·¾¶²»´æÔÚ£¬ÇëÑ¡ÔñÓĞĞ§µÄÄ¿Â¼Â·¾¶");
+                MessageBox.Show("ç›®å½•è·¯å¾„ä¸å­˜åœ¨ï¼Œè¯·é€‰æ‹©æœ‰æ•ˆçš„ç›®å½•è·¯å¾„");
                 return;
             }
             textBox1.Text = DirPath = FILE;
@@ -127,7 +127,7 @@ namespace AutoPatche
             }
             else
             {
-                MessageBox.Show("Ä¿Â¼Â·¾¶²»´æÔÚ£¬ÇëÑ¡ÔñÓĞĞ§µÄÄ¿Â¼Â·¾¶");
+                MessageBox.Show("ç›®å½•è·¯å¾„ä¸å­˜åœ¨ï¼Œè¯·é€‰æ‹©æœ‰æ•ˆçš„ç›®å½•è·¯å¾„");
             }
         }
 
@@ -135,29 +135,29 @@ namespace AutoPatche
         {
             if (string.IsNullOrEmpty(DirPath))
             {
-                MessageBox.Show("Î´Ñ¡ÔñÈÎºÎÄ¿Â¼");
+                MessageBox.Show("æœªé€‰æ‹©ä»»ä½•ç›®å½•");
                 return;
             }
 
             if (!ValidateOutputDirectory(OutDirPath.Text))
             {
-                MessageBox.Show("Êä³öÄ¿Â¼ÎŞĞ§£¬ÇëÊäÈëÓĞĞ§µÄÊä³öÄ¿Â¼Â·¾¶");
+                MessageBox.Show("è¾“å‡ºç›®å½•æ— æ•ˆï¼Œè¯·è¾“å…¥æœ‰æ•ˆçš„è¾“å‡ºç›®å½•è·¯å¾„");
                 return;
             }
 
             if (!ValidateVersion(VersionNO.Text))
             {
-                MessageBox.Show("°æ±¾ºÅÎŞĞ§£¬ÇëÊäÈëÓĞĞ§µÄ°æ±¾ºÅ");
+                MessageBox.Show("ç‰ˆæœ¬å·æ— æ•ˆï¼Œè¯·è¾“å…¥æœ‰æ•ˆçš„ç‰ˆæœ¬å·");
                 return;
             }
 
             if (string.IsNullOrEmpty(DirPathConten.Text))
             {
-                MessageBox.Show("Ä¿Â¼Â·¾¶ÎŞĞ§£¬ÇëÊäÈëÓĞĞ§µÄÄ¿Â¼Â·¾¶");
+                MessageBox.Show("ç›®å½•è·¯å¾„æ— æ•ˆï¼Œè¯·è¾“å…¥æœ‰æ•ˆçš„ç›®å½•è·¯å¾„");
                 return;
             }
             RemarkContent.Text = string.Empty;
-            string outputPath = DirPathConten.Text; // Ìæ»»ÎªÄãµÄÊä³öÂ·¾¶
+            string outputPath = DirPathConten.Text; // æ›¿æ¢ä¸ºä½ çš„è¾“å‡ºè·¯å¾„
             string outputDirectory = OutDirPath.Text;
             if (!Directory.Exists(outputDirectory))
             {
@@ -170,7 +170,7 @@ namespace AutoPatche
             assets.Clear();
             if (dataGridView1.Rows.Count <= 1)
             {
-                MessageBox.Show("ÇëÌí¼Ó¸üĞÂÎÄ¼ş");
+                MessageBox.Show("è¯·æ·»åŠ æ›´æ–°æ–‡ä»¶");
                 return;
             }
 
@@ -205,8 +205,8 @@ namespace AutoPatche
             //        ProcessDirectory(directory, totalFiles);
             //    }
 
-            //    // ¸üĞÂ½ø¶ÈÌõ
-            //    RemarkContent.Text += $"ÕıÔÚ´¦ÀíÄ¿Â¼: {currentDirectory} ({assets.Count}/{totalFiles})" + Environment.NewLine;
+            //    // æ›´æ–°è¿›åº¦æ¡
+            //    RemarkContent.Text += $"æ­£åœ¨å¤„ç†ç›®å½•: {currentDirectory} ({assets.Count}/{totalFiles})" + Environment.NewLine;
             //}
 
             var iniContent = new StringBuilder();
@@ -223,9 +223,9 @@ namespace AutoPatche
             }
 
             File.WriteAllText(outputPath, iniContent.ToString());
-            // Çå³ı½ø¶ÈÌõ
-            RemarkContent.Text += "Ä¿Â¼INIÉú³ÉÍê±Ï: " + outputPath + Environment.NewLine;
-            MessageBox.Show("Ä¿Â¼INIÉú³ÉÍê±Ï: " + outputPath);
+            // æ¸…é™¤è¿›åº¦æ¡
+            RemarkContent.Text += "ç›®å½•INIç”Ÿæˆå®Œæ¯•: " + outputPath + Environment.NewLine;
+            MessageBox.Show("ç›®å½•INIç”Ÿæˆå®Œæ¯•: " + outputPath);
         }
 
         private static string CalculateMD5(string filePath)
@@ -317,7 +317,7 @@ namespace AutoPatche
             string FILE = SelectDirectory();
             if (string.IsNullOrEmpty(FILE))
             {
-                MessageBox.Show("Ä¿Â¼Â·¾¶²»´æÔÚ£¬ÇëÑ¡ÔñÓĞĞ§µÄÄ¿Â¼Â·¾¶");
+                MessageBox.Show("ç›®å½•è·¯å¾„ä¸å­˜åœ¨ï¼Œè¯·é€‰æ‹©æœ‰æ•ˆçš„ç›®å½•è·¯å¾„");
                 return;
             }
             OutDirPath.Text = FILE;
@@ -328,7 +328,7 @@ namespace AutoPatche
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "INI files (*.ini)|*.ini|All files (*.*)|*.*";
-                openFileDialog.Title = "Ñ¡ÔñÒ»¸öINIÎÄ¼ş";
+                openFileDialog.Title = "é€‰æ‹©ä¸€ä¸ªINIæ–‡ä»¶";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -339,20 +339,20 @@ namespace AutoPatche
 
                         if (iniData != null)
                         {
-                            MessageBox.Show("¶ÁÈ¡INIÎÄ¼ş³É¹¦£¡\n" +
-                                            $"°æ±¾ºÅ: {iniData.version}\n" +
-                                            $"°üURL: {iniData.packageUrl}\n" +
-                                            $"°æ±¾URL: {iniData.VersionUrl}\n" +
-                                            $"×Ê²úÊıÁ¿: {iniData.assets.Count()}");
+                            MessageBox.Show("è¯»å–INIæ–‡ä»¶æˆåŠŸï¼\n" +
+                                            $"ç‰ˆæœ¬å·: {iniData.version}\n" +
+                                            $"åŒ…URL: {iniData.packageUrl}\n" +
+                                            $"ç‰ˆæœ¬URL: {iniData.VersionUrl}\n" +
+                                            $"èµ„äº§æ•°é‡: {iniData.assets.Count()}");
                         }
                         else
                         {
-                            MessageBox.Show("¶ÁÈ¡INIÎÄ¼şÊ§°Ü£¬ÎÄ¼şÄÚÈİÎŞĞ§¡£");
+                            MessageBox.Show("è¯»å–INIæ–‡ä»¶å¤±è´¥ï¼Œæ–‡ä»¶å†…å®¹æ— æ•ˆã€‚");
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"¶ÁÈ¡INIÎÄ¼ş¹ı³ÌÖĞ·¢Éú´íÎó: {ex.Message}");
+                        MessageBox.Show($"è¯»å–INIæ–‡ä»¶è¿‡ç¨‹ä¸­å‘ç”Ÿé”™è¯¯: {ex.Message}");
                     }
                 }
             }

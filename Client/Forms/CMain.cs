@@ -698,19 +698,61 @@ namespace Client
 
         private void CMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // 检查是否可以关闭窗体
+            if (!CanCloseForm())
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            // 弹出确认对话框
+            DialogResult result = MessageBox.Show(
+                GameLanguage.ExitTip,
+                "确认关闭",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            // 如果用户选择“否”，则取消关闭操作
+            if (result != DialogResult.Yes)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            // 保存设置并释放资源
+            SaveAndReleaseResources();
+        }
+
+        private bool CanCloseForm()
+        {
+            // 条件检查
             if (CMain.Time < GameScene.LogTime && !Settings.UseTestConfig && !GameScene.Observing)
             {
-                GameScene.Scene.ChatDialog.ReceiveChat(string.Format(GameLanguage.CannotLeaveGame, (GameScene.LogTime - CMain.Time) / 1000), ChatType.System);
-                e.Cancel = true;
+                GameScene.Scene.ChatDialog.ReceiveChat(
+                    string.Format(GameLanguage.CannotLeaveGame, (GameScene.LogTime - CMain.Time) / 1000),
+                    ChatType.System
+                );
+                return false; // 不允许关闭
             }
-            else
-            {
-                Settings.Save();
+            return true; // 允许关闭
+        }
 
+        private void SaveAndReleaseResources()
+        {
+            try
+            {
+                // 保存设置
+                Settings.Save();
+            }
+            finally
+            {
+                // 释放资源
                 DXManager.Dispose();
                 SoundManager.Dispose();
             }
         }
+
 
         protected override void WndProc(ref Message m)
         {

@@ -316,8 +316,12 @@ namespace Client.MirObjects
                         Effects.Add(new BuffEffect(Libraries.Monsters[(ushort)Monster.HornedArcher], 550, 3, 1000, this, true, type) { Blend = true, Repeat = true });
                     };
                     break;
-                case BuffType.HornedWarriorShield:
-                    Effects.Add(new BuffEffect(Libraries.Monsters[(ushort)Monster.HornedWarrior], 960, 18, 1800, this, true, type) { Repeat = true });
+                case BuffType.HornedWarriorShield:   //bBUFF 字段内的 HornedWarriorShield 被注释掉了估计是未使用
+                    Effects.Add(effect = new BuffEffect(Libraries.Monsters[(ushort)Monster.HornedWarrior], 960, 18, 1800, this, true, type) { Repeat = true });  //特效资源库，指定为“Monster.HornedWarrior”的动画库         // 起始帧960 // 帧数18 // 持续时间1800 // 作用对象this  // 启用混合true // Buff 类型type  // 循环播放= true
+                    effect.Complete += (o, e) =>
+                    {
+                        Effects.Add(new BuffEffect(Libraries.Monsters[(ushort)Monster.HornedWarrior], 960, 18, 1000, this, true, type) { Blend = true, Repeat = true });
+                    };
                     break;
                 case BuffType.HornedCommanderShield:
                     Effects.Add(new BuffEffect(Libraries.Monsters[(ushort)Monster.RedFaeFlower], 1334, 7, 1800, this, true, type) { Repeat = true });

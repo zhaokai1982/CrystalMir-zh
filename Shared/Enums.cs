@@ -1507,7 +1507,7 @@ public enum BuffType : byte
     //怪物技能
     HornedArcherBuff = 50,
     ColdArcherBuff,
-    //HornedColdArcherBuff,
+    HornedColdArcherBuff,
     GeneralMeowMeowShield,
     惩戒真言,
     御体之力,

@@ -163,7 +163,19 @@ namespace Server
 
         private void SMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Envir.Stop();
+            // 弹出确认对话框
+            DialogResult result = MessageBox.Show("确定要关闭服务器吗？", "确认关闭", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // 如果用户选择“否”，则取消关闭操作
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                // 如果用户选择“是”，则停止服务器
+                Envir.Stop();
+            }
         }
 
         private void closeServerToolStripMenuItem_Click(object sender, EventArgs e)

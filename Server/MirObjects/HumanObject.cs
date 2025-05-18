@@ -2659,7 +2659,7 @@ namespace Server.MirObjects
                     SpellObject ob = (SpellObject)cell.Objects[i];
 
                     ob.ProcessSpell(this);
-                    //break;
+                    break; //break;
                 }
             }
             if (Connection.Account.PlayBgMusic)

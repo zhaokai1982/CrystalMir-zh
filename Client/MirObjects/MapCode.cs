@@ -145,10 +145,10 @@ namespace Client.MirObjects
         {
             this.FileName = FileName;
 
-            Initiate();
+            initiate();
         }
 
-        private void Initiate()
+        private void initiate()
         {
             if (File.Exists(FileName))
             {

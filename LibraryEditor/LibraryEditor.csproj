@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <TargetFramework>net8.0-windows8.0</TargetFramework>
     <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>lizard.ico</ApplicationIcon>
+    <ApplicationIcon>MIR2.ICO</ApplicationIcon>
     <PlatformTarget>x64</PlatformTarget>
     <BaseOutputPath>..\Build\Server Tools\LibraryEditor\</BaseOutputPath>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -15,10 +15,11 @@
   <PropertyGroup>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+	<SupportedOSPlatformVersion>8.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="lizard.ico" />
+    <Content Include="MIR2.ICO" />
   </ItemGroup>
 
   <ItemGroup>
