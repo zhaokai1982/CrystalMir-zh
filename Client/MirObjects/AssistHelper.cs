@@ -1144,7 +1144,5 @@ namespace Client.MirObjects
                 return ItemFilterList[name].Pick;
             }
         }
-            }
-        }
     }
 }

@@ -607,5 +607,64 @@ namespace Client.MirScenes.Dialogs
             else
                 GameScene.Scene.ChatDialog.ReceiveChat("结束自动攻击", ChatType.System);
         }
+
+        private void CheckBoxChangePoisonClick(object sender, EventArgs e)
+        {
+            Settings.SmartChangePoison = CheckBoxChangePoison.Checked;
+        }
+
+        private void CheckBoxAutoPickClick(object sender, EventArgs e)
+        {
+            Settings.AutoPick = CheckBoxAutoPick.Checked;
+        }
+
+        private void CheckBoxShowTransformClick(object sender, EventArgs e)
+        {
+            Settings.ShowTransform = CheckBoxShowTransform.Checked;
+            MapObject.User.SetLibraries();
+        }
+
+        private void CheckBoxSheildClick(object sender, EventArgs e)
+        {
+            Settings.SmartSheild = CheckBoxSmartSheild.Checked;
+        }
+
+        private void CheckBoxSpaceThrustingClick(object sender, EventArgs e)
+        {
+            Settings.自动双龙斩 = CheckBoxSpaceThrusting.Checked;
+        }
+
+        private void CheckBoxShowLevelClick(object sender, EventArgs e)
+        {
+            Settings.ShowLevel = CheckBoxShowLevel.Checked;
+        }
+
+        private void CheckBoxProtectClick(object sender, EventArgs e)
+        {
+            Settings.开启保护 = CheckBoxProtect.Checked;
+        }
+
+        private void CheckBoxFireClick(object sender, EventArgs e)
+        {
+            Settings.SmartFireHit = CheckBoxSmartFire.Checked;
+        }
+
+        private void CheckBoxFreeShiftClick(object sender, EventArgs e)
+        {
+            Settings.FreeShift = CheckBoxFreeShift.Checked;
+        }
+
+        public override void Hide()
+        {
+            if (!Visible) return;
+            Visible = false;
+        }
+
+        public override void Show()
+        {
+            if (Visible) return;
+            SwitchTab(0);
+            Visible = true;
+        }
     }
 }
