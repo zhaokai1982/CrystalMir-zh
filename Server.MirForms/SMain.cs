@@ -22,6 +22,11 @@ namespace Server
             InitializeComponent();
 
             AutoResize();
+
+            // 绑定双击事件
+            LogTextBox.DoubleClick += LogTextBox_DoubleClick;
+            DebugLogTextBox.DoubleClick += DebugLogTextBox_DoubleClick;
+            ChatLogTextBox.DoubleClick += ChatLogTextBox_DoubleClick;
         }
 
         private void AutoResize()
@@ -681,6 +686,42 @@ namespace Server
         private void 触发脚本ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Envir.ReloadLua();
+        }
+
+        private void MonsterListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpTimeLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+        // 日志窗口双击清空内容（带确认）
+        private void LogTextBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("确定要清空日志内容吗？", "确认清空", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                LogTextBox.Clear();
+            }
+        }
+
+        // 调试窗口双击清空内容（带确认）
+        private void DebugLogTextBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("确定要清空调试内容吗？", "确认清空", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                DebugLogTextBox.Clear();
+            }
+        }
+
+        // 聊天窗口双击清空内容（带确认）
+        private void ChatLogTextBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("确定要清空聊天内容吗？", "确认清空", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ChatLogTextBox.Clear();
+            }
         }
     }
 }

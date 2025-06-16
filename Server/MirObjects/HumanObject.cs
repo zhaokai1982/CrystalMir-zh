@@ -17,7 +17,7 @@ namespace Server.MirObjects
         }
 
         public CharacterInfo Info;
-        //public AccountInfo Account;
+        public AccountInfo Account;
         protected MirConnection connection;
         public virtual MirConnection Connection
         {
@@ -2662,7 +2662,7 @@ namespace Server.MirObjects
                     break; //break;
                 }
             }
-            if (Connection.Account.PlayBgMusic)
+            if (Connection != null && Connection.Account != null && Connection.Account.PlayBgMusic)
             {
                 CheckPlayBgMusic();
             }

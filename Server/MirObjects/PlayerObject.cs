@@ -1771,7 +1771,7 @@ namespace Server.MirObjects
                     UpdateGMBuff();
                     MessageQueue.Enqueue(string.Format("{0} 现在是游戏管理员身份", Name));
                     ReceiveChat("升级为游戏管理员", ChatType.System);
-                    Envir.RemoveRank(Info);//remove gm chars from ranking to avoid causing bugs in rank list
+                    Envir.RemoveRank(Info);//从排名中删除gm相关字符，以避免在排名列表中显示
                 }
                 else
                 {
@@ -2178,7 +2178,7 @@ namespace Server.MirObjects
                                 hero.Level = level;
                                 hero.LevelUp();
 
-                                ReceiveChat(string.Format("{0}的英雄等级 {1} -> {2}", player.Name, old, hero.Level), ChatType.System);
+                                ReceiveChat(string.Format("{0}的英雄等级 英雄等级由{1}及,变更到->{2}级", player.Name, old, hero.Level), ChatType.System);
                                 MessageQueue.Enqueue(string.Format("游戏管理员:{3} 将玩家{0}的英雄等级由{1}调整到{2}", player.Name, old, hero.Level, Name));
                                 Helpers.ChatSystem.SystemMessage(chatMessage: $"玩家 {player.Name} 的英雄等级已被提升：{old} -> {hero.Level}，操作人：管理员 {Name}");
                                 return;
@@ -2201,7 +2201,7 @@ namespace Server.MirObjects
                                 hero.Level = level;
                                 hero.LevelUp();
 
-                                ReceiveChat(string.Format("{0} {1} -> {2}", GameLanguage.LevelUp, old, hero.Level), ChatType.System);
+                                ReceiveChat(string.Format("{0}的英雄等级 英雄等级由{1}及,变更到->{2}级", GameLanguage.LevelUp, old, hero.Level), ChatType.System);
                                 MessageQueue.Enqueue(string.Format("游戏管理员:{3} 将玩家{0}的英雄等级由{1}调整到{2}", Name, old, hero.Level, Name));
                                 return;
                             }

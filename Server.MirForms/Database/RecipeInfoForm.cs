@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Windows.Forms;
-
-namespace Server.Database
+﻿namespace Server.Database
 {
     public partial class RecipeInfoForm : Form
     {
@@ -316,8 +312,8 @@ namespace Server.Database
             //        toolComboBox.Items.Add(item.Name);
             //    }
             //}
-            
-            
+
+
             // Set the selected item if the tool name is valid
             if (!string.IsNullOrEmpty(toolName))
             {
@@ -390,7 +386,7 @@ namespace Server.Database
         #region Load Items
         private void LoadItemsIntoComboBox()
         {
-            // Ensure ItemInfoList is populated
+            // 确保填充ItemInfoList
             if (SMain.EditEnvir.ItemInfoList != null && SMain.EditEnvir.ItemInfoList.Count > 0)
             {
                 ComboBox[] comboBoxes = { Tool1ComboBox, Tool2ComboBox, Tool3ComboBox, IngredientName1ComboBox, IngredientName2ComboBox, IngredientName3ComboBox, IngredientName4ComboBox, IngredientName5ComboBox, IngredientName6ComboBox };
@@ -400,7 +396,7 @@ namespace Server.Database
                     comboBoxes[i].Items.Clear();
                     comboBoxes[i].Items.Add("None");
                 }
-                // Loop through ItemInfoList and add item names to the combo box
+                // 循环浏览ItemInfoList并将项目名称添加到组合框中
                 foreach (var item in SMain.EditEnvir.ItemInfoList)
                 {
                     if (!string.IsNullOrEmpty(item.Name))
@@ -409,15 +405,15 @@ namespace Server.Database
                     }
                 }
 
-                // Optionally set the first item as selected if the ComboBox is not empty
+                // 如果组合框不为空，则可选择将第一个项目设置为选中
                 if (ItemComboBox.Items.Count > 0)
                 {
-                    ItemComboBox.SelectedIndex = -1;  // No item selected initially
+                    ItemComboBox.SelectedIndex = -1;  // 最初未选择任何项目
                 }
             }
             else
             {
-                MessageBox.Show("No items found in the ItemInfoList.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("在ItemInfoList中找不到项目.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void LoadItemsIntoComboBox(ComboBox comboBox)
@@ -452,7 +448,7 @@ namespace Server.Database
         }
         #endregion
 
-        #region Save Recipe
+        #region 保存配方
         private void SaveRecipe()
         {
 
@@ -469,26 +465,26 @@ namespace Server.Database
         }
         #endregion
 
-        #region New Recipe Button
+        #region 新建配方按钮
         private void NewRecipeButton_Click(object sender, EventArgs e)
         {
-            // Define the directory path where the recipes are stored
+            // 定义存储配方的目录路径
             string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string directoryPath = Path.Combine(currentDirectory, "Envir", "Recipe");
 
-            // Ensure the directory exists
+            // 确保目录存在
             if (!Directory.Exists(directoryPath))
             {
-                MessageBox.Show("The recipe directory does not exist.", "Directory Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("配方目录不存在.", "目录错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Generate a unique file name for the new recipe
+            // 为新配方生成唯一的文件名
             string newRecipeName = "NewRecipe";
             string newRecipePath = Path.Combine(directoryPath, $"{newRecipeName}.txt");
             int counter = 1;
 
-            // Avoid overwriting existing files by appending a number to the name if needed
+            // 如果需要，通过在名称后附加数字来避免覆盖现有文件
             while (File.Exists(newRecipePath))
             {
                 newRecipeName = $"NewRecipe{counter}";
@@ -561,30 +557,30 @@ namespace Server.Database
         }
         #endregion
 
-        #region Item Combo Box Index Change Event
+        #region 项目组合框索引更改事件
         private void ItemComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Get the selected item name
+            // 获取所选项目名称
             var selectedItemName = ItemComboBox.SelectedItem?.ToString();
 
             if (!string.IsNullOrEmpty(selectedItemName))
             {
-                // Update the recipe filename based on the selected item name
+                // 根据所选项目名称更新配方文件名
                 UpdateRecipeFileName(selectedItemName);
 
-                // After changing the item name, reload the RecipeList with the updated item name
+                // 更改项目名称后，使用更新的项目名称重新加载RecipeList
                 ReloadRecipeList(selectedItemName);
             }
         }
         #endregion
 
-        #region Reload Recipe List Box
+        #region 重新加载配方列表框
         private void ReloadRecipeList(string newItemName)
         {
             string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string directoryPath = Path.Combine(currentDirectory, "Envir", "Recipe");
 
-            // Reload the recipe files into the list after renaming
+            // 重命名后将配方文件重新加载到列表中
             string[] recipeFiles = Directory.GetFiles(directoryPath, "*.txt");
 
             RecipeList.Items.Clear();
@@ -594,35 +590,35 @@ namespace Server.Database
                 RecipeList.Items.Add(fileNameWithoutExtension);
             }
 
-            // Optionally, select the updated item in the RecipeList
+            // （可选）在RecipeList中选择更新的项目
             RecipeList.SelectedItem = newItemName;
         }
         #endregion
 
-        #region Update Recipe File Name
+        #region 更新配方文件名
         private void UpdateRecipeFileName(string newItemName)
         {
-            // Get the current recipe file path
+            // 获取当前配方文件路径
             string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string directoryPath = Path.Combine(currentDirectory, "Envir", "Recipe");
 
-            // Construct the new file path based on the selected item name
+            // 根据所选项目名称构造新文件路径
             string newFilePath = Path.Combine(directoryPath, newItemName + ".txt");
 
-            // Log the paths for debugging
+            // 记录调试路径
             Console.WriteLine($"Current File Path: {currentFilePath}");
             Console.WriteLine($"New File Path: {newFilePath}");
 
-            // Check if the current recipe file exists and rename it
+            // 检查当前配方文件是否存在并重命名
             if (File.Exists(currentFilePath))
             {
                 try
                 {
-                    // Rename the recipe file
+                    // 重命名配方文件
                     File.Move(currentFilePath, newFilePath);
-                    currentFilePath = newFilePath; // Update the current file path to reflect the new name
+                    currentFilePath = newFilePath; // 更新当前文件路径以反映新名称
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
@@ -658,7 +654,7 @@ namespace Server.Database
                         UseShellExecute = true // Use the default system shell to open the file
                     });
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }

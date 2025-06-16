@@ -713,7 +713,7 @@ namespace Client.MirObjects
                     case 4:
                         Effects.Add(new SpecialEffect(Libraries.CHumEffect[4], 0, 20, 3600, this, true, false, 0) { Repeat = true });
                         break;
-                    case 100: //Oma King Robe effect
+                    case 100: //奥马国王长袍效果
                         Effects.Add(new SpecialEffect(Libraries.Effect, 352, 33, 3600, this, true, false, 0) { Repeat = true });
                         break;
                 }
@@ -723,7 +723,7 @@ namespace Client.MirObjects
 
             if (LevelEffects == LevelEffects.None) return;
 
-            //Effects dependant on flags
+            //效果取决于旗帜
             if (LevelEffects.HasFlag(LevelEffects.BlueDragon))
             {
                 Effects.Add(new SpecialEffect(Libraries.Effect, 1210, 20, 3200, this, true, true, 1) { Repeat = true });
@@ -818,7 +818,7 @@ namespace Client.MirObjects
                 DrawWingFrame = Frame.EffectStart + (Frame.EffectOffSet * (byte)Direction) + EffectFrameIndex;
             }
 
-            #region Moving OffSet
+            #region 移动偏移
 
             switch (CurrentAction)
             {

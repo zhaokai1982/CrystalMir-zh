@@ -129,7 +129,7 @@ namespace Client.MirObjects
                         FrameInterval = 100;
                         FrameCount = 9;
                         Repeat = false;
-                        SoundManager.PlaySound(20000 + 124 * 10 + 5);//Boom for all players in range
+                        SoundManager.PlaySound(20000 + 124 * 10 + 5);//Boom适用于范围内的所有玩家
                     }
                     else
                     {

@@ -5,10 +5,10 @@ namespace Client
     class Settings
     {
         public const long CleanDelay = 600000;
-
+        // 屏幕分辨率设置
         public static int ScreenWidth = 1280, ScreenHeight = 768; //屏幕宽度 = 1024，屏幕高度 = 768  起始创建游戏窗口分辨率
         private static InIReader Reader = new InIReader(@".\Mir2Config.ini");
-        private static InIReader QuestTrackingReader = new InIReader(Path.Combine(UserDataPath, @".\QuestTracking.ini"));
+        private static InIReader QuestTrackingReader = new InIReader(Path.Combine(UserDataPath, @".\QuestTracking.ini"));// 配置文件读取器，分别用于主配置和任务追踪
 
         private static bool _useTestConfig;
         public static bool UseTestConfig
@@ -64,20 +64,20 @@ namespace Client
                             ResourcePath = @".\DirectX\",
                             UserDataPath = @".\Data\UserData\";
 
-        //Logs
+        // 日志相关设置
         public static bool LogErrors = true;
         public static bool LogChat = true;
         public static int RemainingErrorLogs = 100;
 
-        //Graphics
-        public static bool FullScreen = false, Borderless = true, TopMost = true, MouseClip = false;
+        // 图形相关设置
+        public static bool FullScreen = false, Borderless = false, TopMost = true, MouseClip = false;
         public static string FontName = "Arial"; //"MS Sans Serif"
         public static float FontSize = 8F;
         public static bool UseMouseCursors = true;
 
         public static bool FPSCap = true;
         public static int MaxFPS = 100;
-        public static int Resolution = 1024;
+        public static int Resolution = 1280;
         public static bool DebugMode = false;
 
         //Network
@@ -187,7 +187,7 @@ namespace Client
             FilterGuildChat = false;
 
 
-        //AutoPatcher
+        //自动修补程序
         public static bool P_Patcher = true;
         public static string P_Host = @"http://127.0.0.1/mir2/cmir/patch/";//默认 http://mirfiles.com/mir2/cmir/patch/
         public static string P_PatchFileName = @"PList.gz";
@@ -199,7 +199,7 @@ namespace Client
         public static string P_Client = Application.StartupPath + "\\";
         public static bool P_AutoStart = false;
         public static int P_Concurrency = 1;
-        // assist
+        // 辅助外挂
         [InI("Assist")]
         public static bool FreeShift = true;
 
@@ -398,7 +398,7 @@ namespace Client
             if (P_Host.StartsWith("www.", StringComparison.OrdinalIgnoreCase)) P_Host = P_Host.Insert(0, "http://");
             if (P_BrowserAddress.StartsWith("www.", StringComparison.OrdinalIgnoreCase)) P_BrowserAddress = P_BrowserAddress.Insert(0, "http://");
 
-            //Temp check to update everyones address
+            //临时检查以更新每个人的地址
             if (P_Host.ToLower() == "http://127.0.0.1/mir2/cmir/patch/")//默认 http://mirfiles.co.uk/mir2/cmir/patch/
             {
                 P_Host = "http://127.0.0.1/mir2/cmir/patch/";//默认 http://mirfiles.com/mir2/cmir/patch/

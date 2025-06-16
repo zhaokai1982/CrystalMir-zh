@@ -215,7 +215,7 @@ public enum IntelligentCreatureType : byte
     龙宝宝 = 16,
 }
 
-//2 blank mob files
+//2 空白mob文件
 public enum Monster : ushort
 {
     Guard = 0,
@@ -895,11 +895,11 @@ public enum CellAttribute : byte
 
 public enum LightSetting : byte
 {
-    Normal = 0,
-    Dawn = 1,
-    Day = 2,
-    Evening = 3,
-    Night = 4
+    正常 = 0,
+    黎明 = 1,
+    白天 = 2,
+    傍晚 = 3,
+    黑夜 = 4
 }
 
 public enum MirGender : byte

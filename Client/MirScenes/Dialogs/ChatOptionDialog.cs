@@ -252,7 +252,7 @@ namespace Client.MirScenes.Dialogs
                 ChatTabButton.PressedIndex = 465;
                 Index = 466;
 
-                //Show all buttons on filter tab
+                //显示筛选器选项卡上的所有按钮
                 AllButton.Visible = true;
                 GeneralButton.Visible = true;
                 WhisperButton.Visible = true;
@@ -263,7 +263,7 @@ namespace Client.MirScenes.Dialogs
                 GroupButton.Visible = true;
                 GuildButton.Visible = true;
 
-                //hide all transparency buttons
+                //隐藏所有透明度按钮
                 TransparencyOffButton.Visible = false;
                 TransparencyOnButton.Visible = false;
             }
@@ -275,7 +275,7 @@ namespace Client.MirScenes.Dialogs
                 ChatTabButton.PressedIndex = 464;
                 Index = 467;
 
-                //Hide all buttons on filter tab
+                //隐藏筛选器选项卡上的所有按钮
                 AllButton.Visible = false;
                 GeneralButton.Visible = false;
                 WhisperButton.Visible = false;

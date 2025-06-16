@@ -80,10 +80,7 @@ namespace Server
             startServerToolStripMenuItem = new ToolStripMenuItem();
             stopServerToolStripMenuItem = new ToolStripMenuItem();
             rebootServerToolStripMenuItem = new ToolStripMenuItem();
-            closeServerToolStripMenuItem = new ToolStripMenuItem();
-            clearBlockedIPsToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripSeparator();
-            toolStripSeparator1 = new ToolStripSeparator();
             reloadToolStripMenuItem = new ToolStripMenuItem();
             nPCsToolStripMenuItem = new ToolStripMenuItem();
             dropsToolStripMenuItem = new ToolStripMenuItem();
@@ -94,24 +91,34 @@ namespace Server
             任务信息ToolStripMenuItem = new ToolStripMenuItem();
             配方信息ToolStripMenuItem = new ToolStripMenuItem();
             商城物品ToolStripMenuItem = new ToolStripMenuItem();
+            触发脚本ToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            clearBlockedIPsToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator2 = new ToolStripSeparator();
+            closeServerToolStripMenuItem = new ToolStripMenuItem();
             accountToolStripMenuItem = new ToolStripMenuItem();
             accountsToolStripMenuItem1 = new ToolStripMenuItem();
             marketToolStripMenuItem = new ToolStripMenuItem();
             namelistsToolStripMenuItem = new ToolStripMenuItem();
+            CharacterToolStripMenuItem = new ToolStripMenuItem();
             databaseFormsToolStripMenuItem = new ToolStripMenuItem();
-            mapInfoToolStripMenuItem = new ToolStripMenuItem();
-            itemInfoToolStripMenuItem = new ToolStripMenuItem();
-            monsterInfoToolStripMenuItem = new ToolStripMenuItem();
-            itemNEWToolStripMenuItem = new ToolStripMenuItem();
-            monsterExperimentalToolStripMenuItem = new ToolStripMenuItem();
-            nPCInfoToolStripMenuItem = new ToolStripMenuItem();
-            questInfoToolStripMenuItem = new ToolStripMenuItem();
-            magicInfoToolStripMenuItem = new ToolStripMenuItem();
             gameshopToolStripMenuItem = new ToolStripMenuItem();
             recipeToolStripMenuItem = new ToolStripMenuItem();
+            magicInfoToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator3 = new ToolStripSeparator();
+            itemInfoToolStripMenuItem = new ToolStripMenuItem();
+            monsterInfoToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator4 = new ToolStripSeparator();
+            itemNEWToolStripMenuItem = new ToolStripMenuItem();
+            monsterExperimentalToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator5 = new ToolStripSeparator();
+            mapInfoToolStripMenuItem = new ToolStripMenuItem();
+            nPCInfoToolStripMenuItem = new ToolStripMenuItem();
+            questInfoToolStripMenuItem = new ToolStripMenuItem();
             configToolStripMenuItem1 = new ToolStripMenuItem();
             serverToolStripMenuItem = new ToolStripMenuItem();
             balanceToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator6 = new ToolStripSeparator();
             systemToolStripMenuItem = new ToolStripMenuItem();
             dragonSystemToolStripMenuItem = new ToolStripMenuItem();
             miningToolStripMenuItem = new ToolStripMenuItem();
@@ -126,12 +133,11 @@ namespace Server
             conquestToolStripMenuItem = new ToolStripMenuItem();
             respawnsToolStripMenuItem = new ToolStripMenuItem();
             heroesToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator7 = new ToolStripSeparator();
             monsterTunerToolStripMenuItem = new ToolStripMenuItem();
             dropBuilderToolStripMenuItem = new ToolStripMenuItem();
-            CharacterToolStripMenuItem = new ToolStripMenuItem();
             UpTimeLabel = new ToolStripTextBox();
             InterfaceTimer = new Timer(components);
-            触发脚本ToolStripMenuItem = new ToolStripMenuItem();
             MainTabs.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -261,13 +267,15 @@ namespace Server
             // 
             // ChatLogTextBox
             // 
+            ChatLogTextBox.BackColor = SystemColors.Desktop;
+            ChatLogTextBox.ForeColor = SystemColors.Info;
             ChatLogTextBox.Location = new Point(4, 3);
             ChatLogTextBox.Margin = new Padding(4, 3, 4, 3);
             ChatLogTextBox.Multiline = true;
             ChatLogTextBox.Name = "ChatLogTextBox";
             ChatLogTextBox.ReadOnly = true;
             ChatLogTextBox.ScrollBars = ScrollBars.Vertical;
-            ChatLogTextBox.Size = new Size(549, 351);
+            ChatLogTextBox.Size = new Size(549, 363);
             ChatLogTextBox.TabIndex = 4;
             // 
             // tabPage4
@@ -309,21 +317,25 @@ namespace Server
             // nameHeader
             // 
             nameHeader.Text = "名称";
+            nameHeader.TextAlign = HorizontalAlignment.Center;
             nameHeader.Width = 93;
             // 
             // levelHeader
             // 
             levelHeader.Text = "等级";
+            levelHeader.TextAlign = HorizontalAlignment.Center;
             levelHeader.Width = 90;
             // 
             // classHeader
             // 
             classHeader.Text = "职业";
+            classHeader.TextAlign = HorizontalAlignment.Center;
             classHeader.Width = 100;
             // 
             // genderHeader
             // 
             genderHeader.Text = "性别";
+            genderHeader.TextAlign = HorizontalAlignment.Center;
             genderHeader.Width = 98;
             // 
             // tabPage5
@@ -334,7 +346,7 @@ namespace Server
             tabPage5.Padding = new Padding(3);
             tabPage5.Size = new Size(558, 435);
             tabPage5.TabIndex = 4;
-            tabPage5.Text = "公会";
+            tabPage5.Text = "公会信息";
             tabPage5.UseVisualStyleBackColor = true;
             // 
             // GuildListView
@@ -360,26 +372,31 @@ namespace Server
             // columnHeader2
             // 
             columnHeader2.Text = "名称";
+            columnHeader2.TextAlign = HorizontalAlignment.Center;
             columnHeader2.Width = 115;
             // 
             // columnHeader3
             // 
             columnHeader3.Text = "会长";
+            columnHeader3.TextAlign = HorizontalAlignment.Center;
             columnHeader3.Width = 130;
             // 
             // columnHeader4
             // 
             columnHeader4.Text = "会员人数";
+            columnHeader4.TextAlign = HorizontalAlignment.Center;
             columnHeader4.Width = 100;
             // 
             // columnHeader5
             // 
             columnHeader5.Text = "公会等级";
+            columnHeader5.TextAlign = HorizontalAlignment.Center;
             columnHeader5.Width = 75;
             // 
             // columnHeader6
             // 
             columnHeader6.Text = "金币";
+            columnHeader6.TextAlign = HorizontalAlignment.Center;
             columnHeader6.Width = 75;
             // 
             // tabPage6
@@ -390,7 +407,7 @@ namespace Server
             tabPage6.Name = "tabPage6";
             tabPage6.Size = new Size(558, 435);
             tabPage6.TabIndex = 5;
-            tabPage6.Text = "怪物";
+            tabPage6.Text = "怪物信息";
             tabPage6.UseVisualStyleBackColor = true;
             // 
             // LoadMonstersButton
@@ -408,41 +425,47 @@ namespace Server
             MonsterListView.Columns.AddRange(new ColumnHeader[] { columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader11, columnHeader12 });
             MonsterListView.Dock = DockStyle.Bottom;
             MonsterListView.GridLines = true;
-            MonsterListView.Location = new Point(0, 92);
+            MonsterListView.Location = new Point(0, 36);
             MonsterListView.Name = "MonsterListView";
-            MonsterListView.Size = new Size(558, 343);
+            MonsterListView.Size = new Size(558, 399);
             MonsterListView.TabIndex = 0;
             MonsterListView.UseCompatibleStateImageBehavior = false;
             MonsterListView.View = View.Details;
+            MonsterListView.SelectedIndexChanged += MonsterListView_SelectedIndexChanged;
             // 
             // columnHeader7
             // 
-            columnHeader7.Text = "编号";
+            columnHeader7.Text = "序号";
             columnHeader7.Width = 50;
             // 
             // columnHeader8
             // 
             columnHeader8.Text = "地图名";
+            columnHeader8.TextAlign = HorizontalAlignment.Center;
             columnHeader8.Width = 120;
             // 
             // columnHeader9
             // 
             columnHeader9.Text = "地图文件名";
+            columnHeader9.TextAlign = HorizontalAlignment.Center;
             columnHeader9.Width = 100;
             // 
             // columnHeader10
             // 
             columnHeader10.Text = "当前怪物";
+            columnHeader10.TextAlign = HorizontalAlignment.Center;
             columnHeader10.Width = 110;
             // 
             // columnHeader11
             // 
             columnHeader11.Text = "最大怪物数";
+            columnHeader11.TextAlign = HorizontalAlignment.Center;
             columnHeader11.Width = 110;
             // 
             // columnHeader12
             // 
             columnHeader12.Text = "错误";
+            columnHeader12.TextAlign = HorizontalAlignment.Center;
             columnHeader12.Width = 55;
             // 
             // StatusBar
@@ -459,6 +482,7 @@ namespace Server
             // PlayersLabel
             // 
             PlayersLabel.BorderSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right | ToolStripStatusLabelBorderSides.Bottom;
+            PlayersLabel.ForeColor = Color.DarkGoldenrod;
             PlayersLabel.Name = "PlayersLabel";
             PlayersLabel.Size = new Size(50, 21);
             PlayersLabel.Text = "玩家: 0";
@@ -466,6 +490,7 @@ namespace Server
             // MonsterLabel
             // 
             MonsterLabel.BorderSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right | ToolStripStatusLabelBorderSides.Bottom;
+            MonsterLabel.ForeColor = SystemColors.MenuHighlight;
             MonsterLabel.Name = "MonsterLabel";
             MonsterLabel.Size = new Size(50, 21);
             MonsterLabel.Text = "怪物: 0";
@@ -473,6 +498,7 @@ namespace Server
             // ConnectionsLabel
             // 
             ConnectionsLabel.BorderSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right | ToolStripStatusLabelBorderSides.Bottom;
+            ConnectionsLabel.ForeColor = Color.ForestGreen;
             ConnectionsLabel.Name = "ConnectionsLabel";
             ConnectionsLabel.Size = new Size(50, 21);
             ConnectionsLabel.Text = "链接: 0";
@@ -480,6 +506,7 @@ namespace Server
             // BlockedIPsLabel
             // 
             BlockedIPsLabel.BorderSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right | ToolStripStatusLabelBorderSides.Bottom;
+            BlockedIPsLabel.ForeColor = Color.Red;
             BlockedIPsLabel.Name = "BlockedIPsLabel";
             BlockedIPsLabel.Size = new Size(95, 21);
             BlockedIPsLabel.Text = "屏蔽锁定 IPs: 0";
@@ -487,6 +514,7 @@ namespace Server
             // CycleDelayLabel
             // 
             CycleDelayLabel.BorderSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right | ToolStripStatusLabelBorderSides.Bottom;
+            CycleDelayLabel.ForeColor = Color.CadetBlue;
             CycleDelayLabel.Name = "CycleDelayLabel";
             CycleDelayLabel.Size = new Size(74, 21);
             CycleDelayLabel.Text = "延迟周期: 0";
@@ -494,7 +522,7 @@ namespace Server
             // MainMenu
             // 
             MainMenu.BackColor = Color.Transparent;
-            MainMenu.Items.AddRange(new ToolStripItem[] { controlToolStripMenuItem, accountToolStripMenuItem, databaseFormsToolStripMenuItem, configToolStripMenuItem1, CharacterToolStripMenuItem, UpTimeLabel });
+            MainMenu.Items.AddRange(new ToolStripItem[] { controlToolStripMenuItem, accountToolStripMenuItem, databaseFormsToolStripMenuItem, configToolStripMenuItem1, UpTimeLabel });
             MainMenu.Location = new Point(0, 0);
             MainMenu.Name = "MainMenu";
             MainMenu.Padding = new Padding(7, 2, 0, 2);
@@ -504,10 +532,10 @@ namespace Server
             // 
             // controlToolStripMenuItem
             // 
-            controlToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { startServerToolStripMenuItem, stopServerToolStripMenuItem, rebootServerToolStripMenuItem, closeServerToolStripMenuItem, clearBlockedIPsToolStripMenuItem, toolStripMenuItem1, toolStripSeparator1, reloadToolStripMenuItem });
+            controlToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { startServerToolStripMenuItem, stopServerToolStripMenuItem, rebootServerToolStripMenuItem, toolStripMenuItem1, reloadToolStripMenuItem, toolStripSeparator1, clearBlockedIPsToolStripMenuItem, toolStripSeparator2, closeServerToolStripMenuItem });
             controlToolStripMenuItem.Name = "controlToolStripMenuItem";
-            controlToolStripMenuItem.Size = new Size(44, 21);
-            controlToolStripMenuItem.Text = "控制";
+            controlToolStripMenuItem.Size = new Size(68, 21);
+            controlToolStripMenuItem.Text = "服务控制";
             // 
             // startServerToolStripMenuItem
             // 
@@ -530,29 +558,10 @@ namespace Server
             rebootServerToolStripMenuItem.Text = "重启服务器";
             rebootServerToolStripMenuItem.Click += rebootServerToolStripMenuItem_Click;
             // 
-            // closeServerToolStripMenuItem
-            // 
-            closeServerToolStripMenuItem.Name = "closeServerToolStripMenuItem";
-            closeServerToolStripMenuItem.Size = new Size(180, 22);
-            closeServerToolStripMenuItem.Text = "关闭服务器";
-            closeServerToolStripMenuItem.Click += closeServerToolStripMenuItem_Click;
-            // 
-            // clearBlockedIPsToolStripMenuItem
-            // 
-            clearBlockedIPsToolStripMenuItem.Name = "clearBlockedIPsToolStripMenuItem";
-            clearBlockedIPsToolStripMenuItem.Size = new Size(180, 22);
-            clearBlockedIPsToolStripMenuItem.Text = "清除阻止IP";
-            clearBlockedIPsToolStripMenuItem.Click += clearBlockedIPsToolStripMenuItem_Click;
-            // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new Size(177, 6);
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // reloadToolStripMenuItem
             // 
@@ -564,156 +573,139 @@ namespace Server
             // nPCsToolStripMenuItem
             // 
             nPCsToolStripMenuItem.Name = "nPCsToolStripMenuItem";
-            nPCsToolStripMenuItem.Size = new Size(180, 22);
+            nPCsToolStripMenuItem.Size = new Size(141, 22);
             nPCsToolStripMenuItem.Text = "NPC信息";
             nPCsToolStripMenuItem.Click += nPCsToolStripMenuItem_Click;
             // 
             // dropsToolStripMenuItem
             // 
             dropsToolStripMenuItem.Name = "dropsToolStripMenuItem";
-            dropsToolStripMenuItem.Size = new Size(180, 22);
+            dropsToolStripMenuItem.Size = new Size(141, 22);
             dropsToolStripMenuItem.Text = "掉落数据";
             dropsToolStripMenuItem.Click += dropsToolStripMenuItem_Click;
             // 
             // lineMessageToolStripMenuItem
             // 
             lineMessageToolStripMenuItem.Name = "lineMessageToolStripMenuItem";
-            lineMessageToolStripMenuItem.Size = new Size(180, 22);
+            lineMessageToolStripMenuItem.Size = new Size(141, 22);
             lineMessageToolStripMenuItem.Text = "连接信息";
             lineMessageToolStripMenuItem.Click += lineMessageToolStripMenuItem_Click;
             // 
             // 物品信息ToolStripMenuItem
             // 
             物品信息ToolStripMenuItem.Name = "物品信息ToolStripMenuItem";
-            物品信息ToolStripMenuItem.Size = new Size(180, 22);
+            物品信息ToolStripMenuItem.Size = new Size(141, 22);
             物品信息ToolStripMenuItem.Text = "物品信息";
             物品信息ToolStripMenuItem.Click += 物品信息ToolStripMenuItem_Click;
             // 
             // 怪物信息ToolStripMenuItem
             // 
             怪物信息ToolStripMenuItem.Name = "怪物信息ToolStripMenuItem";
-            怪物信息ToolStripMenuItem.Size = new Size(180, 22);
+            怪物信息ToolStripMenuItem.Size = new Size(141, 22);
             怪物信息ToolStripMenuItem.Text = "怪物信息";
             怪物信息ToolStripMenuItem.Click += 怪物信息ToolStripMenuItem_Click;
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(180, 22);
+            toolStripMenuItem2.Size = new Size(141, 22);
             toolStripMenuItem2.Text = "技能信息";
             toolStripMenuItem2.Click += toolStripMenuItem2_Click;
             // 
             // 任务信息ToolStripMenuItem
             // 
             任务信息ToolStripMenuItem.Name = "任务信息ToolStripMenuItem";
-            任务信息ToolStripMenuItem.Size = new Size(180, 22);
+            任务信息ToolStripMenuItem.Size = new Size(141, 22);
             任务信息ToolStripMenuItem.Text = "任务信息";
             任务信息ToolStripMenuItem.Click += 任务信息ToolStripMenuItem_Click;
             // 
             // 配方信息ToolStripMenuItem
             // 
             配方信息ToolStripMenuItem.Name = "配方信息ToolStripMenuItem";
-            配方信息ToolStripMenuItem.Size = new Size(180, 22);
+            配方信息ToolStripMenuItem.Size = new Size(141, 22);
             配方信息ToolStripMenuItem.Text = "配方和BUFF";
             配方信息ToolStripMenuItem.Click += 配方信息ToolStripMenuItem_Click;
             // 
             // 商城物品ToolStripMenuItem
             // 
             商城物品ToolStripMenuItem.Name = "商城物品ToolStripMenuItem";
-            商城物品ToolStripMenuItem.Size = new Size(180, 22);
+            商城物品ToolStripMenuItem.Size = new Size(141, 22);
             商城物品ToolStripMenuItem.Text = "商城物品";
             商城物品ToolStripMenuItem.Click += 商城物品ToolStripMenuItem_Click;
             // 
+            // 触发脚本ToolStripMenuItem
+            // 
+            触发脚本ToolStripMenuItem.Name = "触发脚本ToolStripMenuItem";
+            触发脚本ToolStripMenuItem.Size = new Size(141, 22);
+            触发脚本ToolStripMenuItem.Text = "触发脚本";
+            触发脚本ToolStripMenuItem.Click += 触发脚本ToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(177, 6);
+            // 
+            // clearBlockedIPsToolStripMenuItem
+            // 
+            clearBlockedIPsToolStripMenuItem.Name = "clearBlockedIPsToolStripMenuItem";
+            clearBlockedIPsToolStripMenuItem.Size = new Size(180, 22);
+            clearBlockedIPsToolStripMenuItem.Text = "清除阻止IP";
+            clearBlockedIPsToolStripMenuItem.Click += clearBlockedIPsToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(177, 6);
+            // 
+            // closeServerToolStripMenuItem
+            // 
+            closeServerToolStripMenuItem.ForeColor = Color.Red;
+            closeServerToolStripMenuItem.Name = "closeServerToolStripMenuItem";
+            closeServerToolStripMenuItem.Size = new Size(180, 22);
+            closeServerToolStripMenuItem.Text = "关闭服务器";
+            closeServerToolStripMenuItem.Click += closeServerToolStripMenuItem_Click;
+            // 
             // accountToolStripMenuItem
             // 
-            accountToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { accountsToolStripMenuItem1, marketToolStripMenuItem, namelistsToolStripMenuItem });
+            accountToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { CharacterToolStripMenuItem, accountsToolStripMenuItem1, marketToolStripMenuItem, namelistsToolStripMenuItem });
             accountToolStripMenuItem.Name = "accountToolStripMenuItem";
-            accountToolStripMenuItem.Size = new Size(44, 21);
-            accountToolStripMenuItem.Text = "账户";
+            accountToolStripMenuItem.Size = new Size(68, 21);
+            accountToolStripMenuItem.Text = "账户管理";
             // 
             // accountsToolStripMenuItem1
             // 
             accountsToolStripMenuItem1.Name = "accountsToolStripMenuItem1";
-            accountsToolStripMenuItem1.Size = new Size(124, 22);
+            accountsToolStripMenuItem1.Size = new Size(180, 22);
             accountsToolStripMenuItem1.Text = "玩家账户";
             accountsToolStripMenuItem1.Click += accountsToolStripMenuItem1_Click;
             // 
             // marketToolStripMenuItem
             // 
             marketToolStripMenuItem.Name = "marketToolStripMenuItem";
-            marketToolStripMenuItem.Size = new Size(124, 22);
+            marketToolStripMenuItem.Size = new Size(180, 22);
             marketToolStripMenuItem.Text = "游戏市场";
             marketToolStripMenuItem.Click += marketToolStripMenuItem_Click;
             // 
             // namelistsToolStripMenuItem
             // 
             namelistsToolStripMenuItem.Name = "namelistsToolStripMenuItem";
-            namelistsToolStripMenuItem.Size = new Size(124, 22);
+            namelistsToolStripMenuItem.Size = new Size(180, 22);
             namelistsToolStripMenuItem.Text = "列表文件";
             namelistsToolStripMenuItem.Click += namelistsToolStripMenuItem_Click;
             // 
+            // CharacterToolStripMenuItem
+            // 
+            CharacterToolStripMenuItem.Name = "CharacterToolStripMenuItem";
+            CharacterToolStripMenuItem.Size = new Size(180, 22);
+            CharacterToolStripMenuItem.Text = "角色管理";
+            CharacterToolStripMenuItem.Click += CharacterToolStripMenuItem_Click;
+            // 
             // databaseFormsToolStripMenuItem
             // 
-            databaseFormsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mapInfoToolStripMenuItem, itemInfoToolStripMenuItem, monsterInfoToolStripMenuItem, itemNEWToolStripMenuItem, monsterExperimentalToolStripMenuItem, nPCInfoToolStripMenuItem, questInfoToolStripMenuItem, magicInfoToolStripMenuItem, gameshopToolStripMenuItem, recipeToolStripMenuItem });
+            databaseFormsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { gameshopToolStripMenuItem, recipeToolStripMenuItem, magicInfoToolStripMenuItem, toolStripSeparator3, itemInfoToolStripMenuItem, monsterInfoToolStripMenuItem, toolStripSeparator4, itemNEWToolStripMenuItem, monsterExperimentalToolStripMenuItem, toolStripSeparator5, mapInfoToolStripMenuItem, nPCInfoToolStripMenuItem, questInfoToolStripMenuItem });
             databaseFormsToolStripMenuItem.Name = "databaseFormsToolStripMenuItem";
             databaseFormsToolStripMenuItem.Size = new Size(56, 21);
             databaseFormsToolStripMenuItem.Text = "数据库";
-            // 
-            // mapInfoToolStripMenuItem
-            // 
-            mapInfoToolStripMenuItem.Name = "mapInfoToolStripMenuItem";
-            mapInfoToolStripMenuItem.Size = new Size(181, 22);
-            mapInfoToolStripMenuItem.Text = "地图信息(导入导出)";
-            mapInfoToolStripMenuItem.Click += mapInfoToolStripMenuItem_Click;
-            // 
-            // itemInfoToolStripMenuItem
-            // 
-            itemInfoToolStripMenuItem.Name = "itemInfoToolStripMenuItem";
-            itemInfoToolStripMenuItem.Size = new Size(181, 22);
-            itemInfoToolStripMenuItem.Text = "物品信息";
-            itemInfoToolStripMenuItem.Click += itemInfoToolStripMenuItem_Click;
-            // 
-            // monsterInfoToolStripMenuItem
-            // 
-            monsterInfoToolStripMenuItem.Name = "monsterInfoToolStripMenuItem";
-            monsterInfoToolStripMenuItem.Size = new Size(181, 22);
-            monsterInfoToolStripMenuItem.Text = "怪物信息";
-            monsterInfoToolStripMenuItem.Click += monsterInfoToolStripMenuItem_Click;
-            // 
-            // itemNEWToolStripMenuItem
-            // 
-            itemNEWToolStripMenuItem.Name = "itemNEWToolStripMenuItem";
-            itemNEWToolStripMenuItem.Size = new Size(181, 22);
-            itemNEWToolStripMenuItem.Text = "物品编辑(导入导出)";
-            itemNEWToolStripMenuItem.Click += itemNEWToolStripMenuItem_Click;
-            // 
-            // monsterExperimentalToolStripMenuItem
-            // 
-            monsterExperimentalToolStripMenuItem.Name = "monsterExperimentalToolStripMenuItem";
-            monsterExperimentalToolStripMenuItem.Size = new Size(181, 22);
-            monsterExperimentalToolStripMenuItem.Text = "怪物编辑(导入导出)";
-            monsterExperimentalToolStripMenuItem.Click += monsterExperimentalToolStripMenuItem_Click;
-            // 
-            // nPCInfoToolStripMenuItem
-            // 
-            nPCInfoToolStripMenuItem.Name = "nPCInfoToolStripMenuItem";
-            nPCInfoToolStripMenuItem.Size = new Size(181, 22);
-            nPCInfoToolStripMenuItem.Text = "NPC信息(导入导出)";
-            nPCInfoToolStripMenuItem.Click += nPCInfoToolStripMenuItem_Click;
-            // 
-            // questInfoToolStripMenuItem
-            // 
-            questInfoToolStripMenuItem.Name = "questInfoToolStripMenuItem";
-            questInfoToolStripMenuItem.Size = new Size(181, 22);
-            questInfoToolStripMenuItem.Text = "任务系统(导入导出)";
-            questInfoToolStripMenuItem.Click += questInfoToolStripMenuItem_Click;
-            // 
-            // magicInfoToolStripMenuItem
-            // 
-            magicInfoToolStripMenuItem.Name = "magicInfoToolStripMenuItem";
-            magicInfoToolStripMenuItem.Size = new Size(181, 22);
-            magicInfoToolStripMenuItem.Text = "技能信息";
-            magicInfoToolStripMenuItem.Click += magicInfoToolStripMenuItem_Click;
             // 
             // gameshopToolStripMenuItem
             // 
@@ -729,32 +721,108 @@ namespace Server
             recipeToolStripMenuItem.Text = "合成配方";
             recipeToolStripMenuItem.Click += recipeToolStripMenuItem_Click;
             // 
+            // magicInfoToolStripMenuItem
+            // 
+            magicInfoToolStripMenuItem.Name = "magicInfoToolStripMenuItem";
+            magicInfoToolStripMenuItem.Size = new Size(181, 22);
+            magicInfoToolStripMenuItem.Text = "技能信息";
+            magicInfoToolStripMenuItem.Click += magicInfoToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(178, 6);
+            // 
+            // itemInfoToolStripMenuItem
+            // 
+            itemInfoToolStripMenuItem.Name = "itemInfoToolStripMenuItem";
+            itemInfoToolStripMenuItem.Size = new Size(181, 22);
+            itemInfoToolStripMenuItem.Text = "物品信息";
+            itemInfoToolStripMenuItem.Click += itemInfoToolStripMenuItem_Click;
+            // 
+            // monsterInfoToolStripMenuItem
+            // 
+            monsterInfoToolStripMenuItem.Name = "monsterInfoToolStripMenuItem";
+            monsterInfoToolStripMenuItem.Size = new Size(181, 22);
+            monsterInfoToolStripMenuItem.Text = "怪物信息";
+            monsterInfoToolStripMenuItem.Click += monsterInfoToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new Size(178, 6);
+            // 
+            // itemNEWToolStripMenuItem
+            // 
+            itemNEWToolStripMenuItem.Name = "itemNEWToolStripMenuItem";
+            itemNEWToolStripMenuItem.Size = new Size(181, 22);
+            itemNEWToolStripMenuItem.Text = "物品列表(导入导出)";
+            itemNEWToolStripMenuItem.Click += itemNEWToolStripMenuItem_Click;
+            // 
+            // monsterExperimentalToolStripMenuItem
+            // 
+            monsterExperimentalToolStripMenuItem.Name = "monsterExperimentalToolStripMenuItem";
+            monsterExperimentalToolStripMenuItem.Size = new Size(181, 22);
+            monsterExperimentalToolStripMenuItem.Text = "怪物列表(导入导出)";
+            monsterExperimentalToolStripMenuItem.Click += monsterExperimentalToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator5
+            // 
+            toolStripSeparator5.Name = "toolStripSeparator5";
+            toolStripSeparator5.Size = new Size(178, 6);
+            // 
+            // mapInfoToolStripMenuItem
+            // 
+            mapInfoToolStripMenuItem.Name = "mapInfoToolStripMenuItem";
+            mapInfoToolStripMenuItem.Size = new Size(181, 22);
+            mapInfoToolStripMenuItem.Text = "地图信息(导入导出)";
+            mapInfoToolStripMenuItem.Click += mapInfoToolStripMenuItem_Click;
+            // 
+            // nPCInfoToolStripMenuItem
+            // 
+            nPCInfoToolStripMenuItem.Name = "nPCInfoToolStripMenuItem";
+            nPCInfoToolStripMenuItem.Size = new Size(181, 22);
+            nPCInfoToolStripMenuItem.Text = "NPC信息(导入导出)";
+            nPCInfoToolStripMenuItem.Click += nPCInfoToolStripMenuItem_Click;
+            // 
+            // questInfoToolStripMenuItem
+            // 
+            questInfoToolStripMenuItem.Name = "questInfoToolStripMenuItem";
+            questInfoToolStripMenuItem.Size = new Size(181, 22);
+            questInfoToolStripMenuItem.Text = "任务系统(导入导出)";
+            questInfoToolStripMenuItem.Click += questInfoToolStripMenuItem_Click;
+            // 
             // configToolStripMenuItem1
             // 
-            configToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { serverToolStripMenuItem, balanceToolStripMenuItem, systemToolStripMenuItem, monsterTunerToolStripMenuItem, dropBuilderToolStripMenuItem });
+            configToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { serverToolStripMenuItem, balanceToolStripMenuItem, toolStripSeparator6, systemToolStripMenuItem, toolStripSeparator7, monsterTunerToolStripMenuItem, dropBuilderToolStripMenuItem });
             configToolStripMenuItem1.Name = "configToolStripMenuItem1";
-            configToolStripMenuItem1.Size = new Size(44, 21);
-            configToolStripMenuItem1.Text = "配置";
+            configToolStripMenuItem1.Size = new Size(68, 21);
+            configToolStripMenuItem1.Text = "游戏配置";
             // 
             // serverToolStripMenuItem
             // 
             serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            serverToolStripMenuItem.Size = new Size(160, 22);
+            serverToolStripMenuItem.Size = new Size(180, 22);
             serverToolStripMenuItem.Text = "服务器配置";
             serverToolStripMenuItem.Click += serverToolStripMenuItem_Click;
             // 
             // balanceToolStripMenuItem
             // 
             balanceToolStripMenuItem.Name = "balanceToolStripMenuItem";
-            balanceToolStripMenuItem.Size = new Size(160, 22);
+            balanceToolStripMenuItem.Size = new Size(180, 22);
             balanceToolStripMenuItem.Text = "游戏平衡性调整";
             balanceToolStripMenuItem.Click += balanceToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator6
+            // 
+            toolStripSeparator6.Name = "toolStripSeparator6";
+            toolStripSeparator6.Size = new Size(177, 6);
             // 
             // systemToolStripMenuItem
             // 
             systemToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dragonSystemToolStripMenuItem, miningToolStripMenuItem, guildsToolStripMenuItem, fishingToolStripMenuItem, mailToolStripMenuItem, goodsToolStripMenuItem, refiningToolStripMenuItem, relationshipToolStripMenuItem, mentorToolStripMenuItem, gemToolStripMenuItem, conquestToolStripMenuItem, respawnsToolStripMenuItem, heroesToolStripMenuItem });
             systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            systemToolStripMenuItem.Size = new Size(160, 22);
+            systemToolStripMenuItem.Size = new Size(180, 22);
             systemToolStripMenuItem.Text = "游戏系统";
             // 
             // dragonSystemToolStripMenuItem
@@ -848,47 +916,41 @@ namespace Server
             heroesToolStripMenuItem.Text = "英雄系统";
             heroesToolStripMenuItem.Click += heroesToolStripMenuItem_Click;
             // 
+            // toolStripSeparator7
+            // 
+            toolStripSeparator7.Name = "toolStripSeparator7";
+            toolStripSeparator7.Size = new Size(177, 6);
+            // 
             // monsterTunerToolStripMenuItem
             // 
             monsterTunerToolStripMenuItem.Name = "monsterTunerToolStripMenuItem";
-            monsterTunerToolStripMenuItem.Size = new Size(160, 22);
+            monsterTunerToolStripMenuItem.Size = new Size(180, 22);
             monsterTunerToolStripMenuItem.Text = "怪物调整";
             monsterTunerToolStripMenuItem.Click += monsterTunerToolStripMenuItem_Click;
             // 
             // dropBuilderToolStripMenuItem
             // 
             dropBuilderToolStripMenuItem.Name = "dropBuilderToolStripMenuItem";
-            dropBuilderToolStripMenuItem.Size = new Size(160, 22);
+            dropBuilderToolStripMenuItem.Size = new Size(180, 22);
             dropBuilderToolStripMenuItem.Text = "物品掉落设置";
             dropBuilderToolStripMenuItem.Click += dropBuilderToolStripMenuItem_Click;
-            // 
-            // CharacterToolStripMenuItem
-            // 
-            CharacterToolStripMenuItem.Name = "CharacterToolStripMenuItem";
-            CharacterToolStripMenuItem.Size = new Size(44, 21);
-            CharacterToolStripMenuItem.Text = "角色";
-            CharacterToolStripMenuItem.Click += CharacterToolStripMenuItem_Click;
             // 
             // UpTimeLabel
             // 
             UpTimeLabel.Alignment = ToolStripItemAlignment.Right;
+            UpTimeLabel.BackColor = SystemColors.Control;
             UpTimeLabel.BorderStyle = BorderStyle.None;
+            UpTimeLabel.ForeColor = Color.Green;
             UpTimeLabel.Name = "UpTimeLabel";
             UpTimeLabel.ReadOnly = true;
             UpTimeLabel.Size = new Size(200, 21);
-            UpTimeLabel.Text = "运行时间:";
+            UpTimeLabel.Text = "运行时长:";
+            UpTimeLabel.Click += UpTimeLabel_Click;
             // 
             // InterfaceTimer
             // 
             InterfaceTimer.Enabled = true;
             InterfaceTimer.Tick += InterfaceTimer_Tick;
-            // 
-            // 触发脚本ToolStripMenuItem
-            // 
-            触发脚本ToolStripMenuItem.Name = "触发脚本ToolStripMenuItem";
-            触发脚本ToolStripMenuItem.Size = new Size(180, 22);
-            触发脚本ToolStripMenuItem.Text = "触发脚本";
-            触发脚本ToolStripMenuItem.Click += 触发脚本ToolStripMenuItem_Click;
             // 
             // SMain
             // 
@@ -1003,7 +1065,7 @@ namespace Server
         private ColumnHeader columnHeader6;
         private ToolStripTextBox UpTimeLabel;
         private ToolStripMenuItem heroesToolStripMenuItem;
-        private ToolStripMenuItem CharacterToolStripMenuItem;
+        //private ToolStripMenuItem CharacterToolStripMenuItem1;
         private TabPage tabPage6;
         private Button LoadMonstersButton;
         private ListView MonsterListView;
@@ -1025,6 +1087,13 @@ namespace Server
         private ToolStripMenuItem 配方信息ToolStripMenuItem;
         private ToolStripMenuItem 商城物品ToolStripMenuItem;
         private ToolStripMenuItem 触发脚本ToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripSeparator toolStripSeparator4;
+        private ToolStripSeparator toolStripSeparator5;
+        private ToolStripSeparator toolStripSeparator6;
+        private ToolStripSeparator toolStripSeparator7;
+        private ToolStripMenuItem CharacterToolStripMenuItem;
     }
 }
 

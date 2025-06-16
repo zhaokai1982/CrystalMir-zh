@@ -101,40 +101,40 @@ namespace Server.MirForms
                         int index = mapAttributes.FindIndex(x => x.StartsWith("MUSIC(".ToUpper()));
                         newMapInfo.Music = Convert.ToUInt16(mapAttributes[index].TrimStart("MUSIC(".ToCharArray()).TrimEnd(')'));
                     }
-                    if (mapAttributes.Any(x => x.StartsWith("LIGHT(".ToUpper()))) // Check if there is a LIGHT attribute and get its value
+                    if (mapAttributes.Any(x => x.StartsWith("LIGHT(".ToUpper()))) // 检查是否有LIGHT属性并获取其值
                     {
                         int index = mapAttributes.FindIndex(x => x.StartsWith("LIGHT(".ToUpper()));
                         switch (mapAttributes[index].TrimStart("LIGHT(".ToCharArray()).TrimEnd(')'))
                         {
-                            case "Dawn":
-                                newMapInfo.Light = LightSetting.Dawn;
+                            case "黎明":
+                                newMapInfo.Light = LightSetting.黎明;
                                 break;
-                            case "Day":
-                                newMapInfo.Light = LightSetting.Day;
+                            case "白天":
+                                newMapInfo.Light = LightSetting.白天;
                                 break;
-                            case "Evening":
-                                newMapInfo.Light = LightSetting.Evening;
+                            case "傍晚":
+                                newMapInfo.Light = LightSetting.傍晚;
                                 break;
-                            case "Night":
-                                newMapInfo.Light = LightSetting.Night;
+                            case "黑夜":
+                                newMapInfo.Light = LightSetting.黑夜;
                                 break;
-                            case "Normal":
-                                newMapInfo.Light = LightSetting.Normal;
+                            case "正常":
+                                newMapInfo.Light = LightSetting.正常;
                                 break;
                             default:
-                                newMapInfo.Light = LightSetting.Normal;
+                                newMapInfo.Light = LightSetting.正常;
                                 break;
                         }
                     }
-                    else newMapInfo.Light = LightSetting.Normal;
+                    else newMapInfo.Light = LightSetting.正常;
 
-                    // Check for light type
+                    // 检查灯类型
                     if (mapAttributes.Any(s => s.Contains("DAY".ToUpper()))) // DAY = Day
-                        newMapInfo.Light = LightSetting.Day;
+                        newMapInfo.Light = LightSetting.白天;
                     else if (mapAttributes.Any(s => s.Contains("DARK".ToUpper()))) // DARK = Night
-                        newMapInfo.Light = LightSetting.Night;
+                        newMapInfo.Light = LightSetting.黑夜;
 
-                    EditEnvir.MapInfoList.Add(newMapInfo); // Add map to list
+                    EditEnvir.MapInfoList.Add(newMapInfo); // 将地图添加到列表
                 }
                 else if (lines[i].StartsWith(";")) continue;
                 else
@@ -187,10 +187,10 @@ namespace Server.MirForms
                             lines[k] = lines[k].Replace(":", ","); // Replace colon with comma
                             lines[k] = lines[k].Replace(", ", ","); // Remove space after comma
                             lines[k] = lines[k].Replace(" ,", ","); // Remove space before comma
-                            lines[k] = System.Text.RegularExpressions.Regex.Replace(lines[k], @"\s+", " "); // Clear whitespace
-                            lines[k] = lines[k].Replace(" ;", ";"); // Remove space before semi-colon
+                            lines[k] = System.Text.RegularExpressions.Regex.Replace(lines[k], @"\s+", " "); // 清除空白
+                            lines[k] = lines[k].Replace(" ;", ";"); // 清除分号前的空格
 
-                            // Trim comment at the end of the line
+                            // 在行尾添加修剪注释
                             if (lines[k].Contains(';'))
                                 lines[k] = lines[k].Substring(0, lines[k].IndexOf(";", System.StringComparison.Ordinal));
 
@@ -230,12 +230,12 @@ namespace Server.MirForms
                             string[] e = c[2].Split(',');
 
 
-                            var toMapIndex = EditEnvir.MapInfoList.FindIndex(a => a.FileName == c[3]); //check existing maps for the connection info
+                            var toMapIndex = EditEnvir.MapInfoList.FindIndex(a => a.FileName == c[3]); //检查现有地图以获取连接信息
                             var toMap = -1;
 
                             if (toMapIndex >= 0)
                             {
-                                toMap = EditEnvir.MapInfoList[toMapIndex].Index; //get real index
+                                toMap = EditEnvir.MapInfoList[toMapIndex].Index; //获取真实指数
                             }
                             if (toMap < 0)
                             {

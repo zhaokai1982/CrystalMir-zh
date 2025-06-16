@@ -12,14 +12,14 @@
 
             Player = new FrameSet();
 
-            //Default NPC
+            //默认NPC
             DefaultNPC = new FrameSet
             {
                 { MirAction.站立动作, new Frame(0, 4, 0, 500) },
                 { MirAction.挖矿展示, new Frame(12, 10, 0, 200) }
             };
 
-            //Default Monster
+            //默认怪物
             DefaultMonster = new FrameSet
             {
                 { MirAction.站立动作, new Frame(0, 4, 0, 500) },
@@ -31,43 +31,43 @@
                 { MirAction.复活动作, new Frame(144, 10, 0, 200) { Reverse = true } }
             };
 
-            #region DragonStatue
-            //DragonStatue 1
+            #region 龙像
+            //龙像 1
             DragonStatue = new List<FrameSet> { (frame = new FrameSet()) };
             frame.Add(MirAction.站立动作, new Frame(301, 1, -1, 500));
             frame.Add(MirAction.远程攻击1, new Frame(301, 1, -1, 200));
             frame.Add(MirAction.被击动作, new Frame(302, 1, -1, 200));
             frame.Add(MirAction.死后尸体, new Frame(300, 1, -1, 2000));
 
-            //DragonStatue 2
-            DragonStatue.Add(frame = new FrameSet());
-            frame.Add(MirAction.站立动作, new Frame(301, 1, -1, 500));
-            frame.Add(MirAction.远程攻击1, new Frame(301, 1, -1, 200));
-            frame.Add(MirAction.被击动作, new Frame(302, 1, -1, 200));
-            frame.Add(MirAction.死后尸体, new Frame(300, 1, -1, 2000));
-            
-            //DragonStatue 3
+            //龙像 2
             DragonStatue.Add(frame = new FrameSet());
             frame.Add(MirAction.站立动作, new Frame(301, 1, -1, 500));
             frame.Add(MirAction.远程攻击1, new Frame(301, 1, -1, 200));
             frame.Add(MirAction.被击动作, new Frame(302, 1, -1, 200));
             frame.Add(MirAction.死后尸体, new Frame(300, 1, -1, 2000));
 
-            //DragonStatue 4
+            //龙像 3
+            DragonStatue.Add(frame = new FrameSet());
+            frame.Add(MirAction.站立动作, new Frame(301, 1, -1, 500));
+            frame.Add(MirAction.远程攻击1, new Frame(301, 1, -1, 200));
+            frame.Add(MirAction.被击动作, new Frame(302, 1, -1, 200));
+            frame.Add(MirAction.死后尸体, new Frame(300, 1, -1, 2000));
+
+            //龙像 4
             DragonStatue.Add(frame = new FrameSet());
             frame.Add(MirAction.站立动作, new Frame(322, 1, -1, 500));
             frame.Add(MirAction.远程攻击1, new Frame(322, 1, -1, 200));
             frame.Add(MirAction.被击动作, new Frame(320, 1, -1, 200));
             frame.Add(MirAction.死后尸体, new Frame(321, 1, -1, 2000));
 
-            //DragonStatue 5
+            //龙像 5
             DragonStatue.Add(frame = new FrameSet());
             frame.Add(MirAction.站立动作, new Frame(322, 1, -1, 500));
             frame.Add(MirAction.远程攻击1, new Frame(322, 1, -1, 200));
             frame.Add(MirAction.被击动作, new Frame(320, 1, -1, 200));
             frame.Add(MirAction.死后尸体, new Frame(321, 1, -1, 2000));
 
-            //DragonStatue 6
+            //龙像 6
             DragonStatue.Add(frame = new FrameSet());
             frame.Add(MirAction.站立动作, new Frame(322, 1, -1, 500));
             frame.Add(MirAction.远程攻击1, new Frame(322, 1, -1, 200));
@@ -75,7 +75,7 @@
             frame.Add(MirAction.死后尸体, new Frame(321, 1, -1, 2000));
             #endregion
 
-            #region GreatFoxSpirit
+            #region 大狐狸精神之球
             //GreatFoxSpirit level 0
             GreatFoxSpirit = new List<FrameSet> { (frame = new FrameSet()) };
             frame.Add(MirAction.站立动作, new Frame(0, 20, -20, 100));
@@ -122,7 +122,7 @@
             frame.Add(MirAction.复活动作, new Frame(300, 18, -18, 150) { Reverse = true });
             #endregion
 
-            #region HellBombs
+            #region 地狱 炸弹
             //HellBomb1
             HellBomb = new List<FrameSet> { (frame = new FrameSet()) };
             frame.Add(MirAction.站立动作, new Frame(52, 9, -9, 100) { Blend = true });
@@ -169,7 +169,7 @@
             frame.Add(MirAction.近距攻击2, new Frame(64, 6, -6, 200) { Blend = false });
             #endregion
 
-            #region Player
+            #region 玩家人物
             //Common
             Player.Add(MirAction.站立动作, new Frame(0, 4, 0, 500, 0, 8, 0, 250));
             Player.Add(MirAction.行走动作, new Frame(32, 6, 0, 100, 64, 6, 0, 100));

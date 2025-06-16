@@ -156,7 +156,7 @@ namespace Server.MirEnvir
         readonly object _locker = new object();
         public MobThread[] MobThreads = new MobThread[Settings.ThreadLimit];
         private readonly Thread[] MobThreading = new Thread[Settings.ThreadLimit];
-        public int SpawnMultiplier = 1;//set this to 2 if you want double spawns (warning this can easily lag your server far beyond what you imagine)
+        public int SpawnMultiplier = 1;//如果你想要双产卵，请将其设置为2（警告这很容易使你的服务器滞后，远远超出你的想象）
 
         public List<string> CustomCommands = new List<string>();
 
@@ -341,8 +341,7 @@ namespace Server.MirEnvir
             if (!MagicExists(Spell.MagicBooster)) MagicInfoList.Add(new MagicInfo { Name = "深延术", Spell = Spell.MagicBooster, Icon = 73, Level1 = 47, Level2 = 49, Level3 = 52, Need1 = 12000, Need2 = 18000, Need3 = 24000, BaseCost = 150, LevelCost = 15, Range = 0 });
             if (!MagicExists(Spell.MeteorStrike)) MagicInfoList.Add(new MagicInfo { Name = "天上落焰", Spell = Spell.MeteorStrike, Icon = 52, Level1 = 49, Level2 = 52, Level3 = 55, Need1 = 15000, Need2 = 20000, Need3 = 25000, BaseCost = 115, LevelCost = 17, MPowerBase = 40, MPowerBonus = 10, PowerBase = 20, PowerBonus = 15, Range = 9 });
             if (!MagicExists(Spell.IceThrust)) MagicInfoList.Add(new MagicInfo { Name = "冰焰术", Spell = Spell.IceThrust, Icon = 56, Level1 = 53, Level2 = 56, Level3 = 59, Need1 = 17000, Need2 = 22000, Need3 = 27000, BaseCost = 100, LevelCost = 20, MPowerBase = 100, PowerBase = 50, Range = 0 });
-            if (!MagicExists(Spell.Blink)) MagicInfoList.Add(new MagicInfo { Name = "时光涌动", Spell = Spell.Blink, Icon = 20, Level1 = 19, Level2 = 22, Level3 = 25, Need1 = 350, Need2 = 1000, Need3 = 2000, BaseCost = 10, LevelCost = 3, Range = 9 });
-            //if (!MagicExists(Spell.FastMove)) MagicInfoList.Add(new MagicInfo { Name = "FastMove", Spell = Spell.FastMove, Icon = ?, Level1 = ?, Level2 = ?, Level3 = ?, Need1 = ?, Need2 = ?, Need3 = ?, BaseCost = ?, LevelCost = ?, DelayBase = ?, DelayReduction = ? });
+            //if (!MagicExists(Spell.FastMove)) MagicInfoList.Add(new MagicInfo { Name = "快速移动FastMove", Spell = Spell.FastMove, Icon = ?, Level1 = ?, Level2 = ?, Level3 = ?, Need1 = ?, Need2 = ?, Need3 = ?, BaseCost = ?, LevelCost = ?, DelayBase = ?, DelayReduction = ? });
             if (!MagicExists(Spell.StormEscape)) MagicInfoList.Add(new MagicInfo { Name = "雷仙风", Spell = Spell.StormEscape, Icon = 81, Level1 = 60, Level2 = 61, Level3 = 62, Need1 = 2200, Need2 = 3300, Need3 = 4400, BaseCost = 65, LevelCost = 8, MPowerBase = 12, PowerBase = 4, DelayBase = 300000, DelayReduction = 40000, Range = 9, MultiplierBase = 1f, MultiplierBonus = 0f });
             if (!MagicExists(Spell.HeavenlySecrets)) MagicInfoList.Add(new MagicInfo { Name = "天上秘术", Spell = Spell.HeavenlySecrets, Icon = 77, Level1 = 50, Level2 = 63, Level3 = 56, Need1 = 1000, Need2 = 2000, Need3 = 3500, BaseCost = 28, LevelCost = 2, MPowerBase = 1, PowerBase = 1, DelayBase = 600000, DelayReduction = 100000, Range = 0, MultiplierBase = 1f, MultiplierBonus = 0f });
             if (!MagicExists(Spell.GreatFireBallRare)) MagicInfoList.Add(new MagicInfo { Name = "大火球-秘籍", Spell = Spell.GreatFireBallRare, Icon = 108, Level1 = 55, Level2 = 60, Level3 = 65, Need1 = 17000, Need2 = 22000, Need3 = 27000, BaseCost = 5, LevelCost = 1, MPowerBase = 15, PowerBase = 18, Range = 9 });
@@ -404,12 +403,11 @@ namespace Server.MirEnvir
             if (!MagicExists(Spell.ExplosiveTrap)) MagicInfoList.Add(new MagicInfo { Name = "爆阱", Spell = Spell.ExplosiveTrap, Icon = 91, Level1 = 22, Level2 = 25, Level3 = 30, Need1 = 2000, Need2 = 3500, Need3 = 5000, BaseCost = 10, LevelCost = 3, MPowerBase = 15, PowerBase = 15, Range = 0 });
             if (!MagicExists(Spell.DelayedExplosion)) MagicInfoList.Add(new MagicInfo { Name = "爆闪", Spell = Spell.DelayedExplosion, Icon = 92, Level1 = 31, Level2 = 34, Level3 = 39, Need1 = 3000, Need2 = 7000, Need3 = 10000, BaseCost = 8, LevelCost = 2, MPowerBase = 30, PowerBase = 15, Range = 9 });
             if (!MagicExists(Spell.Meditation)) MagicInfoList.Add(new MagicInfo { Name = "气功术", Spell = Spell.Meditation, Icon = 93, Level1 = 19, Level2 = 24, Level3 = 29, Need1 = 1800, Need2 = 2600, Need3 = 5600, BaseCost = 8, LevelCost = 2, Range = 0 });
+            if (!MagicExists(Spell.BackStep)) MagicInfoList.Add(new MagicInfo { Name = "风弹步", Spell = Spell.BackStep, Icon = 95, Level1 = 30, Level2 = 34, Level3 = 38, Need1 = 2400, Need2 = 3000, Need3 = 6000, BaseCost = 12, LevelCost = 2, DelayBase = 2500, Range = 0 });
             if (!MagicExists(Spell.ElementalShot)) MagicInfoList.Add(new MagicInfo { Name = "万金闪", Spell = Spell.ElementalShot, Icon = 94, Level1 = 20, Level2 = 25, Level3 = 31, Need1 = 1800, Need2 = 2700, Need3 = 6000, BaseCost = 8, LevelCost = 2, MPowerBase = 6, PowerBase = 3, Range = 9 });
             if (!MagicExists(Spell.Concentration)) MagicInfoList.Add(new MagicInfo { Name = "气流术", Spell = Spell.Concentration, Icon = 96, Level1 = 23, Level2 = 27, Level3 = 32, Need1 = 2100, Need2 = 3800, Need3 = 6500, BaseCost = 8, LevelCost = 2, Range = 0 });
-            if (!MagicExists(Spell.ElementalBarrier)) MagicInfoList.Add(new MagicInfo { Name = "金刚术", Spell = Spell.ElementalBarrier, Icon = 98, Level1 = 33, Level2 = 38, Level3 = 44, Need1 = 3000, Need2 = 7000, Need3 = 10000, BaseCost = 10, LevelCost = 2, MPowerBase = 15, PowerBase = 5, Range = 0 });
-            if (!MagicExists(Spell.BackStep)) MagicInfoList.Add(new MagicInfo { Name = "风弹步", Spell = Spell.BackStep, Icon = 95, Level1 = 30, Level2 = 34, Level3 = 38, Need1 = 2400, Need2 = 3000, Need3 = 6000, BaseCost = 12, LevelCost = 2, DelayBase = 2500, Range = 0 });
-            if (!MagicExists(Spell.BindingShot)) MagicInfoList.Add(new MagicInfo { Name = "困兽笼", Spell = Spell.BindingShot, Icon = 46, Level1 = 35, Level2 = 39, Level3 = 42, Need1 = 400, Need2 = 7000, Need3 = 9500, BaseCost = 7, LevelCost = 3, Range = 9 });
             if (!MagicExists(Spell.Stonetrap)) MagicInfoList.Add(new MagicInfo { Name = "地柱钉", Spell = Spell.Stonetrap, Icon = 97, Level1 = 40, Level2 = 43, Level3 = 46, Need1 = 4900, Need2 = 9800, Need3 = 14100, BaseCost = 7, LevelCost = 3, Range = 9 });
+            if (!MagicExists(Spell.ElementalBarrier)) MagicInfoList.Add(new MagicInfo { Name = "金刚术", Spell = Spell.ElementalBarrier, Icon = 98, Level1 = 33, Level2 = 38, Level3 = 44, Need1 = 3000, Need2 = 7000, Need3 = 10000, BaseCost = 10, LevelCost = 2, MPowerBase = 15, PowerBase = 5, Range = 0 });
             if (!MagicExists(Spell.SummonVampire)) MagicInfoList.Add(new MagicInfo { Name = "吸血地精", Spell = Spell.SummonVampire, Icon = 99, Level1 = 28, Level2 = 33, Level3 = 41, Need1 = 2000, Need2 = 2700, Need3 = 7500, BaseCost = 10, LevelCost = 5, Range = 9 });
             if (!MagicExists(Spell.VampireShot)) MagicInfoList.Add(new MagicInfo { Name = "吸血地闪", Spell = Spell.VampireShot, Icon = 100, Level1 = 26, Level2 = 32, Level3 = 36, Need1 = 3000, Need2 = 6000, Need3 = 12000, BaseCost = 12, LevelCost = 3, MPowerBase = 10, PowerBase = 7, Range = 9 });
             if (!MagicExists(Spell.SummonToad)) MagicInfoList.Add(new MagicInfo { Name = "痹魔阱", Spell = Spell.SummonToad, Icon = 101, Level1 = 37, Level2 = 43, Level3 = 47, Need1 = 5800, Need2 = 10000, Need3 = 13000, BaseCost = 10, LevelCost = 5, Range = 9 });
@@ -418,9 +416,11 @@ namespace Server.MirEnvir
             if (!MagicExists(Spell.SummonSnakes)) MagicInfoList.Add(new MagicInfo { Name = "蛇柱阱", Spell = Spell.SummonSnakes, Icon = 104, Level1 = 46, Level2 = 51, Level3 = 54, Need1 = 14000, Need2 = 17000, Need3 = 20000, BaseCost = 10, LevelCost = 5, Range = 9 });
             if (!MagicExists(Spell.NapalmShot)) MagicInfoList.Add(new MagicInfo { Name = "血龙闪", Spell = Spell.NapalmShot, Icon = 105, Level1 = 48, Level2 = 52, Level3 = 55, Need1 = 15000, Need2 = 18000, Need3 = 21000, BaseCost = 40, LevelCost = 10, MPowerBase = 25, MPowerBonus = 25, PowerBase = 25, Range = 9 });
             if (!MagicExists(Spell.OneWithNature)) MagicInfoList.Add(new MagicInfo { Name = "血龙闪秘笈", Spell = Spell.OneWithNature, Icon = 106, Level1 = 50, Level2 = 53, Level3 = 56, Need1 = 17000, Need2 = 19000, Need3 = 24000, BaseCost = 80, LevelCost = 15, MPowerBase = 75, MPowerBonus = 35, PowerBase = 30, PowerBonus = 20, Range = 9 });
+            if (!MagicExists(Spell.BindingShot)) MagicInfoList.Add(new MagicInfo { Name = "困兽笼", Spell = Spell.BindingShot, Icon = 46, Level1 = 35, Level2 = 39, Level3 = 42, Need1 = 400, Need2 = 7000, Need3 = 9500, BaseCost = 7, LevelCost = 3, Range = 9 });
             if (!MagicExists(Spell.MentalState)) MagicInfoList.Add(new MagicInfo { Name = "精神状态", Spell = Spell.MentalState, Icon = 81, Level1 = 11, Level2 = 15, Level3 = 22, Need1 = 500, Need2 = 900, Need3 = 1800, BaseCost = 1, LevelCost = 1, Range = 0 });
 
             //Custom
+            if (!MagicExists(Spell.Blink)) MagicInfoList.Add(new MagicInfo { Name = "时光涌动", Spell = Spell.Blink, Icon = 20, Level1 = 19, Level2 = 22, Level3 = 25, Need1 = 350, Need2 = 1000, Need3 = 2000, BaseCost = 10, LevelCost = 3, Range = 9 });
             if (!MagicExists(Spell.Portal)) MagicInfoList.Add(new MagicInfo { Name = "传送门", Spell = Spell.Portal, Icon = 1, Level1 = 7, Level2 = 11, Level3 = 14, Need1 = 150, Need2 = 350, Need3 = 700, BaseCost = 3, LevelCost = 2, Range = 9 });
             if (!MagicExists(Spell.BattleCry)) MagicInfoList.Add(new MagicInfo { Name = "呐喊", Spell = Spell.BattleCry, Icon = 42, Level1 = 48, Level2 = 51, Level3 = 55, Need1 = 8000, Need2 = 11000, Need3 = 15000, BaseCost = 22, LevelCost = 10, Range = 0 });
             if (!MagicExists(Spell.FireBounce)) MagicInfoList.Add(new MagicInfo { Name = "火焰跳动", Spell = Spell.FireBounce, Icon = 4, Level1 = 15, Level2 = 18, Level3 = 21, Need1 = 2000, Need2 = 2700, Need3 = 3500, BaseCost = 5, LevelCost = 1, MPowerBase = 6, PowerBase = 10, Range = 9 });
@@ -499,7 +499,7 @@ namespace Server.MirEnvir
                 return $"无效的世界地图目录: {wmi.MapIndex} ({wmi.Title})";
 
 
-            //add intelligent creature checks?
+            //添加智能生物检查？
 
             return "true";
         }
@@ -619,9 +619,9 @@ namespace Server.MirEnvir
                             }
                             lock (_locker)
                             {
-                                Monitor.PulseAll(_locker); //changing a blocking condition. (this makes the threads wake up!)
+                                Monitor.PulseAll(_locker); //改变阻塞条件。（这会唤醒线程！）
                             }
-                            //run the first loop in the main thread so the main thread automaticaly 'halts' until the other threads are finished
+                            //在主线程中运行第一个循环，使主线程自动“停止”，直到其他线程完成
                             ThreadLoop(MobThreads[0]);
                         }
 
@@ -696,11 +696,11 @@ namespace Server.MirEnvir
                             Connections[i].SendDisconnect(3);
                     }
 
-                    // Get stack trace for the exception with source file information
+                    // 使用源文件信息获取异常的堆栈跟踪
                     var st = new StackTrace(ex, true);
-                    // Get the top stack frame
+                    // 获取顶部堆叠框架
                     var frame = st.GetFrame(0);
-                    // Get the line number from the stack frame
+                    // 从堆栈帧中获取行号
                     var line = frame.GetFileLineNumber();
 
                     MessageQueue.Enqueue($"[内循环错误 线程 {line}]" + ex);
@@ -747,7 +747,7 @@ namespace Server.MirEnvir
                     {
                         var next = Info._current.Next;
 
-                        //if we reach the end of our list > go back to the top (since we are running threaded, we dont want the system to sit there for xxms doing nothing)
+                        //如果我们到达列表的末尾>回到顶部（因为我们正在运行线程化，我们不希望系统坐在那里让xxms什么都不做）
                         if (Info._current == Info.ObjectsList.Last)
                         {
                             next = Info.ObjectsList.First;
@@ -757,7 +757,7 @@ namespace Server.MirEnvir
                         }
                         if (Time > Info._current.Value.OperateTime)
                         {
-                            if (Info._current.Value.Master == null) //since we are running multithreaded, dont allow pets to be processed (unless you constantly move pets into their map appropriate thead)
+                            if (Info._current.Value.Master == null) //因为我们正在运行多线程，所以不允许处理宠物（除非你不断地将宠物移动到它们的映射中）
                             {
                                 Info._current.Value.Process();
                                 Info._current.Value.SetOperateTime();
@@ -766,7 +766,7 @@ namespace Server.MirEnvir
                         Info._current = next;
                     }
 
-                    //if it's the main thread > make it loop till the subthreads are done, else make it stop after 'endtime'
+                    //如果是主线程>让它循环直到子线程完成，否则让它在'endtime'后停止
                     if (Info.Id == 0)
                     {
                         stopping = true;
@@ -804,13 +804,13 @@ namespace Server.MirEnvir
 
             var hours = Now.Hour * 2 % 24;
             if (hours == 6 || hours == 7)
-                Lights = LightSetting.Dawn;
+                Lights = LightSetting.黎明;
             else if (hours >= 8 && hours <= 15)
-                Lights = LightSetting.Day;
+                Lights = LightSetting.白天;
             else if (hours == 16 || hours == 17)
-                Lights = LightSetting.Evening;
+                Lights = LightSetting.傍晚;
             else
-                Lights = LightSetting.Night;
+                Lights = LightSetting.黑夜;
 
             if (oldLights == Lights) return;
 
@@ -1098,7 +1098,7 @@ namespace Server.MirEnvir
         {
             if (!Directory.Exists(Settings.GuildPath)) Directory.CreateDirectory(Settings.GuildPath);
 
-            if (GuildRefreshNeeded == true) //deletes guild files and resaves with new indexing if a guild is deleted.
+            if (GuildRefreshNeeded == true) //删除公会文件，如果删除了公会，则使用新的索引重新保存。
             {
                 foreach (var guildfile in Directory.GetFiles(Settings.GuildPath, "*.mgd"))
                 {
@@ -1106,7 +1106,7 @@ namespace Server.MirEnvir
                 }
 
                 GuildRefreshNeeded = false;
-                forced = true; //triggers a full resave of all guilds
+                forced = true; //触发所有公会的全面重新保存
             }
 
             for (var i = 0; i < GuildList.Count; i++)
@@ -1423,7 +1423,7 @@ namespace Server.MirEnvir
 
         public void LoadAccounts()
         {
-            //reset ranking
+            //重置排名
             for (var i = 0; i < RankClass.Count(); i++)
             {
                 if (RankClass[i] != null)
@@ -1859,6 +1859,8 @@ namespace Server.MirEnvir
             }
 
             MessageQueue.Enqueue("网络设置加载完成");
+            MessageQueue.Enqueue("服务器加载启动成功");
+            MessageQueue.Enqueue("客户端可以正常登入游戏");
         }
 
         private void StopEnvir()

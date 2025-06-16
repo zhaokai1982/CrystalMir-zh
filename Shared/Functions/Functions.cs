@@ -511,4 +511,9 @@ public static class Functions
     {
         return Math.Abs(p1.X - p2.X) + Math.Abs(p1.Y - p2.Y);
     }
+
+    public static int MaxDistance(Point currentLocation1, object currentLocation2)
+    {
+        throw new NotImplementedException();
+    }
 }
