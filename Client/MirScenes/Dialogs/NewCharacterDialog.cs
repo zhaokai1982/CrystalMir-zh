@@ -118,7 +118,8 @@ namespace Client.MirScenes.Dialogs
             };
             CharacterDisplay.AfterDraw += (o, e) =>
             {
-                if (Class == MirClass.法师)
+                // 绘制混合图片,使用下列禁用部分，支持职业动画选择性绘制效果
+                //if (Class == MirClass.法师)
                     Libraries.ChrSel.DrawBlend(CharacterDisplay.Index + 560, CharacterDisplay.DisplayLocationWithoutOffSet, Color.White, true);
             };
 
@@ -318,33 +319,33 @@ namespace Client.MirScenes.Dialogs
                     FemaleButton.Index = 2424;
                     break;
             }
-
+            // 根据角色职业和性别设置角色显示动画的图片索引
             switch (Class)
             {
                 case MirClass.战士:
                     WarriorButton.Index = 2427;
                     Description.Text = WarriorDescription;
-                    CharacterDisplay.Index = (byte)Gender == 0 ? 20 : 300; //220 : 500;
+                    CharacterDisplay.Index = (byte)Gender == 0 ? 220 : 500; //20 : 300;
                     break;
                 case MirClass.法师:
                     WizardButton.Index = 2430;
                     Description.Text = WizardDescription;
-                    CharacterDisplay.Index = (byte)Gender == 0 ? 40 : 320; //240 : 520;
+                    CharacterDisplay.Index = (byte)Gender == 0 ? 240 : 520; //40 : 320;
                     break;
                 case MirClass.道士:
                     TaoistButton.Index = 2433;
                     Description.Text = TaoistDescription;
-                    CharacterDisplay.Index = (byte)Gender == 0 ? 60 : 340; //260 : 540;
+                    CharacterDisplay.Index = (byte)Gender == 0 ? 260 : 540; //60 : 340;
                     break;
                 case MirClass.刺客:
                     AssassinButton.Index = 2436;
                     Description.Text = AssassinDescription;
-                    CharacterDisplay.Index = (byte)Gender == 0 ? 80 : 360; //280 : 560;
+                    CharacterDisplay.Index = (byte)Gender == 0 ? 280 : 560; //80 : 360;
                     break;
                 case MirClass.弓箭:
                     ArcherButton.Index = 2439;
                     Description.Text = ArcherDescription;
-                    CharacterDisplay.Index = (byte)Gender == 0 ? 100 : 140; //160 : 180;
+                    CharacterDisplay.Index = (byte)Gender == 0 ? 160 : 180; //100 : 140;
                     break;
             }
 

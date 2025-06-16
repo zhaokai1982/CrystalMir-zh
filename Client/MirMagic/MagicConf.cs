@@ -90,18 +90,13 @@ namespace Client.MirMagic
             AddEffect(new EffectConf { Id = 130, Lib = Libraries.Magic2, BaseIndex = 1040, Count= 7, DurationParam2 = 1 });      // Vampirism
             AddEffect(new EffectConf { Id = 131, Lib = Libraries.Magic2, BaseIndex = 990, Count = 10, DurationParam2 = 1 });      // Entrapment
             AddEffect(new EffectConf { Id = 132, Lib = Libraries.Magic2, BaseIndex = 650, Count = 10, DurationParam2 = 1 });      // Mirroring
-
-
             AddEffect(new EffectConf { Id = 133, Lib = Libraries.Magic2, BaseIndex = 2140, Count = 6, DirectionOffset = 10 });      // Haste
             AddEffect(new EffectConf { Id = 134, Lib = Libraries.Magic2, BaseIndex = 20, Count = 3, DurationParam1 = 300 });        // ThunderBolt
-
             AddEffect(new EffectConf { Id = 135, Lib = Libraries.Magic3, BaseIndex = 200, Count = 8, DurationParam3 = 8 });        // Fury
             AddEffect(new EffectConf { Id = 136, Lib = Libraries.Magic3, BaseIndex = 187, Count = 10, DurationParam3 = 10});        // Fury
-
             AddEffect(new EffectConf { Id = 137, Lib = Libraries.Magic3, BaseIndex = 550, Count = 17, DurationParam2 = 4});         // ImmortalSkin
             AddEffect(new EffectConf { Id = 138, Lib = Libraries.Magic3, BaseIndex = 570, Count = 5, DurationParam2 = 1});          // ImmortalSkin
             AddEffect(new EffectConf { Id = 139, Lib = Libraries.Magic2, BaseIndex = 130, Count = 6, DurationParam2 = 1 });         // FlameDisruptor
-
             AddEffect(new EffectConf { Id = 140, Lib = Libraries.Magic2, BaseIndex = 910, Count = 23, DurationParam1 = 1800, owner = false });     // FlameField  ? 火龙气焰
             AddEffect(new EffectConf { Id = 141, Lib = Libraries.Magic2, BaseIndex = 2340, Count = 11, DurationParam3 = 11 });     // Trap 
             AddEffect(new EffectConf { Id = 142, Lib = Libraries.Magic2, BaseIndex = 2440, Count = 16, DurationParam3 = 16 });     // SwiftFeet  ?
@@ -123,11 +118,8 @@ namespace Client.MirMagic
             //AddEffect(new EffectConf { Id = 161, Lib = Libraries.Magic3, BaseIndex = 1880, Count = 8, DurationParam2 = 1 });     // ElementalBarrier
             AddEffect(new EffectConf { Id = 162, Lib = Libraries.Magic3, BaseIndex = 2300, Count = 8, DurationParam1 = 1000 });     // PoisonShot
             AddEffect(new EffectConf { Id = 163, Lib = Libraries.Magic3, BaseIndex = 2710, Count = 8, DurationParam1 = 1200 });     // OneWithNature
-
             AddEffect(new EffectConf { Id = 164, Lib = Libraries.Magic3, BaseIndex = 140, Count = 2, DurationParam3 = 2 });     // CounterAttack
-
             AddEffect(new EffectConf { Id = 165, Lib = Libraries.Magic2, BaseIndex = 160, Count = 15, DurationParam1 = 1000 });     // CounterAttack
-
 
 
             AddEffect(new EffectConf { Id = 168, Lib = Libraries.Magic3, BaseIndex = 620, Count = 10, DurationParam2 = 1 });     // HealCircle
@@ -135,7 +127,6 @@ namespace Client.MirMagic
             EffectConf eff = new EffectConf { Id = 170, Lib = Libraries.Magic3, BaseIndex = 4420, Count = 10, DurationParam1 = 300, DurationParam2 = 1, StartTime = 200 };     // CreateBigFireSecret
             AddEffect(eff);     // CreateBigFireSecret
             AddEffect(new EffectConf { Id = 171, Lib = Libraries.Magic3, BaseIndex = 200, Count = 8, DurationParam3 = 5 });     // Bisul
-
             AddEffect(new EffectConf { Id = 172, Lib = Libraries.Magic3, BaseIndex = 6120, Count = 5, DurationParam2 = 1, DirectionOffset=10 });     // 爆闪 秘笈
             AddEffect(new EffectConf { Id = 173, Lib = Libraries.Magic3, BaseIndex = 6210, Count = 6,
                DurationParam2 = 1, DirectionOffset=10, StartTime = 500,

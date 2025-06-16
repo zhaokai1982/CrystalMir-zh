@@ -79,7 +79,7 @@ namespace Client.MirScenes
                 // 设置父控件为当前场景
                 Parent = this,
                 // 放置位置
-                Location = new Point(600, 200)
+                Location = new Point(583, 20) //(600, 200)
             };
 
             // 初始化服务器标签控件
@@ -219,8 +219,8 @@ namespace Client.MirScenes
                 Index = 220,
                 // 图片资源库
                 Library = Libraries.ChrSel,
-                // 控件位置
-                Location = new Point(200, 300),
+                // 带选择人物动画站立位置
+                Location = new Point(260, 420),//(200, 300),
                 // 设置父控件为背景图片控件
                 Parent = Background,
                 // 使用偏移量
@@ -243,7 +243,7 @@ namespace Client.MirScenes
             CharacterButtons[0] = new CharacterButton
             {
                 // 按钮位置
-                Location = new Point(447, 122),
+                Location = new Point(855, 193),//(447, 122),
                 // 设置父控件为背景图片控件
                 Parent = Background,
                 // 按钮点击音效
@@ -262,7 +262,7 @@ namespace Client.MirScenes
             CharacterButtons[1] = new CharacterButton
             {
                 // 按钮位置
-                Location = new Point(447, 226),
+                Location = new Point(855, 297),//(447, 226),
                 // 设置父控件为背景图片控件
                 Parent = Background,
                 // 按钮点击音效
@@ -280,7 +280,7 @@ namespace Client.MirScenes
             CharacterButtons[2] = new CharacterButton
             {
                 // 按钮位置
-                Location = new Point(447, 330),
+                Location = new Point(855, 401),//(447, 330),
                 // 设置父控件为背景图片控件
                 Parent = Background,
                 // 按钮点击音效
@@ -299,7 +299,7 @@ namespace Client.MirScenes
             CharacterButtons[3] = new CharacterButton
             {
                 // 按钮位置
-                Location = new Point(447, 434),
+                Location = new Point(855, 505),//(447, 434),
                 // 设置父控件为背景图片控件
                 Parent = Background,
                 // 按钮点击音效
@@ -318,7 +318,7 @@ namespace Client.MirScenes
             LastAccessLabel = new MirLabel
             {
                 // 标签位置
-                Location = new Point(140, 509),
+                Location = new Point(393, 690),//(140, 509),
                 // 设置父控件为背景图片控件
                 Parent = Background,
                 // 标签大小
@@ -332,7 +332,7 @@ namespace Client.MirScenes
             LastAccessLabelLabel = new MirLabel
             {
                 // 标签位置
-                Location = new Point(-80, -1),
+                Location = new Point(-60, -1),
                 // 设置父控件为上次登录时间标签
                 Parent = LastAccessLabel,
                 // 标签文本
@@ -402,37 +402,35 @@ namespace Client.MirScenes
         /// <summary>
         /// 开始游戏的逻辑
         /// </summary>
+        public long delayDisplay = CMain.Time + 6000;
         public void StartGame()
         {
-            // 如果资源库未加载完成
-            if (!Libraries.Loaded)
+            if (!Libraries.Loaded || delayDisplay > CMain.Time)
             {
-                // 创建加载进度动画控件
-                MirAnimatedControl loadProgress = new MirAnimatedControl
+                Random random = new Random();//随机动画载入构建
+                MirImageControl loadingOverlay = new MirImageControl
                 {
-                    // 图片资源库
-                    Library = Libraries.Prguse,
-                    // 图片索引
-                    Index = 940,
-                    // 显示控件
-                    Visible = true,
-                    // 设置父控件为当前场景
-                    Parent = this,
-                    // 控件位置
-                    Location = new Point(470, 680),
-                    // 启用动画
-                    Animated = true,
-                    // 动画帧数
-                    AnimationCount = 9,
-                    // 动画延迟时间
-                    AnimationDelay = 100,
-                    // 循环播放动画
-                    Loop = true,
+                    Library = Libraries.Prguse, // 图片资源库
+                    Index = 930 + random.Next(0, 10), //载入的随机图片总数量
+                    Visible = true, // 显示控件
+                    Parent = this // 设置父控件为当前场景
+
                 };
-                // 绑定控件绘制完成后的事件，资源库加载完成后销毁控件并重新调用开始游戏方法
+                MirAnimatedControl loadProgress = new MirAnimatedControl // 创建加载进度动画控件
+                {
+                    Library = Libraries.Prguse, // 图片资源库
+                    Index = 940,  //载入的动画图片-loading动画起始号
+                    Visible = true, // 显示控件
+                    Parent = loadingOverlay,
+                    Location = new Point(599, 700), // 控件位置
+                    Animated = true, // 启用动画
+                    AnimationCount = 9,   // 动画延迟时间
+                    AnimationDelay = 100,  // 动画延迟时间
+                    Loop = true, // 循环播放动画
+                };
                 loadProgress.AfterDraw += (o, e) =>
                 {
-                    if (!Libraries.Loaded) return;
+                    if (!Libraries.Loaded || delayDisplay > CMain.Time) return;
                     loadProgress.Dispose();
                     StartGame();
                 };
@@ -790,19 +788,19 @@ namespace Client.MirScenes
                 switch ((MirClass)Characters[_selected].Class)
                 {
                     case MirClass.战士:
-                        CharacterDisplay.Index = (byte)Characters[_selected].Gender == 0 ? 20 : 300;
+                        CharacterDisplay.Index = (byte)Characters[_selected].Gender == 0 ? 220 : 500; //20 : 300;
                         break;
                     case MirClass.法师:
-                        CharacterDisplay.Index = (byte)Characters[_selected].Gender == 0 ? 40 : 320;
+                        CharacterDisplay.Index = (byte)Characters[_selected].Gender == 0 ? 240 : 520; //40 : 320;
                         break;
                     case MirClass.道士:
-                        CharacterDisplay.Index = (byte)Characters[_selected].Gender == 0 ? 60 : 340;
+                        CharacterDisplay.Index = (byte)Characters[_selected].Gender == 0 ? 260 : 540; // 60 : 340;
                         break;
                     case MirClass.刺客:
-                        CharacterDisplay.Index = (byte)Characters[_selected].Gender == 0 ? 80 : 360;
+                        CharacterDisplay.Index = (byte)Characters[_selected].Gender == 0 ? 280 : 560; // 80 : 360;
                         break;
                     case MirClass.弓箭:
-                        CharacterDisplay.Index = (byte)Characters[_selected].Gender == 0 ? 100 : 140;
+                        CharacterDisplay.Index = (byte)Characters[_selected].Gender == 0 ? 160 : 180; //100 : 140;
                         break;
                 }
 

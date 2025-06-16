@@ -468,7 +468,7 @@ namespace Client.MirControls
             else
                 PreviewImage.Index = 1256 + (8 * (Direction - 1));
 
-            PreviewImage.AnimationCount = 8;
+                PreviewImage.AnimationCount = 8;
             
 
             MountImage.Library = Libraries.Mounts[ViewerItem.Info.Shape];
@@ -476,7 +476,6 @@ namespace Client.MirControls
 
             PreviewImage.Animated = true;
             MountImage.Animated = true;
-
             MountImage.Visible = true;
         }
 
