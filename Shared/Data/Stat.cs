@@ -84,25 +84,25 @@ public enum StatFormula : byte
 
 public enum Stat : byte
 {
-    最小防御,
-    最大防御,
-    最小魔御,
-    最大魔御,
-    最小攻击,
-    最大攻击,
-    最小魔法,
-    最大魔法,
-    最小道术,
-    最大道术,
-    准确,
-    敏捷,
+    最小防御, //MinAC = 0,
+    最大防御, //MaxAC = 1,
+    最小魔御, //MinMAC = 2,
+    最大魔御, //MaxMAC = 3,
+    最小攻击, //MinDC = 4,
+    最大攻击, //MaxDC = 5,
+    最小魔法, //MinMC = 6,
+    最大魔法, //MaxMC = 7,
+    最小道术, //MinSC = 8,
+    最大道术, //MaxSC = 9,
+    准确,  //Accuracy
+    敏捷,  //Agility
     HP,
     MP,
-    攻击速度,
-    幸运,
-    背包负重,
-    手腕负重,
-    佩戴负重,
+    攻击速度,  //AttackSpeed
+    幸运,  //Luck
+    背包负重,  //BagWeight
+    手腕负重, //HandWeight
+    佩戴负重, //WearWeight
     Reflect,       //反伤
     强度,
     神圣,          //神圣
