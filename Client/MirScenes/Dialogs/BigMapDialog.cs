@@ -557,7 +557,7 @@ namespace Client.MirScenes.Dialogs
         public BigMapViewPort()
         {
             NotControl = false;
-            Size = new Size(568, 380);
+            Size = new Size(565, 380);
 
             SelectedNPCIcon = new MirImageControl
             {
@@ -648,9 +648,9 @@ namespace Client.MirScenes.Dialogs
             MouseMove += UpdateBigMapCoordinates;
 
             Size = Libraries.MiniMap.GetSize(index);
-            Rectangle viewRect = new Rectangle(0, 0, Math.Min(568, Size.Width), Math.Min(380, Size.Height));
+            Rectangle viewRect = new Rectangle(0, 0, Math.Min(565, Size.Width), Math.Min(380, Size.Height));
 
-            viewRect.X = 14 + (568 - viewRect.Width) / 2;
+            viewRect.X = 14 + (565 - viewRect.Width) / 2;
             viewRect.Y = 52 + (380 - viewRect.Height) / 2;
 
             Location = viewRect.Location;
