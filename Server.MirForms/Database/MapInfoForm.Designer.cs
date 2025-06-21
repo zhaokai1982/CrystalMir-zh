@@ -1881,6 +1881,7 @@ namespace Server
         private Label label26;
         private TextBox BigMapIconTextBox;
         private CheckBox ShowBigMapCheckBox;
+        private PictureBox pictureBox1;
         private PictureBox MinimapPreview;
         private ListBox lstParticles;
         private Label label48;
