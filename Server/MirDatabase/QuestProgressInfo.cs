@@ -306,7 +306,8 @@ namespace Server.MirDatabase
                     Owner.ExpireTimer($"Quest-{Index}");
                 }
             }
-
+            // 再次更新任务以显示跳转至任务
+            UpdateTasks();
             return true;
         }
 

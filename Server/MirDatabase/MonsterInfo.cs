@@ -78,7 +78,7 @@ namespace Server.MirDatabase
             if (Envir.LoadVersion <= 84)
             {
                 Stats = new Stats();
-                Stats[Stat.HP] = (int)reader.ReadUInt32(); //Monster form prevented greater than ushort, so this should never overflow.
+                Stats[Stat.HP] = (int)reader.ReadUInt32(); //怪物形态的数值限制在无符号短整型范围内，所以永远不会溢出。
             }
 
             if (Envir.LoadVersion < 62)
