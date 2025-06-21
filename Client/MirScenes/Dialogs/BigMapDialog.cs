@@ -619,7 +619,7 @@ namespace Client.MirScenes.Dialogs
 
             if (path == null || path.Count == 0)
             {
-                GameScene.Scene.ChatDialog.ReceiveChat("目标地点不可用,无适宜的路线", ChatType.System);
+                GameScene.Scene.ChatDialog.ReceiveChat("目标地点不可到达,请选择适宜的路线终点", ChatType.System);
             }
             else
             {
