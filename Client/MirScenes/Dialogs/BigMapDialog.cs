@@ -218,8 +218,8 @@ namespace Client.MirScenes.Dialogs
             CoordinateLabel = new MirLabel
             {
                 AutoSize = true,
-                ForeColour = Color.White,
-                Location = new Point(519, 435),
+                ForeColour = Color.Yellow, //White
+                Location = new Point(420, 435),
                 Parent = this,
             };
 
@@ -257,7 +257,7 @@ namespace Client.MirScenes.Dialogs
 
         private void MakeCoordinateLabel()
         {
-            CoordinateLabel.Text = $"[ {MouseLocation.X}, {MouseLocation.Y} ]";
+            CoordinateLabel.Text = $"[选择移动至坐标: {MouseLocation.X}, {MouseLocation.Y} ]";
         }
 
         public void ShowCoordinateLabel()
