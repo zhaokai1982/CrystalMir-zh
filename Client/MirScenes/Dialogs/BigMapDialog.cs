@@ -743,6 +743,26 @@ namespace Client.MirScenes.Dialogs
                         Players[i].Visible = false;
                     }
                 }
+
+                // ====== 自动寻路路径绘制 begin ======
+                // 路径点来源于 map.CurrentPath，绘制红色线段
+                if (map.CurrentPath != null && map.CurrentPath.Count > 1)
+                {
+                    for (int i = 1; i < map.CurrentPath.Count; i++)
+                    {
+                        var prev = map.CurrentPath[i - 1];
+                        var curr = map.CurrentPath[i];
+
+                        float prevX = ((prev.Location.X - startPointX) * ScaleX) + DisplayLocation.X;
+                        float prevY = ((prev.Location.Y - startPointY) * ScaleY) + DisplayLocation.Y;
+                        float currX = ((curr.Location.X - startPointX) * ScaleX) + DisplayLocation.X;
+                        float currY = ((curr.Location.Y - startPointY) * ScaleY) + DisplayLocation.Y;
+
+                        // 画线段，红色
+                        DrawLineOnBigMap(new Point((int)prevX, (int)prevY), new Point((int)currX, (int)currY), Color.Red, 2);
+                    }
+                }
+                // ====== 自动寻路路径绘制 end ======
             }
             else
             {
@@ -773,6 +793,26 @@ namespace Client.MirScenes.Dialogs
                 var s = Libraries.MapLinkIcon.GetSize(SelectedNPCIcon.Index);
 
                 SelectedNPCIcon.Location = new Point((int)x - s.Width / 2, (int)y - s.Height / 2);
+            }
+        }
+
+        private void DrawLineOnBigMap(Point p1, Point p2, Color color, int width = 2)
+        {
+            // 兼容性实现：用小点模拟线段
+            int dx = Math.Abs(p2.X - p1.X), dy = Math.Abs(p2.Y - p1.Y);
+            int sx = p1.X < p2.X ? 1 : -1, sy = p1.Y < p2.Y ? 1 : -1;
+            int err = dx - dy, e2;
+
+            int x = p1.X, y = p1.Y;
+            while (true)
+            {
+                // 用小矩形点模拟线段
+                DXManager.Draw(DXManager.RadarTexture, new Rectangle(0, 0, width, width), new Vector3(x - width / 2, y - width / 2, 0), color);
+
+                if (x == p2.X && y == p2.Y) break;
+                e2 = 2 * err;
+                if (e2 > -dy) { err -= dy; x += sx; }
+                if (e2 < dx) { err += dx; y += sy; }
             }
         }
     }
