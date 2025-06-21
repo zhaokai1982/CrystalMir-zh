@@ -202,7 +202,7 @@ namespace Client.MirScenes.Dialogs
 
             SearchTextBox = new MirTextBox
             {
-                Location = new Point(59, Size.Height - 27),
+                Location = new Point(59, Size.Height - 28),
                 Parent = this,
                 Font = new Font(Settings.FontName, 8F),
                 Size = new Size(130, 10),
