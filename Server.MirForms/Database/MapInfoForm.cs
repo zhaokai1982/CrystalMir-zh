@@ -1,5 +1,6 @@
 ﻿using Server.MirDatabase;
 using Server.MirEnvir;
+using System.Text.RegularExpressions;
 
 
 namespace Server
@@ -684,18 +685,32 @@ namespace Server
         }
         private void LoadImage(ushort miniMapValue)
         {
-            string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Envir", "Previews", "Minimaps", miniMapValue + "_MiniMap.png");
+            string directory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Envir", "Previews", "Minimaps");
+            string pattern = $@"^{miniMapValue}\.(png|jpg|jpeg|bmp|gif|tiff|webp)$";  //修改地图预览支持所有图片格式，去掉文件名的限制，直接以 1.bmp 1.png即可
 
-            if (File.Exists(imagePath))
+            try
             {
-                MinimapPreview.Image = Image.FromFile(imagePath);
-                MinimapPreview.SizeMode = PictureBoxSizeMode.StretchImage;
+                DirectoryInfo dirInfo = new DirectoryInfo(directory);
+                FileInfo[] files = dirInfo.GetFiles()
+                    .Where(f => Regex.IsMatch(f.Name, pattern, RegexOptions.IgnoreCase))
+                    .ToArray();
+
+                if (files.Length > 0)
+                {
+                    string imagePath = files[0].FullName;
+                    MinimapPreview.Image = Image.FromFile(imagePath);
+                    MinimapPreview.SizeMode = PictureBoxSizeMode.StretchImage;
+                    return;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MinimapPreview.Image = null;
+                MessageBox.Show($"查找图片失败: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            MinimapPreview.Image = null;
         }
+        
         private void LightsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ActiveControl != sender) return;
