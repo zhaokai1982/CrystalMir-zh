@@ -430,35 +430,35 @@ namespace Client
 
                 text += string.Format(", DPS: {0}", DPS);
 
-                text += string.Format(", 时间: {0:HH:mm:ss UTC}", Now);
+                text += string.Format(", 时间: {0:HH:mm:ss}", Now);
 
                 if (MirControl.MouseControl is MapControl)
-                    text += string.Format(", Co Ords: {0}", MapControl.MapLocation);
+                    text += string.Format(", 坐标: {0}", MapControl.MapLocation);
 
                 if (MirControl.MouseControl is MirImageControl)
-                    text += string.Format(", Control: {0}", MirControl.MouseControl.GetType().Name);
+                    text += string.Format(", 控制: {0}", MirControl.MouseControl.GetType().Name);
 
                 if (MirScene.ActiveScene is GameScene)
-                    text += string.Format(", Objects: {0}", MapControl.Objects.Count);
+                    text += string.Format(", 物体: {0}", MapControl.Objects.Count);
 
                 if (MirScene.ActiveScene is GameScene && !string.IsNullOrEmpty(DebugText))
-                    text += string.Format(", Debug: {0}", DebugText);
+                    text += string.Format(", 调试: {0}", DebugText);
 
                 if (MirObjects.MapObject.MouseObject != null)
                 {
-                    text += string.Format(", Target: {0}", MirObjects.MapObject.MouseObject.Name);
+                    text += string.Format(", 目标: {0}", MirObjects.MapObject.MouseObject.Name);
                 }
                 else
                 {
-                    text += string.Format(", Target: none");
+                    text += string.Format(", 目标: 无");
                 }
             }
             else
             {
-                text = string.Format("FPS: {0}", FPS);
+                text = string.Format("帕数: {0}", FPS);
             }
 
-            text += string.Format(", Ping: {0}", PingTime);
+            text += string.Format(", 延迟: {0}", PingTime);
 
             text += string.Format(", 发送: {0}, 收到: {1}", Functions.ConvertByteSize(BytesSent), Functions.ConvertByteSize(BytesReceived));
 
@@ -519,7 +519,7 @@ namespace Client
             {
                 HintBaseLabel = new MirControl
                 {
-                    BackColour = Color.FromArgb(255, 0, 0, 0),
+                    BackColour = Color.FromArgb(255, 0, 0, 0),  //文字提示更接近官方
                     Border = true,
                     DrawControlTexture = true,
                     BorderColour = Color.FromArgb(255, 144, 144, 0),
@@ -592,8 +592,8 @@ namespace Client
 
         public void CreateScreenShot()
         {
-            string text = string.Format("[{0} 服务器 {1}] {2} {3:hh\\:mm\\:ss}",
-                Settings.P_ServerName.Length > 0 ? Settings.P_ServerName : "Crystal",
+            string text = string.Format("-服务器:{0} \n-角色:{1} \n-时间:{2}{3:hh\\:mm\\:ss}",
+                Settings.P_ServerName.Length > 0 ? Settings.P_ServerName : "传奇2国际版",
                 MapControl.User != null ? MapControl.User.Name : "",
                 Now.ToShortDateString(),
                 Now.TimeOfDay);
@@ -608,17 +608,19 @@ namespace Client
                 {
                     StringFormat sf = new StringFormat
                     {
-                        LineAlignment = StringAlignment.Center,
-                        Alignment = StringAlignment.Center
+                        LineAlignment = StringAlignment.Near, //Center
+                        Alignment = StringAlignment.Near //
                     };
+                    // 绘制阴影效果（黑色文本）
+                    graphics.DrawString(text, new Font(Settings.FontName, 9F), Brushes.Black, new Point(12, 9), sf);
+                    graphics.DrawString(text, new Font(Settings.FontName, 9F), Brushes.Black, new Point(13, 8), sf);
+                    graphics.DrawString(text, new Font(Settings.FontName, 9F), Brushes.Black, new Point(14, 9), sf);
+                    graphics.DrawString(text, new Font(Settings.FontName, 9F), Brushes.Black, new Point(13, 10), sf);
 
-                    graphics.DrawString(text, new Font(Settings.FontName, 9F), Brushes.Black, new Point((Settings.ScreenWidth / 2) + 3, 10), sf);
-                    graphics.DrawString(text, new Font(Settings.FontName, 9F), Brushes.Black, new Point((Settings.ScreenWidth / 2) + 4, 9), sf);
-                    graphics.DrawString(text, new Font(Settings.FontName, 9F), Brushes.Black, new Point((Settings.ScreenWidth / 2) + 5, 10), sf);
-                    graphics.DrawString(text, new Font(Settings.FontName, 9F), Brushes.Black, new Point((Settings.ScreenWidth / 2) + 4, 11), sf);
-                    graphics.DrawString(text, new Font(Settings.FontName, 9F), Brushes.White, new Point((Settings.ScreenWidth / 2) + 4, 10), sf);//SandyBrown               
+                    // 绘制主体文本（黄色）
+                    graphics.DrawString(text, new Font(Settings.FontName, 9F), Brushes.Yellow, new Point(13, 9), sf);
 
-                    string path = Path.Combine(Application.StartupPath, @"Screenshots\"); //创建截图目录
+                    string path = Path.Combine(Application.StartupPath, @"游戏截图\"); //创建截图目录
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
 

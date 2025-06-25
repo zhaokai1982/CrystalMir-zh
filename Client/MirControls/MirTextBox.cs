@@ -243,6 +243,8 @@ namespace Client.MirControls
 
         #endregion
         public bool OnlyNumber = false;
+        internal Color BackColor;
+        internal BorderStyle BorderStyle;
 
         public MirTextBox()
         {

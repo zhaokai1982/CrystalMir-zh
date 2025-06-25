@@ -415,7 +415,7 @@ namespace Client.MirScenes.Dialogs
                 {
                     if (link.StartsWith("http://", true, CultureInfo.InvariantCulture))
                     {
-                        System.Diagnostics.Process.Start(new ProcessStartInfo
+                        System.Diagnostics.Process.Start(new ProcessStartInfo  //NPC 超链接修复
                         {
                             FileName = link,
                             UseShellExecute = true
