@@ -382,31 +382,38 @@ namespace Client.MirObjects
 
         private void RefreshItemSetStats()
         {
+            bool hasSmashSetBonus = false;     // Flag for Smash set AttackSpeed bonusAdd commentMore actions
+            bool hasPuritySetBonus = false;    // Flag for Purity set Holy bonus
+            bool hasHwanDevilSetBonus = false; // Flag for HwanDevil set Weight bonuses
+
             foreach (var s in ItemSets)
             {
-                if (s.Set == ItemSet.破碎套装)
+                if ((s.Set == ItemSet.破碎套装) && (s.Type.Contains(ItemType.戒指)) && (s.Type.Contains(ItemType.手镯)))
                 {
-                    if (s.Type.Contains(ItemType.项链) && s.Type.Contains(ItemType.戒指) && s.Type.Contains(ItemType.手镯))
-                    {
-                        Stats[Stat.最小攻击] += 1;
-                        Stats[Stat.最大攻击] += 3;
-                    }
-                    if (s.Type.Contains(ItemType.戒指) && s.Type.Contains(ItemType.手镯))
+                    if (!hasSmashSetBonus)
                     {
                         Stats[Stat.攻击速度] += 2;
-                        return;
+                        hasSmashSetBonus = true;
                     }
                 }
 
                 if ((s.Set == ItemSet.灵玉套装) && (s.Type.Contains(ItemType.戒指)) && (s.Type.Contains(ItemType.手镯)))
                 {
-                    Stats[Stat.神圣] += 3;
+                    if (!hasPuritySetBonus)
+                    {
+                        Stats[Stat.神圣] += 3;
+                        hasPuritySetBonus = true;
+                    }
                 }
 
                 if ((s.Set == ItemSet.幻魔石套) && (s.Type.Contains(ItemType.戒指)) && (s.Type.Contains(ItemType.手镯)))
                 {
-                    Stats[Stat.佩戴负重] += 5;
-                    Stats[Stat.背包负重] += 20;
+                    if (!hasHwanDevilSetBonus)
+                    {
+                        Stats[Stat.佩戴负重] += 5;
+                        Stats[Stat.背包负重] += 20;
+                        hasHwanDevilSetBonus = true;
+                    }
                 }
 
                 if ((s.Set == ItemSet.鏃未套装) && (s.Type.Contains(ItemType.项链)) && (s.Type.Contains(ItemType.手镯)))

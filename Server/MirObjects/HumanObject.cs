@@ -1,11 +1,12 @@
-using System.Drawing;
 ﻿using Server.MirDatabase;
 using Server.MirEnvir;
 using Server.MirNetwork;
 using Server.MirObjects.Monsters;
+using System;
+using System.Drawing;
 using System.Numerics;
-using S = ServerPackets;
 using System.Security.Principal;
+using S = ServerPackets;
 
 namespace Server.MirObjects
 {
@@ -27,7 +28,7 @@ namespace Server.MirObjects
         public override string Name
         {
             get { return Info.Name; }
-            set { /*Check if Name exists.*/ }
+            set { /*检查名称是否存在.*/ }
         }
         public override int CurrentMapIndex
         {
@@ -768,7 +769,7 @@ namespace Server.MirObjects
                             DelayedAction action = new DelayedAction(DelayedType.Magic, Envir.Time, poison.Owner, caster.GetMagic(Spell.DelayedExplosion), poison.Value, this.CurrentLocation);
                             CurrentMap.ActionList.Add(action);
                             break;
-                        case ObjectType.Monster://this is in place so it could be used by mobs if one day someone chooses to
+                        case ObjectType.Monster://这样做是为了如果有一天有人选择让怪物使用它，怪物就能够使用。
                             Attacked((MonsterObject)poison.Owner, poison.Value, DefenceType.MAC);
                             break;
                     }
@@ -1257,7 +1258,7 @@ namespace Server.MirObjects
                 case ItemType.缰绳:
                     if (Info.Equipment[(int)EquipmentSlot.坐骑] == null)
                     {
-                        ReceiveChat("与坐骑一起时使用", ChatType.System);
+                        ReceiveChat("与坐骑一起使用", ChatType.System);
                         return false;
                     }
                     break;
@@ -1990,36 +1991,43 @@ namespace Server.MirObjects
         }
         private void RefreshItemSetStats()
         {
+            bool hasSmashSetBonus = false;     // Flag for Smash set AttackSpeed bonus
+            bool hasPuritySetBonus = false;    // Flag for Purity set Holy bonus
+            bool hasHwanDevilSetBonus = false; // Flag for HwanDevil set Weight bonuses
+
             foreach (var s in ItemSets)
             {
-                if (s.Set == ItemSet.破碎套装)
+                if ((s.Set == ItemSet.破碎套装) && (s.Type.Contains(ItemType.戒指)) && (s.Type.Contains(ItemType.手镯)))
                 {
-                    if (s.Type.Contains(ItemType.项链) && s.Type.Contains(ItemType.戒指) && s.Type.Contains(ItemType.手镯))
-                    {
-                        Stats[Stat.最小攻击] += 1;
-                        Stats[Stat.最大攻击] += 3;
-                    }
-                    if (s.Type.Contains(ItemType.戒指) && s.Type.Contains(ItemType.手镯))
+                    if (!hasSmashSetBonus)
                     {
                         Stats[Stat.攻击速度] += 2;
-                        return;
+                        hasSmashSetBonus = true;
                     }
                 }
 
                 if ((s.Set == ItemSet.灵玉套装) && (s.Type.Contains(ItemType.戒指)) && (s.Type.Contains(ItemType.手镯)))
                 {
-                    Stats[Stat.神圣] += 3;
+                    if (!hasPuritySetBonus)
+                    {
+                        Stats[Stat.神圣] += 3;
+                        hasPuritySetBonus = true;
+                    }
                 }
 
                 if ((s.Set == ItemSet.幻魔石套) && (s.Type.Contains(ItemType.戒指)) && (s.Type.Contains(ItemType.手镯)))
                 {
-                    Stats[Stat.佩戴负重] += 5;
-                    Stats[Stat.背包负重] += 20;
+                    if (!hasHwanDevilSetBonus)
+                    {
+                        Stats[Stat.佩戴负重] += 5;
+                        Stats[Stat.背包负重] += 20;
+                        hasHwanDevilSetBonus = true;
+                    }
                 }
 
                 if ((s.Set == ItemSet.鏃未套装) && (s.Type.Contains(ItemType.项链)) && (s.Type.Contains(ItemType.手镯)))
                 {
-                    Stats[Stat.HP] += 25;
+                  Stats[Stat.HP] += 25;
                 }
 
                 if (s.Set == ItemSet.圣龙套装)
@@ -2604,8 +2612,10 @@ namespace Server.MirObjects
                     }
                 }
                 if (CheckMovement(location)) return false;
-
             }
+            Enqueue(new S.UserLocation { Direction = dir, Location = location });
+            Broadcast(new S.ObjectRun { ObjectID = ObjectID, Direction = dir, Location = location });
+
             if (RidingMount && !Sneaking)
             {
                 DecreaseMountLoyalty(2);
@@ -2644,8 +2654,6 @@ namespace Server.MirObjects
                 ChangeHP(-1);
             }
 
-            Enqueue(new S.UserLocation { Direction = Direction, Location = CurrentLocation });
-            Broadcast(new S.ObjectRun { ObjectID = ObjectID, Direction = Direction, Location = CurrentLocation });
             GetPlayerLocation();
 
             for (int j = 1; j <= steps; j++)
@@ -4453,7 +4461,7 @@ namespace Server.MirObjects
                 return;
             }
 
-            if (Pets.Count(x => x.Race == ObjectType.Monster) >= 2) return;
+            if (Pets.Count(x => x.Race == ObjectType.Monster) >= 2) return; //召唤骷髅数量
 
             UserItem item = GetAmulet(1);
             if (item == null) return;
