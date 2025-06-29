@@ -75,7 +75,7 @@ namespace Client.MirMagic
             AddEffect(new EffectConf { Id = 115, Lib = Libraries.Magic, BaseIndex = 1380, Count = 10, DurationParam2 = 1 });      // TrapHexagon
             AddEffect(new EffectConf { Id = 116, Lib = Libraries.Magic2, BaseIndex = 190, Count= 6, DurationParam2 = 1 });       // EnergyRepulsor
             AddEffect(new EffectConf { Id = 117, Lib = Libraries.Magic2, BaseIndex = 2320, Count = 10, DurationParam2 = 1 });     // FireBurst
-            AddEffect(new EffectConf { Id = 118, Lib = Libraries.Magic2, BaseIndex = 0, Count = 10, DurationParam2 = 1 });        // SummonShinsu
+            AddEffect(new EffectConf { Id = 118, Lib = Libraries.Magic2, BaseIndex = 0, Count = 10, DurationParam2 = 1 });        // 召唤神兽
             AddEffect(new EffectConf { Id = 119, Lib = Libraries.Magic2, BaseIndex = 400, Count = 10, DurationParam2 = 1 });      // FrostCrunch
             AddEffect(new EffectConf { Id = 120, Lib = Libraries.Magic2, BaseIndex = 600, Count = 10, DurationParam2 = 1 });      // Purification
             AddEffect(new EffectConf { Id = 121, Lib = Libraries.Magic2, BaseIndex = 2430, Count = 11, DurationParam2 = 1 });
@@ -106,7 +106,7 @@ namespace Client.MirMagic
             AddEffect(new EffectConf { Id = 146, Lib = Libraries.Magic3, BaseIndex = 80, Count = 9, DurationParam3 = 9 });     // MagicBooster
             AddEffect(new EffectConf { Id = 147, Lib = Libraries.Magic3, BaseIndex = 200, Count = 8, DurationParam3 = 8 });     // PetEnhancer
             AddEffect(new EffectConf { Id = 148, Lib = Libraries.Magic, BaseIndex = 3960, Count = 20, DurationParam1 = 1200 });     // Revelation
-            AddEffect(new EffectConf { Id = 149, Lib = Libraries.Magic2, BaseIndex = 710, Count = 20, DurationParam1 = 1200 });     // LionRoar BattleCry
+            AddEffect(new EffectConf { Id = 149, Lib = Libraries.Magic2, BaseIndex = 710, Count = 20, DurationParam1 = 1200 });     // 狮子吼 战斗呐喊
             AddEffect(new EffectConf { Id = 150, Lib = Libraries.Magic2, BaseIndex = 210, Count = 6, DurationParam1 = 500 });     // TwinDrakeBlade
             AddEffect(new EffectConf { Id = 151, Lib = Libraries.Magic2, BaseIndex = 740, Count = 15, DirectionOffset = 20, DurationParam3 = 15 });     // BladeAvalanche
             AddEffect(new EffectConf { Id = 152, Lib = Libraries.Magic2, BaseIndex = 1700, DirectionOffset = 10, Count = 9, DurationParam3 = 9, owner = false });     // SlashingBurst 日闪 
@@ -116,16 +116,16 @@ namespace Client.MirMagic
             AddEffect(new EffectConf { Id = 158, Lib = Libraries.Magic2, BaseIndex = 1590, Count = 10, DurationParam2 = 1 });     // MeteorStrike
             AddEffect(new EffectConf { Id = 160, Lib = Libraries.Magic2, BaseIndex = 2230, Count = 8, DirectionOffset = 10, DurationParam1 = 800 });     // HeavenlySword
             //AddEffect(new EffectConf { Id = 161, Lib = Libraries.Magic3, BaseIndex = 1880, Count = 8, DurationParam2 = 1 });     // ElementalBarrier
-            AddEffect(new EffectConf { Id = 162, Lib = Libraries.Magic3, BaseIndex = 2300, Count = 8, DurationParam1 = 1000 });     // PoisonShot
-            AddEffect(new EffectConf { Id = 163, Lib = Libraries.Magic3, BaseIndex = 2710, Count = 8, DurationParam1 = 1200 });     // OneWithNature
+            AddEffect(new EffectConf { Id = 162, Lib = Libraries.Magic3, BaseIndex = 2300, Count = 8, DurationParam1 = 1000 });     // 毒药射击
+            AddEffect(new EffectConf { Id = 163, Lib = Libraries.Magic3, BaseIndex = 2710, Count = 8, DurationParam1 = 1200 });     // 与自然合一
             AddEffect(new EffectConf { Id = 164, Lib = Libraries.Magic3, BaseIndex = 140, Count = 2, DurationParam3 = 2 });     // CounterAttack
             AddEffect(new EffectConf { Id = 165, Lib = Libraries.Magic2, BaseIndex = 160, Count = 15, DurationParam1 = 1000 });     // CounterAttack
 
 
-            AddEffect(new EffectConf { Id = 168, Lib = Libraries.Magic3, BaseIndex = 620, Count = 10, DurationParam2 = 1 });     // HealCircle
+            AddEffect(new EffectConf { Id = 168, Lib = Libraries.Magic3, BaseIndex = 620, Count = 10, DurationParam2 = 1 });     // 治疗圈
             AddEffect(new EffectConf { Id = 169, Lib = Libraries.Magic3, BaseIndex = 250, Count = 10, DurationParam2 = 1 });     // CatPongue
             EffectConf eff = new EffectConf { Id = 170, Lib = Libraries.Magic3, BaseIndex = 4420, Count = 10, DurationParam1 = 300, DurationParam2 = 1, StartTime = 200 };     // CreateBigFireSecret
-            AddEffect(eff);     // CreateBigFireSecret
+            AddEffect(eff);     // 创建大火球秘籍
             AddEffect(new EffectConf { Id = 171, Lib = Libraries.Magic3, BaseIndex = 200, Count = 8, DurationParam3 = 5 });     // Bisul
             AddEffect(new EffectConf { Id = 172, Lib = Libraries.Magic3, BaseIndex = 6120, Count = 5, DurationParam2 = 1, DirectionOffset=10 });     // 爆闪 秘笈
             AddEffect(new EffectConf { Id = 173, Lib = Libraries.Magic3, BaseIndex = 6210, Count = 6,

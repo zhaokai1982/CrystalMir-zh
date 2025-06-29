@@ -40,7 +40,7 @@ namespace Server
         public static string VersionPath = Path.Combine(".", "Mir2.Exe");
         public static bool CheckVersion = true;
         public static List<byte[]> VersionHashes;
-        public static string GMPassword = "@9396399";
+        public static string GMPassword = "@mirserver";
         public static bool Multithreaded = true;
         public static int ThreadLimit = 2;
         public static bool TestServer = false;
@@ -101,6 +101,7 @@ namespace Server
 
         //Game
         public static List<long> ExperienceList = new List<long>();
+        public static List<long> HeroExperienceList = new List<long>();
         public static List<long> OrbsExpList = new List<long>();
         public static List<long> OrbsDefList = new List<long>();
         public static List<long> OrbsDmgList = new List<long>();
@@ -307,6 +308,9 @@ namespace Server
         public static int ArchiveInactiveCharacterAfterMonths = 12;
         public static int ArchiveDeletedCharacterAfterMonths = 1;
         public static string PickInfos;
+        public static int ScreenHeight;
+        public static int ScreenWidth;
+
         public static void LoadVersion()
         {
             try
@@ -822,7 +826,17 @@ namespace Server
                 OrbsDmgList.Add(exp);
             }
         }
+        public static void LoadHeroEXP()
+        {
+            long exp = 100;
+            InIReader reader = new InIReader(Path.Combine(ConfigPath, "HeroExpList.ini"));
 
+            for (int i = 1; i <= 500; i++)
+            {
+                exp = reader.ReadInt64("Exp", "Level" + i, exp);
+                HeroExperienceList.Add(exp);
+            }
+        }
         public static void LoadWorldMap()
         {
             InIReader reader = null;

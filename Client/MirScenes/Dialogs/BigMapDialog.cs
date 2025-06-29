@@ -289,10 +289,19 @@ namespace Client.MirScenes.Dialogs
             var map = GameScene.Scene.MapControl;
             if (map.BigMap <= 0) return;
 
-            SearchTextBox.Enabled = false;
-
             base.Show();
+            SearchTextBox.Visible = this.Visible;
+            if (SearchTextBox.TextBox != null)
+                SearchTextBox.TextBox.Visible = this.Visible;
             TargetMyLocation();
+        }
+
+        public override void Hide()
+        {
+            base.Hide();
+            SearchTextBox.Visible = this.Visible;
+            if (SearchTextBox.TextBox != null)
+                SearchTextBox.TextBox.Visible = this.Visible;
         }
 
         private void TargetMyLocation()

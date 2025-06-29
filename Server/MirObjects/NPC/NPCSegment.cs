@@ -1,6 +1,7 @@
-using System.Drawing;
 ﻿using Server.MirDatabase;
 using Server.MirEnvir;
+using System;
+using System.Drawing;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using S = ServerPackets;
@@ -1167,6 +1168,17 @@ namespace Server.MirObjects
                     if (parts.Length < 2) return;
 
                     acts.Add(new NPCActions(ActionType.GiveGuildExp, parts[1]));
+                    break;
+                case "HEROGIVESKILL":
+                    if (parts.Length < 3) return;
+
+                    spelllevel = parts.Length > 2 ? parts[2] : "0";
+                    acts.Add(new NPCActions(ActionType.HeroGiveSkill, parts[1], spelllevel));
+                    break;
+                case "HEROREMOVESKILL":
+                    if (parts.Length < 2) return;
+
+                    acts.Add(new NPCActions(ActionType.HeroRemoveSkill, parts[1]));
                     break;
             }
         }
@@ -4328,6 +4340,45 @@ namespace Server.MirObjects
                         break;
                     case ActionType.DeleteHero:
                         player.DeleteHero();
+                        break;
+                    case ActionType.HeroGiveSkill:
+                        {
+                            if (player.Hero == null || player.Hero.Info == null) return;
+
+                            byte spellLevel = 0;
+
+                            Spell skill;
+                            if (!Enum.TryParse(param[0], true, out skill)) return;
+
+                            if (player.Hero.Info.Magics.Any(e => e.Spell == skill)) break;
+
+                            if (param.Count > 1)
+                                spellLevel = byte.TryParse(param[1], out spellLevel) ? Math.Min((byte)3, spellLevel) : (byte)0;
+
+                            var magic = new UserMagic(skill) { Level = spellLevel };
+
+                            if (magic.Info == null) return;
+
+                            player.Hero.Info.Magics.Add(magic);
+                            player.Hero.SendMagicInfo(magic);
+                        }
+                        break;
+                    case ActionType.HeroRemoveSkill:
+                        {
+                            if (player.Hero == null || player.Hero.Info == null) return;
+
+                            if (!Enum.TryParse(param[0], true, out Spell skill)) return;
+
+                            if (!player.Hero.Info.Magics.Any(e => e.Spell == skill)) break;
+
+                            for (var j = player.Hero.Info.Magics.Count - 1; j >= 0; j--)
+                            {
+                                if (player.Hero.Info.Magics[j].Spell != skill) continue;
+
+                                player.Hero.Info.Magics.RemoveAt(j);
+                                player.Hero.Enqueue(new S.RemoveMagic { PlaceId = j });
+                            }
+                        }
                         break;
                     case ActionType.ConquestRepairAll:
                         {

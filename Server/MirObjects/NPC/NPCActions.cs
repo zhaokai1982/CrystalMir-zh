@@ -105,6 +105,8 @@
         SealHero,
         DeleteHero,
 		ConquestRepairAll,
-		GiveGuildExp
+		GiveGuildExp,
+        HeroGiveSkill,
+        HeroRemoveSkill,
     }
 }

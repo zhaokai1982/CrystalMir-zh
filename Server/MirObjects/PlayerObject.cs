@@ -1,13 +1,14 @@
-using System.Drawing;
-﻿using C = ClientPackets;
 using Server.MirDatabase;
 using Server.MirEnvir;
 using Server.MirNetwork;
-using S = ServerPackets;
-using System.Text.RegularExpressions;
-using Timer = Server.MirEnvir.Timer;
 using Server.MirObjects.Monsters;
+using System;
+using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Threading;
+﻿using C = ClientPackets;
+using S = ServerPackets;
+using Timer = Server.MirEnvir.Timer;
 
 namespace Server.MirObjects
 {
@@ -3524,6 +3525,9 @@ namespace Server.MirObjects
 
                             if (Account.Gold >= cost)
                             {
+
+                                var sz = Account.ExpandStorage();
+
                                 Account.Gold -= cost;
                                 Account.HasExpandedStorage = true;
 
@@ -3539,7 +3543,7 @@ namespace Server.MirObjects
                                 }
 
                                 Enqueue(new S.LoseGold { Gold = cost });
-                                Enqueue(new S.ResizeStorage { Size = Account.ExpandStorage(), HasExpandedStorage = Account.HasExpandedStorage, ExpiryTime = Account.ExpandedStorageExpiryDate });
+                                Enqueue(new S.ResizeStorage { Size = sz, HasExpandedStorage = Account.HasExpandedStorage, ExpiryTime = Account.ExpandedStorageExpiryDate });
                             }
                             else
                             {
@@ -9140,14 +9144,14 @@ namespace Server.MirObjects
                 member.Enqueue(new S.ObjectHealth { ObjectID = ObjectID, Percent = PercentHealth, Expire = time });
                 Enqueue(new S.ObjectHealth { ObjectID = member.ObjectID, Percent = member.PercentHealth, Expire = time });
 
-                if (Hero != null)
-                {
-                    member.Enqueue(new S.ObjectHealth { ObjectID = Hero.ObjectID, Percent = Hero.PercentHealth, Expire = time }); // Send Party Leader's HeroHP to Group Members
-                }
-                if (member.Hero != null)
-                {
-                    Enqueue(new S.ObjectHealth { ObjectID = member.Hero.ObjectID, Percent = member.Hero.PercentHealth, Expire = time }); // Send Party Members HeroHP to Leader
-                }
+                //if (Hero != null) //分别是向团队成员发送团队领导者的英雄生命值，以及向领导者发送团队成员的英雄生命值。
+                //{
+                //    member.Enqueue(new S.ObjectHealth { ObjectID = Hero.ObjectID, Percent = Hero.PercentHealth, Expire = time }); // Send Party Leader's HeroHP to Group Members
+                // }
+                // if (member.Hero != null)
+                //{
+                //    Enqueue(new S.ObjectHealth { ObjectID = member.Hero.ObjectID, Percent = member.Hero.PercentHealth, Expire = time }); // Send Party Members HeroHP to Leader
+                //}
 
                 for (int j = 0; j < member.Pets.Count; j++)
                 {

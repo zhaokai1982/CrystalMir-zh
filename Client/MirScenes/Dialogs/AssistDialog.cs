@@ -36,7 +36,7 @@ namespace Client.MirScenes.Dialogs
         // 标签页按钮数组，用于切换不同的设置页面
         public MirCheckBox[] TabPageButton;
         // 标签页名称数组，定义了各个标签页的显示名称
-        public static string[] Pages = { "基本设置", "职业设置", "保护设置" };
+        public static string[] Pages = { "基本设置", "职业设置", "保护设置", "物品设置" };
 
         // 基本设置标签页索引
         public static int BASE = 0;
@@ -123,12 +123,12 @@ namespace Client.MirScenes.Dialogs
                 int j = i;
                 TabPageButton[i] = new MirCheckBox
                 {
-                    // 设置按钮的图标索引
-                    Index = 13 + i * 2,
-                    // 设置按钮未选中时的图标索引
-                    UnTickedIndex = 13 + i * 2,
-                    // 设置按钮选中时的图标索引
-                    TickedIndex = 14 + i * 2,
+                    // 设置按钮的图标索引Index = 13 + i * 2,
+                    Index = 50 + i * 2,
+                    // 设置按钮未选中时的图标索引UnTickedIndex = 13 + i * 2,
+                    UnTickedIndex = 50 + i * 2,
+                    // 设置按钮选中时的图标索引TickedIndex = 14 + i * 2,
+                    TickedIndex = 51 + i * 2,
                     // 设置按钮的父控件为当前对话框
                     Parent = this,
                     // 设置按钮的位置

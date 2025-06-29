@@ -416,34 +416,39 @@
                 MessageBox.Show("在ItemInfoList中找不到项目.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void LoadItemsIntoComboBox(ComboBox comboBox)
+        private void LoadItemsIntoComboBoxes(params ComboBox[] comboBoxes)
         {
-            // Ensure ItemInfoList is populated
-            if (SMain.EditEnvir.ItemInfoList != null && SMain.EditEnvir.ItemInfoList.Count > 0)
+            try
             {
-                ComboBox[] comboBoxes = { Tool1ComboBox, Tool2ComboBox, Tool3ComboBox, IngredientName1ComboBox, IngredientName2ComboBox, IngredientName3ComboBox, IngredientName4ComboBox, IngredientName5ComboBox, IngredientName6ComboBox };
-                comboBox.Items.Clear();
-                for (int i = 0; i < comboBoxes.Length; i++)
+                // 检查数据是否有效
+                if (SMain.EditEnvir?.ItemInfoList == null || SMain.EditEnvir.ItemInfoList.Count == 0)
                 {
-                    comboBoxes[i].Items.Clear();
-                    comboBoxes[i].Items.Add("None");
+                    MessageBox.Show("物品信息列表为空或不可用。");
+                    return;
                 }
-                // Loop through ItemInfoList and add item names to the combo box
+
+                // 清空所有ComboBox并添加"None"选项
+                foreach (var comboBox in comboBoxes)
+                {
+                    comboBox.Items.Clear();
+                    comboBox.Items.Add("None");
+                }
+
+                // 添加物品名称到所有ComboBox
                 foreach (var item in SMain.EditEnvir.ItemInfoList)
                 {
                     if (!string.IsNullOrEmpty(item.Name))
                     {
-                        comboBox.Items.Add(item.Name);
-                        //for (int i = 0; i < comboBoxes.Length; i++)
-                        //{
-                        //    comboBoxes[i].Items.Add(item.Name);
-                        //}
+                        foreach (var comboBox in comboBoxes)
+                        {
+                            comboBox.Items.Add(item.Name);
+                        }
                     }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No items found in the ItemInfoList.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"加载物品信息时出错: {ex.Message}");
             }
         }
         #endregion
