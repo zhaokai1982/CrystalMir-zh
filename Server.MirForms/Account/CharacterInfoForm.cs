@@ -120,16 +120,21 @@ namespace Server.Account
 
         private void CharactersList_DoubleClick(object sender, EventArgs e)
         {
-            
             ListView list = sender as ListView;
             if (list.SelectedItems.Count > 0)
             {
                 ListViewItem item = list.SelectedItems[0];
                 string index = item.SubItems[0].Text;
 
-                PlayerInfoForm form = new PlayerInfoForm(Convert.ToUInt32(index));
-
-                form.Show();
+                try
+                {
+                    PlayerInfoForm form = new PlayerInfoForm(Convert.ToUInt32(index));
+                    form.Show();
+                }
+                catch (ObjectDisposedException)
+                {
+                    MessageBox.Show("用户不在线或信息已失效。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
     }
