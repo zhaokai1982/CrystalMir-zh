@@ -13189,19 +13189,22 @@ namespace Server.MirObjects
 
         public void GameshopBuy(int GIndex, byte Quantity, int PType)
         {
-            if (Quantity < 1 || Quantity > 99) return;
+            if (Quantity < 1 || Quantity > 99)
+            {
+                MessageQueue.EnqueueDebugging($"{Info.Name} 购买数量不合法: {Quantity}");
+                return;
+            }
 
             List<GameShopItem> shopList = Envir.GameShopList;
             GameShopItem Product = null;
 
-            int purchased;
-            bool stockAvailable = false;
             bool canAfford = false;
             uint CreditCost = 0;
             uint GoldCost = 0;
 
             List<UserItem> mailItems = new List<UserItem>();
 
+            // 查找商品
             for (int i = 0; i < shopList.Count; i++)
             {
                 if (shopList[i].GIndex == GIndex)
@@ -13211,6 +13214,7 @@ namespace Server.MirObjects
                 }
             }
 
+            // 商品不存在
             if (Product == null)
             {
                 ReceiveChat("购买的物品不在商店内", ChatType.System);
@@ -13218,16 +13222,31 @@ namespace Server.MirObjects
                 return;
             }
 
-            if (((decimal)(Quantity * Product.Count) / Product.Info.StackSize) > 5) return;
+            // 检查物品是否为空（防御性编程）
+            if (Product.Info == null)
+            {
+                ReceiveChat("该商品信息异常，请联系管理员", ChatType.System);
+                MessageQueue.EnqueueDebugging($"{Info.Name} 试图购买空物品 GIndex={GIndex}");
+                return;
+            }
 
+            // 检查堆叠限制
+            if (((decimal)(Quantity * Product.Count) / Product.Info.StackSize) > 5)
+            {
+                MessageQueue.EnqueueDebugging($"{Info.Name} 购买数量超出堆叠限制");
+                return;
+            }
+
+            // 检查库存
+            bool stockAvailable = true;
+            int purchased = 0;
             if (Product.Stock != 0)
             {
-
-                if (Product.iStock) //Invididual Stock
+                if (Product.iStock) //个人库存
                 {
                     Info.GSpurchases.TryGetValue(Product.Info.Index, out purchased);
                 }
-                else //Server Stock
+                else //全局库存
                 {
                     Envir.GameshopLog.TryGetValue(Product.Info.Index, out purchased);
                 }
@@ -13240,7 +13259,7 @@ namespace Server.MirObjects
                 {
                     ReceiveChat("购买的商品数量超过了存货数量", ChatType.System);
                     GameShopStock(Product);
-                    MessageQueue.EnqueueDebugging(Info.Name + " 正在尝试购买 " + Product.Info.FriendlyName + " x " + Quantity + " - Stock isn't available.");
+                    MessageQueue.EnqueueDebugging($"{Info.Name} 库存不足: {Product.Info.FriendlyName} x{Quantity}");
                     return;
                 }
             }
@@ -13286,41 +13305,48 @@ namespace Server.MirObjects
             if (canAfford)
             {
                 MessageQueue.EnqueueDebugging(Info.Name + " 正在尝试购买 " + Product.Info.FriendlyName + " x " + Quantity + " - 货币充足");
+
+                // 扣除货币
                 if (PType == 0)
                 {
                     Account.Credit -= CreditCost;
                     Report.CreditChanged(CreditCost, true, Product.Info.FriendlyName);
                     if (CreditCost != 0) Enqueue(new S.LoseCredit { Credit = CreditCost });
-
                 }
-                if (PType == 1)
+                else if (PType == 1) // 修改为else if保持逻辑一致性
                 {
                     Account.Gold -= GoldCost;
                     Report.GoldChanged(GoldCost, true, Product.Info.FriendlyName);
                     if (GoldCost != 0) Enqueue(new S.LoseGold { Gold = GoldCost });
                 }
 
+                // 更新购买记录 - 修复键不一致问题
+                int itemIndex = Product.Info.Index; // 使用一致的键
+
+                // 更新个人库存
                 if (Product.iStock && Product.Stock != 0)
                 {
-                    Info.GSpurchases.TryGetValue(Product.Info.Index, out purchased);
-                    if (purchased == 0)
+                    if (Info.GSpurchases.TryGetValue(itemIndex, out purchased))
                     {
-                        Info.GSpurchases[Product.GIndex] = Quantity;
+                        Info.GSpurchases[itemIndex] = purchased + Quantity;
                     }
                     else
                     {
-                        Info.GSpurchases[Product.GIndex] += Quantity;
+                        Info.GSpurchases.Add(itemIndex, Quantity);
                     }
                 }
 
-                Envir.GameshopLog.TryGetValue(Product.Info.Index, out purchased);
-                if (purchased == 0)
+                // 更新全局库存 - 使用lock保证线程安全
+                lock (Envir.GameshopLog)
                 {
-                    Envir.GameshopLog[Product.GIndex] = Quantity;
-                }
-                else
-                {
-                    Envir.GameshopLog[Product.GIndex] += Quantity;
+                    if (Envir.GameshopLog.TryGetValue(itemIndex, out purchased))
+                    {
+                        Envir.GameshopLog[itemIndex] = purchased + Quantity;
+                    }
+                    else
+                    {
+                        Envir.GameshopLog.Add(itemIndex, Quantity);
+                    }
                 }
 
                 if (Product.Stock != 0) GameShopStock(Product);
@@ -13339,7 +13365,6 @@ namespace Server.MirObjects
                 for (int i = 0; i < Quantity; i++)
                 {
                     UserItem mailItem = Envir.CreateFreshItem(Envir.GetItemInfo(Product.Info.Index));
-
                     mailItems.Add(mailItem);
                 }
             }
@@ -13358,7 +13383,6 @@ namespace Server.MirObjects
                     if (mailItem.Count == 0) break;
 
                     mailItems.Add(mailItem);
-
                 }
             }
 
@@ -13366,13 +13390,13 @@ namespace Server.MirObjects
             {
                 MailID = ++Envir.NextMailID,
                 Sender = "游戏商城",
-                Message = "感谢您从游戏商店购物，随函附上所购买的商品",
+                Message = "感谢您从游戏商店购物，点击接收按钮，已购商品将发送至您的背包。请确保您的背包有足够的空间。",
                 Items = mailItems,
             };
             mail.Send();
 
             MessageQueue.EnqueueDebugging(Info.Name + " 正在尝试购买 " + Product.Info.FriendlyName + " x " + Quantity + " - 购买已发送");
-            ReceiveChat("购买的商品已发送到您的邮箱", ChatType.Hint);
+            ReceiveChat("购买的商品已发送到您的邮箱，请查收。", ChatType.Hint);
         }
 
         public void GetGameShop()
