@@ -93,7 +93,7 @@ namespace Launcher
             }
             catch (Exception ex)
             {
-                MessageBox.Show("连接自动更新服务器失败.但不影响游戏登录.", "提示！");  //修复连接失败错误提示
+                MessageBox.Show(this, "连接自动更新服务器失败...", "提示！", MessageBoxButtons.OK, MessageBoxIcon.Warning);//修复连接失败错误提示
                 Completed = true;
                 SaveError(ex.ToString());
             }
