@@ -31,6 +31,11 @@
             SaveButton = new Button();
             configTabs = new TabControl();
             tabPage1 = new TabPage();
+            groupBox2 = new GroupBox();
+            ReaddArcDrops = new Button();
+            ReaddSinDrops = new Button();
+            RemoveArcDrops = new Button();
+            RemoveSinDrops = new Button();
             groupBox1 = new GroupBox();
             label11 = new Label();
             DBVersionLabel = new Label();
@@ -73,6 +78,27 @@
             label12 = new Label();
             SaveDelayTextBox = new TextBox();
             label6 = new Label();
+            tabPage6 = new TabPage();
+            gbRestedExpRates = new GroupBox();
+            label22 = new Label();
+            label23 = new Label();
+            label21 = new Label();
+            label20 = new Label();
+            tbRestedPeriod = new TextBox();
+            tbRestedBuffLength = new TextBox();
+            tbMaxRestedBonus = new TextBox();
+            tbRestedExpBonus = new TextBox();
+            lblMaxRestedBonus = new Label();
+            lblRestedExpBonus = new Label();
+            lblRestedBuffLength = new Label();
+            lblPeriod = new Label();
+            gbGlobals = new GroupBox();
+            label19 = new Label();
+            label18 = new Label();
+            dropRateInput = new NumericUpDown();
+            lblDropRate = new Label();
+            expRateInput = new NumericUpDown();
+            lblExpRate = new Label();
             tabPage5 = new TabPage();
             label16 = new Label();
             lineMessageTimeTextBox = new TextBox();
@@ -80,13 +106,21 @@
             gameMasterEffect_CheckBox = new CheckBox();
             SafeZoneHealingCheckBox = new CheckBox();
             SafeZoneBorderCheckBox = new CheckBox();
+            maxConnectionsPerIP = new TextBox();
+            lblMaxConnectionsPerIP = new Label();
             VPathDialog = new OpenFileDialog();
             configTabs.SuspendLayout();
             tabPage1.SuspendLayout();
+            groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
+            tabPage6.SuspendLayout();
+            gbRestedExpRates.SuspendLayout();
+            gbGlobals.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dropRateInput).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)expRateInput).BeginInit();
             tabPage5.SuspendLayout();
             SuspendLayout();
             // 
@@ -108,6 +142,7 @@
             configTabs.Controls.Add(tabPage2);
             configTabs.Controls.Add(tabPage3);
             configTabs.Controls.Add(tabPage4);
+            configTabs.Controls.Add(tabPage6);
             configTabs.Controls.Add(tabPage5);
             configTabs.Location = new Point(14, 16);
             configTabs.Margin = new Padding(5, 7, 5, 7);
@@ -118,6 +153,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(groupBox2);
             tabPage1.Controls.Add(groupBox1);
             tabPage1.Controls.Add(RelogDelayTextBox);
             tabPage1.Controls.Add(label7);
@@ -133,6 +169,59 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "版本信息";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(ReaddArcDrops);
+            groupBox2.Controls.Add(ReaddSinDrops);
+            groupBox2.Controls.Add(RemoveArcDrops);
+            groupBox2.Controls.Add(RemoveSinDrops);
+            groupBox2.Location = new Point(104, 121);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(310, 84);
+            groupBox2.TabIndex = 26;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "掉落";
+            // 
+            // ReaddArcDrops
+            // 
+            ReaddArcDrops.Location = new Point(158, 51);
+            ReaddArcDrops.Name = "ReaddArcDrops";
+            ReaddArcDrops.Size = new Size(144, 23);
+            ReaddArcDrops.TabIndex = 3;
+            ReaddArcDrops.Text = "重新添加弓箭手掉落物";
+            ReaddArcDrops.UseVisualStyleBackColor = true;
+            ReaddArcDrops.Click += ReaddArcDrops_Click;
+            // 
+            // ReaddSinDrops
+            // 
+            ReaddSinDrops.Location = new Point(158, 22);
+            ReaddSinDrops.Name = "ReaddSinDrops";
+            ReaddSinDrops.Size = new Size(144, 23);
+            ReaddSinDrops.TabIndex = 2;
+            ReaddSinDrops.Text = "重新添加刺客掉落物品";
+            ReaddSinDrops.UseVisualStyleBackColor = true;
+            ReaddSinDrops.Click += ReaddSinDrops_Click;
+            // 
+            // RemoveArcDrops
+            // 
+            RemoveArcDrops.Location = new Point(6, 51);
+            RemoveArcDrops.Name = "RemoveArcDrops";
+            RemoveArcDrops.Size = new Size(144, 23);
+            RemoveArcDrops.TabIndex = 1;
+            RemoveArcDrops.Text = "移除射手掉落物";
+            RemoveArcDrops.UseVisualStyleBackColor = true;
+            RemoveArcDrops.Click += RemoveArcDrops_Click;
+            // 
+            // RemoveSinDrops
+            // 
+            RemoveSinDrops.Location = new Point(6, 22);
+            RemoveSinDrops.Name = "RemoveSinDrops";
+            RemoveSinDrops.Size = new Size(144, 23);
+            RemoveSinDrops.TabIndex = 0;
+            RemoveSinDrops.Text = "移除刺客掉落物品";
+            RemoveSinDrops.UseVisualStyleBackColor = true;
+            RemoveSinDrops.Click += RemoveSinDrops_Click;
             // 
             // groupBox1
             // 
@@ -155,9 +244,9 @@
             label11.Location = new Point(29, 55);
             label11.Margin = new Padding(5, 0, 5, 0);
             label11.Name = "label11";
-            label11.Size = new Size(44, 17);
+            label11.Size = new Size(47, 17);
             label11.TabIndex = 23;
-            label11.Text = "数据库";
+            label11.Text = "数据库:";
             // 
             // DBVersionLabel
             // 
@@ -185,9 +274,9 @@
             label10.Location = new Point(29, 28);
             label10.Margin = new Padding(5, 0, 5, 0);
             label10.Name = "label10";
-            label10.Size = new Size(44, 17);
+            label10.Size = new Size(47, 17);
             label10.TabIndex = 22;
-            label10.Text = "服务器";
+            label10.Text = "服务器:";
             // 
             // RelogDelayTextBox
             // 
@@ -202,12 +291,12 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(22, 91);
+            label7.Location = new Point(31, 91);
             label7.Margin = new Padding(5, 0, 5, 0);
             label7.Name = "label7";
-            label7.Size = new Size(80, 17);
+            label7.Size = new Size(71, 17);
             label7.TabIndex = 20;
-            label7.Text = "重新登录延时";
+            label7.Text = "重连接延时:";
             // 
             // VersionCheckBox
             // 
@@ -243,12 +332,12 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(34, 24);
+            label1.Location = new Point(31, 24);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(68, 17);
+            label1.Size = new Size(71, 17);
             label1.TabIndex = 0;
-            label1.Text = "登录器路径";
+            label1.Text = "登录器路径:";
             // 
             // tabPage2
             // 
@@ -310,12 +399,12 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(40, 285);
+            label14.Location = new Point(37, 284);
             label14.Margin = new Padding(5, 0, 5, 0);
             label14.Name = "label14";
-            label14.Size = new Size(109, 17);
+            label14.Size = new Size(112, 17);
             label14.TabIndex = 20;
-            label14.Text = "HTTP 可信 IP 地址";
+            label14.Text = "HTTP 可信 IP 地址:";
             // 
             // HTTPIPAddressTextBox
             // 
@@ -330,12 +419,12 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(72, 242);
+            label13.Location = new Point(69, 241);
             label13.Margin = new Padding(5, 0, 5, 0);
             label13.Name = "label13";
-            label13.Size = new Size(77, 17);
+            label13.Size = new Size(80, 17);
             label13.TabIndex = 18;
-            label13.Text = "HTTP IP地址";
+            label13.Text = "HTTP IP地址:";
             // 
             // MaxUserTextBox
             // 
@@ -350,12 +439,12 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(33, 126);
+            label5.Location = new Point(30, 125);
             label5.Margin = new Padding(5, 0, 5, 0);
             label5.Name = "label5";
-            label5.Size = new Size(68, 17);
+            label5.Size = new Size(71, 17);
             label5.TabIndex = 16;
-            label5.Text = "最大登录数";
+            label5.Text = "最大登录数:";
             // 
             // TimeOutTextBox
             // 
@@ -370,12 +459,12 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(45, 92);
+            label4.Location = new Point(42, 91);
             label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
-            label4.Size = new Size(56, 17);
+            label4.Size = new Size(59, 17);
             label4.TabIndex = 14;
-            label4.Text = "连接超时";
+            label4.Text = "连接超时:";
             // 
             // PortTextBox
             // 
@@ -390,12 +479,12 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(57, 58);
+            label3.Location = new Point(54, 57);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(44, 17);
+            label3.Size = new Size(47, 17);
             label3.TabIndex = 12;
-            label3.Text = "端口号";
+            label3.Text = "端口号:";
             // 
             // IPAddressTextBox
             // 
@@ -410,12 +499,12 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(58, 24);
+            label2.Location = new Point(55, 23);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(43, 17);
+            label2.Size = new Size(46, 17);
             label2.TabIndex = 10;
-            label2.Text = "IP地址";
+            label2.Text = "IP地址:";
             // 
             // tabPage3
             // 
@@ -475,9 +564,9 @@
             AllowArcherCheckBox.Location = new Point(28, 258);
             AllowArcherCheckBox.Margin = new Padding(5, 7, 5, 7);
             AllowArcherCheckBox.Name = "AllowArcherCheckBox";
-            AllowArcherCheckBox.Size = new Size(123, 21);
+            AllowArcherCheckBox.Size = new Size(99, 21);
             AllowArcherCheckBox.TabIndex = 13;
-            AllowArcherCheckBox.Text = "允许创建弓箭职业";
+            AllowArcherCheckBox.Text = "允许创建弓箭";
             AllowArcherCheckBox.UseVisualStyleBackColor = true;
             // 
             // AllowAssassinCheckBox
@@ -486,9 +575,9 @@
             AllowAssassinCheckBox.Location = new Point(28, 227);
             AllowAssassinCheckBox.Margin = new Padding(5, 7, 5, 7);
             AllowAssassinCheckBox.Name = "AllowAssassinCheckBox";
-            AllowAssassinCheckBox.Size = new Size(123, 21);
+            AllowAssassinCheckBox.Size = new Size(99, 21);
             AllowAssassinCheckBox.TabIndex = 12;
-            AllowAssassinCheckBox.Text = "允许创建刺客职业";
+            AllowAssassinCheckBox.Text = "允许创建刺客";
             AllowAssassinCheckBox.UseVisualStyleBackColor = true;
             // 
             // StartGameCheckBox
@@ -497,9 +586,9 @@
             StartGameCheckBox.Location = new Point(28, 177);
             StartGameCheckBox.Margin = new Padding(5, 7, 5, 7);
             StartGameCheckBox.Name = "StartGameCheckBox";
-            StartGameCheckBox.Size = new Size(123, 21);
+            StartGameCheckBox.Size = new Size(99, 21);
             StartGameCheckBox.TabIndex = 11;
-            StartGameCheckBox.Text = "允许角色登录游戏";
+            StartGameCheckBox.Text = "允许登录游戏";
             StartGameCheckBox.UseVisualStyleBackColor = true;
             // 
             // DCharacterCheckBox
@@ -541,9 +630,9 @@
             PasswordCheckBox.Location = new Point(28, 57);
             PasswordCheckBox.Margin = new Padding(5, 7, 5, 7);
             PasswordCheckBox.Name = "PasswordCheckBox";
-            PasswordCheckBox.Size = new Size(123, 21);
+            PasswordCheckBox.Size = new Size(99, 21);
             PasswordCheckBox.TabIndex = 7;
-            PasswordCheckBox.Text = "允许账户更改密码";
+            PasswordCheckBox.Text = "允许更改密码";
             PasswordCheckBox.UseVisualStyleBackColor = true;
             // 
             // AccountCheckBox
@@ -552,9 +641,9 @@
             AccountCheckBox.Location = new Point(28, 27);
             AccountCheckBox.Margin = new Padding(5, 7, 5, 7);
             AccountCheckBox.Name = "AccountCheckBox";
-            AccountCheckBox.Size = new Size(111, 21);
+            AccountCheckBox.Size = new Size(99, 21);
             AccountCheckBox.TabIndex = 6;
-            AccountCheckBox.Text = "允许创建新账户";
+            AccountCheckBox.Text = "允许创建账户";
             AccountCheckBox.UseVisualStyleBackColor = true;
             // 
             // tabPage4
@@ -600,6 +689,212 @@
             label6.Size = new Size(80, 17);
             label6.TabIndex = 24;
             label6.Text = "保存数据延时";
+            // 
+            // tabPage6
+            // 
+            tabPage6.Controls.Add(gbRestedExpRates);
+            tabPage6.Controls.Add(gbGlobals);
+            tabPage6.Location = new Point(4, 26);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Padding = new Padding(3);
+            tabPage6.Size = new Size(476, 396);
+            tabPage6.TabIndex = 5;
+            tabPage6.Text = "倍率设置";
+            tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // gbRestedExpRates
+            // 
+            gbRestedExpRates.Controls.Add(label22);
+            gbRestedExpRates.Controls.Add(label23);
+            gbRestedExpRates.Controls.Add(label21);
+            gbRestedExpRates.Controls.Add(label20);
+            gbRestedExpRates.Controls.Add(tbRestedPeriod);
+            gbRestedExpRates.Controls.Add(tbRestedBuffLength);
+            gbRestedExpRates.Controls.Add(tbMaxRestedBonus);
+            gbRestedExpRates.Controls.Add(tbRestedExpBonus);
+            gbRestedExpRates.Controls.Add(lblMaxRestedBonus);
+            gbRestedExpRates.Controls.Add(lblRestedExpBonus);
+            gbRestedExpRates.Controls.Add(lblRestedBuffLength);
+            gbRestedExpRates.Controls.Add(lblPeriod);
+            gbRestedExpRates.Location = new Point(17, 133);
+            gbRestedExpRates.Name = "gbRestedExpRates";
+            gbRestedExpRates.Size = new Size(228, 150);
+            gbRestedExpRates.TabIndex = 8;
+            gbRestedExpRates.TabStop = false;
+            gbRestedExpRates.Text = "休息经验";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(158, 88);
+            label22.Name = "label22";
+            label22.Size = new Size(19, 17);
+            label22.TabIndex = 12;
+            label22.Text = "%";
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Location = new Point(158, 121);
+            label23.Name = "label23";
+            label23.Size = new Size(14, 17);
+            label23.TabIndex = 12;
+            label23.Text = "x";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(158, 55);
+            label21.Name = "label21";
+            label21.Size = new Size(32, 17);
+            label21.TabIndex = 12;
+            label21.Text = "分钟";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(158, 25);
+            label20.Name = "label20";
+            label20.Size = new Size(32, 17);
+            label20.TabIndex = 12;
+            label20.Text = "分钟";
+            // 
+            // tbRestedPeriod
+            // 
+            tbRestedPeriod.Location = new Point(96, 21);
+            tbRestedPeriod.Name = "tbRestedPeriod";
+            tbRestedPeriod.Size = new Size(56, 23);
+            tbRestedPeriod.TabIndex = 11;
+            tbRestedPeriod.KeyPress += tbRestedPeriod_KeyPress;
+            // 
+            // tbRestedBuffLength
+            // 
+            tbRestedBuffLength.Location = new Point(96, 51);
+            tbRestedBuffLength.Name = "tbRestedBuffLength";
+            tbRestedBuffLength.Size = new Size(56, 23);
+            tbRestedBuffLength.TabIndex = 11;
+            tbRestedBuffLength.KeyPress += tbRestedBuffLength_KeyPress;
+            // 
+            // tbMaxRestedBonus
+            // 
+            tbMaxRestedBonus.Location = new Point(96, 118);
+            tbMaxRestedBonus.Name = "tbMaxRestedBonus";
+            tbMaxRestedBonus.Size = new Size(56, 23);
+            tbMaxRestedBonus.TabIndex = 11;
+            tbMaxRestedBonus.KeyPress += tbMaxRestedBonus_KeyPress;
+            // 
+            // tbRestedExpBonus
+            // 
+            tbRestedExpBonus.Location = new Point(96, 85);
+            tbRestedExpBonus.Name = "tbRestedExpBonus";
+            tbRestedExpBonus.Size = new Size(56, 23);
+            tbRestedExpBonus.TabIndex = 11;
+            tbRestedExpBonus.KeyPress += tbRestedExpBonus_KeyPress;
+            // 
+            // lblMaxRestedBonus
+            // 
+            lblMaxRestedBonus.AutoSize = true;
+            lblMaxRestedBonus.Location = new Point(13, 121);
+            lblMaxRestedBonus.Name = "lblMaxRestedBonus";
+            lblMaxRestedBonus.Size = new Size(59, 17);
+            lblMaxRestedBonus.TabIndex = 0;
+            lblMaxRestedBonus.Text = "最高奖金:";
+            // 
+            // lblRestedExpBonus
+            // 
+            lblRestedExpBonus.AutoSize = true;
+            lblRestedExpBonus.Location = new Point(13, 88);
+            lblRestedExpBonus.Name = "lblRestedExpBonus";
+            lblRestedExpBonus.Size = new Size(71, 17);
+            lblRestedExpBonus.TabIndex = 0;
+            lblRestedExpBonus.Text = "经验值奖励:";
+            // 
+            // lblRestedBuffLength
+            // 
+            lblRestedBuffLength.AutoSize = true;
+            lblRestedBuffLength.Location = new Point(13, 55);
+            lblRestedBuffLength.Name = "lblRestedBuffLength";
+            lblRestedBuffLength.Size = new Size(62, 17);
+            lblRestedBuffLength.TabIndex = 0;
+            lblRestedBuffLength.Text = "Buff 时长:";
+            // 
+            // lblPeriod
+            // 
+            lblPeriod.AutoSize = true;
+            lblPeriod.Location = new Point(13, 24);
+            lblPeriod.Name = "lblPeriod";
+            lblPeriod.Size = new Size(35, 17);
+            lblPeriod.TabIndex = 0;
+            lblPeriod.Text = "周期:";
+            // 
+            // gbGlobals
+            // 
+            gbGlobals.Controls.Add(label19);
+            gbGlobals.Controls.Add(label18);
+            gbGlobals.Controls.Add(dropRateInput);
+            gbGlobals.Controls.Add(lblDropRate);
+            gbGlobals.Controls.Add(expRateInput);
+            gbGlobals.Controls.Add(lblExpRate);
+            gbGlobals.Location = new Point(17, 18);
+            gbGlobals.Name = "gbGlobals";
+            gbGlobals.Size = new Size(228, 100);
+            gbGlobals.TabIndex = 7;
+            gbGlobals.TabStop = false;
+            gbGlobals.Text = "全局变量";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(139, 63);
+            label19.Name = "label19";
+            label19.Size = new Size(14, 17);
+            label19.TabIndex = 11;
+            label19.Text = "x";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(139, 24);
+            label18.Name = "label18";
+            label18.Size = new Size(14, 17);
+            label18.TabIndex = 12;
+            label18.Text = "x";
+            // 
+            // dropRateInput
+            // 
+            dropRateInput.DecimalPlaces = 2;
+            dropRateInput.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            dropRateInput.Location = new Point(82, 61);
+            dropRateInput.Name = "dropRateInput";
+            dropRateInput.Size = new Size(51, 23);
+            dropRateInput.TabIndex = 9;
+            // 
+            // lblDropRate
+            // 
+            lblDropRate.AutoSize = true;
+            lblDropRate.Location = new Point(13, 63);
+            lblDropRate.Name = "lblDropRate";
+            lblDropRate.Size = new Size(59, 17);
+            lblDropRate.TabIndex = 7;
+            lblDropRate.Text = "掉落倍率:";
+            // 
+            // expRateInput
+            // 
+            expRateInput.DecimalPlaces = 2;
+            expRateInput.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            expRateInput.Location = new Point(82, 22);
+            expRateInput.Name = "expRateInput";
+            expRateInput.Size = new Size(51, 23);
+            expRateInput.TabIndex = 10;
+            // 
+            // lblExpRate
+            // 
+            lblExpRate.AutoSize = true;
+            lblExpRate.Location = new Point(13, 24);
+            lblExpRate.Name = "lblExpRate";
+            lblExpRate.Size = new Size(59, 17);
+            lblExpRate.TabIndex = 8;
+            lblExpRate.Text = "经验倍率:";
             // 
             // tabPage5
             // 
@@ -683,6 +978,24 @@
             SafeZoneBorderCheckBox.UseVisualStyleBackColor = true;
             SafeZoneBorderCheckBox.CheckedChanged += SafeZoneBorderCheckBox_CheckedChanged;
             // 
+            // maxConnectionsPerIP
+            // 
+            maxConnectionsPerIP.Location = new Point(142, 144);
+            maxConnectionsPerIP.Margin = new Padding(3, 4, 3, 4);
+            maxConnectionsPerIP.MaxLength = 5;
+            maxConnectionsPerIP.Name = "maxConnectionsPerIP";
+            maxConnectionsPerIP.Size = new Size(48, 23);
+            maxConnectionsPerIP.TabIndex = 25;
+            // 
+            // lblMaxConnectionsPerIP
+            // 
+            lblMaxConnectionsPerIP.AutoSize = true;
+            lblMaxConnectionsPerIP.Location = new Point(26, 147);
+            lblMaxConnectionsPerIP.Name = "lblMaxConnectionsPerIP";
+            lblMaxConnectionsPerIP.Size = new Size(115, 15);
+            lblMaxConnectionsPerIP.TabIndex = 24;
+            lblMaxConnectionsPerIP.Text = "Max connections/IP:";
+            // 
             // VPathDialog
             // 
             VPathDialog.FileName = "Mir2.Exe";
@@ -703,6 +1016,7 @@
             configTabs.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            groupBox2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             tabPage2.ResumeLayout(false);
@@ -711,10 +1025,16 @@
             tabPage3.PerformLayout();
             tabPage4.ResumeLayout(false);
             tabPage4.PerformLayout();
+            tabPage6.ResumeLayout(false);
+            gbRestedExpRates.ResumeLayout(false);
+            gbRestedExpRates.PerformLayout();
+            gbGlobals.ResumeLayout(false);
+            gbGlobals.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dropRateInput).EndInit();
+            ((System.ComponentModel.ISupportInitialize)expRateInput).EndInit();
             tabPage5.ResumeLayout(false);
             tabPage5.PerformLayout();
             ResumeLayout(false);
-
         }
 
         #endregion
@@ -772,5 +1092,33 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox lineMessageTimeTextBox;
         private System.Windows.Forms.Label label17;
+        private TextBox maxConnectionsPerIP;
+        private Label lblMaxConnectionsPerIP;
+        private TabPage tabPage6;
+        private GroupBox gbRestedExpRates;
+        private GroupBox gbGlobals;
+        private Label label19;
+        private Label label18;
+        private NumericUpDown dropRateInput;
+        private Label lblDropRate;
+        private NumericUpDown expRateInput;
+        private Label lblExpRate;
+        private Label lblMaxRestedBonus;
+        private Label lblRestedExpBonus;
+        private Label lblRestedBuffLength;
+        private Label lblPeriod;
+        private TextBox tbRestedBuffLength;
+        private TextBox tbMaxRestedBonus;
+        private TextBox tbRestedExpBonus;
+        private TextBox tbRestedPeriod;
+        private Label label22;
+        private Label label23;
+        private Label label21;
+        private Label label20;
+        private GroupBox groupBox2;
+        private Button ReaddArcDrops;
+        private Button ReaddSinDrops;
+        private Button RemoveArcDrops;
+        private Button RemoveSinDrops;
     }
 }
