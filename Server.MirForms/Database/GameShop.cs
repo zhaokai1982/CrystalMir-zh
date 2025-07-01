@@ -14,11 +14,15 @@ namespace Server
             InitializeComponent();
 
             LoadGameShopItems();
+
+            GameShopSearchBox_TextChanged(this, EventArgs.Empty);
         }
 
         private void GameShop_Load(object sender, EventArgs e)
         {
             UpdateInterface();
+            LoadItemsIntoComboBox();
+            ItemComboBox.SelectedIndex = -1;
         }
 
         private void GameShop_FormClosed(object sender, FormClosedEventArgs e)
@@ -59,7 +63,7 @@ namespace Server
 
             ClassFilter_lb.Text = "All Classes";
             CategoryFilter_lb.Text = "All Categories";
-            SectionFilter_lb.Text = "All Items";
+            SectionFilter_lb.Text = "全部商品";
         }
 
         private void UpdateGameShopList()
@@ -69,7 +73,7 @@ namespace Server
             for (int i = 0; i < SMain.EditEnvir.GameShopList.Count; i++)
             {
                 if (ClassFilter_lb.Text == "All Classes" || SMain.EditEnvir.GameShopList[i].Class == ClassFilter_lb.Text)
-                    if (SectionFilter_lb.Text == "All Items" || SMain.EditEnvir.GameShopList[i].TopItem && SectionFilter_lb.Text == "Top Items" || SMain.EditEnvir.GameShopList[i].Deal && SectionFilter_lb.Text == "Sale Items" || SMain.EditEnvir.GameShopList[i].Date > Envir.Now.AddDays(-7) && SectionFilter_lb.Text == "New Items")
+                    if (SectionFilter_lb.Text == "全部商品" || SMain.EditEnvir.GameShopList[i].TopItem && SectionFilter_lb.Text == "热门商品" || SMain.EditEnvir.GameShopList[i].Deal && SectionFilter_lb.Text == "促销商品" || SMain.EditEnvir.GameShopList[i].Date > Envir.Now.AddDays(-7) && SectionFilter_lb.Text == "新上商品")
                         if (CategoryFilter_lb.Text == "All Categories" || SMain.EditEnvir.GameShopList[i].Category == CategoryFilter_lb.Text)
                             GameShopListBox.Items.Add(SMain.EditEnvir.GameShopList[i]);
             }
@@ -102,6 +106,10 @@ namespace Server
                 Count_textbox.Text = String.Empty;
                 CreditOnlyBox.Checked = false;
                 GoldOnlyBox.Checked = false;
+
+                // Reset ComboBox
+                ItemComboBox.SelectedIndex = -1;
+
                 return;
             }
 
@@ -118,8 +126,28 @@ namespace Server
             Count_textbox.Text = SelectedItems[0].Count.ToString();
             CreditOnlyBox.Checked = SelectedItems[0].CanBuyCredit;
             GoldOnlyBox.Checked = SelectedItems[0].CanBuyGold;
-            GetStats();
 
+            // Set the ItemComboBox selection to match the ItemIndex
+            if (SelectedItems[0].Info != null && !string.IsNullOrEmpty(SelectedItems[0].Info.Name))
+            {
+                var itemName = SelectedItems[0].Info.Name;
+
+                // Select the corresponding item in the ComboBox
+                if (ItemComboBox.Items.Contains(itemName))
+                {
+                    ItemComboBox.SelectedItem = itemName;
+                }
+                else
+                {
+                    ItemComboBox.SelectedIndex = -1; // Reset if no match found
+                }
+            }
+            else
+            {
+                ItemComboBox.SelectedIndex = -1; // Reset if no valid Info or Name
+            }
+
+            GetStats();
         }
 
         private void GetStats()
@@ -320,7 +348,7 @@ namespace Server
         {
             ClassFilter_lb.Text = "All Classes";
             CategoryFilter_lb.Text = "All Categories";
-            SectionFilter_lb.Text = "All Items";
+            SectionFilter_lb.Text = "全部商品";
             UpdateGameShopList();
 
         }
@@ -356,6 +384,162 @@ namespace Server
                 SelectedItems[i].CanBuyCredit = CreditOnlyBox.Checked;
         }
 
+        #region Load Items
+        private void LoadItemsIntoComboBox()
+        {
+            ItemComboBox.Items.Clear();
 
+            // Add "None" as a default option
+            ItemComboBox.Items.Add("None");
+
+            // Add all items from ItemInfoList
+            foreach (var item in SMain.EditEnvir.ItemInfoList)
+            {
+                if (!string.IsNullOrEmpty(item.Name))
+                {
+                    ItemComboBox.Items.Add($"{item.Name}");
+                }
+            }
+
+            ItemComboBox.SelectedIndex = 0; // Default to "None"
+        }
+        #endregion
+
+        private void Add_Button_Click(object sender, EventArgs e)
+        {
+            if (SMain.EditEnvir.ItemInfoList == null || SMain.EditEnvir.ItemInfoList.Count == 0)
+            {
+                MessageBox.Show("没有可用的物品可添加.", "错误", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Get the first item's index as default
+            var defaultItem = SMain.EditEnvir.ItemInfoList.First();
+            int firstItemIndex = defaultItem.Index;
+
+            // Find the next available GIndex
+            int nextGIndex = SMain.EditEnvir.GameShopList.Count > 0
+                ? SMain.EditEnvir.GameShopList.Max(item => item.GIndex) + 1
+                : 1;
+
+            // Create the new GameShopItem
+            var newItem = new GameShopItem
+            {
+                GIndex = nextGIndex,
+                GoldPrice = 0,
+                CreditPrice = 0,
+                ItemIndex = firstItemIndex,
+                Info = defaultItem,
+                Date = DateTime.Now,
+                Class = "None",
+                Category = "None"
+            };
+
+            // Add to GameShopList (main data source)
+            SMain.EditEnvir.GameShopList.Add(newItem);
+
+            // Add to GameShopListBox for UI display
+            GameShopListBox.Items.Add(newItem);
+
+            // Set ComboBox to the first item's name
+            ItemComboBox.SelectedItem = $"{defaultItem.Name}";
+
+            // Save the database
+            Envir.SaveDB();
+        }
+
+        private void ItemComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Ensure we have a selected GameShopItem
+            if (SelectedItems == null || SelectedItems.Count == 0)
+                return;
+
+            // Get the selected item name
+            var selectedName = ItemComboBox.SelectedItem as string;
+            if (string.IsNullOrEmpty(selectedName) || selectedName == "None")
+                return;
+
+            // Find the corresponding ItemInfo object by name
+            var newItemInfo = SMain.EditEnvir.ItemInfoList
+                .FirstOrDefault(x => x.Name == selectedName);
+
+            if (newItemInfo == null)
+                return;
+
+            // Update the selected GameShopItem
+            var selectedGameShopItem = SelectedItems[0];
+            selectedGameShopItem.ItemIndex = newItemInfo.Index;
+            selectedGameShopItem.Info = newItemInfo;
+
+            // Refresh the GameShopListBox to reflect changes
+            int selectedIndex = GameShopListBox.SelectedIndex;
+            GameShopListBox.Items[selectedIndex] = selectedGameShopItem;
+        }
+
+        #region Search Box
+        private void GameShopSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = GameShopSearchBox.Text.Trim().ToLower();
+
+            GameShopListBox.Items.Clear();
+
+            foreach (var item in SMain.EditEnvir.GameShopList)
+            {
+                // Add to list if search text is empty or the item matches the search criteria
+                if (string.IsNullOrEmpty(searchText) ||
+                    (!string.IsNullOrEmpty(item.Info?.Name) && item.Info.Name.ToLower().Contains(searchText)))
+                {
+                    GameShopListBox.Items.Add(item);
+                }
+            }
+        }
+
+        #endregion
+
+        private void ExportButton_Click(object sender, EventArgs e)
+        {
+            if (GameShopListBox.Items.Count == 0)
+            {
+                MessageBox.Show("没有要导出的商品.", "导出失败", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string exportDir = Path.Combine(Application.StartupPath, "Exports");
+            if (!Directory.Exists(exportDir))
+                Directory.CreateDirectory(exportDir);
+
+            SaveFileDialog saveDialog = new SaveFileDialog
+            {
+                Title = "商店销售列表",
+                Filter = "Text Files (*.txt)|*.txt",
+                FileName = "GameShop_Export.txt",
+                InitialDirectory = exportDir
+            };
+
+            if (saveDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            List<string> lines = new List<string>
+            {
+                "商店销售列表",
+                ""
+            };
+
+            foreach (var obj in GameShopListBox.Items)
+            {
+                if (obj is GameShopItem item && item.Info != null)
+                {
+                    string name = item.Info.Name;
+                    uint gp = item.CreditPrice;
+                    uint gold = item.GoldPrice;
+
+                    lines.Add($"{name}: 元宝: {gp:n0} 金币: {gold:n0}");
+                }
+            }
+
+            File.WriteAllLines(saveDialog.FileName, lines);
+
+            MessageBox.Show("导出完成.", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
