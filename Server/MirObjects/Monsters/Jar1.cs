@@ -1,5 +1,6 @@
 ﻿using Server.MirDatabase;
 using Server.MirEnvir;
+using System;
 
 namespace Server.MirObjects.Monsters
 {
@@ -44,13 +45,25 @@ namespace Server.MirObjects.Monsters
             ActionTime = Envir.Time + 300;
             AttackTime = Envir.Time + AttackSpeed;
 
-            var monsters = Envir.MonsterInfoList.Where(x => x.Level <= Level && x.Level >= (Level - 10));
+            List<int> conquestAIs = new()
 
-            if (monsters.Count() > 0)
+
             {
-                var idx = Envir.Random.Next(monsters.Count());
+                72, // 攻城大门
+                73, // 西门
+                80, // 弓箭手
+                81, // 大门
+                82  // 墙
+            };
 
-                var monster = monsters.ElementAt(idx);
+            var validMonsters = Envir.MonsterInfoList
+                .Where(x => x.Level <= Level && x.Level >= (Level - 10) && !conquestAIs.Contains(x.AI))
+                .ToList();
+
+            if (validMonsters.Count > 0)
+            {
+                var idx = Envir.Random.Next(validMonsters.Count);
+                var monster = validMonsters[idx];
 
                 var mob = GetMonster(monster);
 
