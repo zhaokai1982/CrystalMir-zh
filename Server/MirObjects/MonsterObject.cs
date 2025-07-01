@@ -1691,7 +1691,7 @@ namespace Server.MirObjects
 
             AloneTime = Envir.Time + AloneDelay;
 
-            if (Route.Count > 0)
+            if (Route.Count > 0) //允许闲置的怪物在有路线时继续漫游
             {
                 Alone = false;
                 return;
