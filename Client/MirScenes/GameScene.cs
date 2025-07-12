@@ -11331,7 +11331,7 @@ namespace Client.MirScenes
 
                     if (blend)
                     {
-                        if (fileIndex > 0 && fileIndex < 199)
+                        if (fileIndex == 14 || fileIndex == 27 || (fileIndex > 99 & fileIndex < 199))
                         {
                             Libraries.MapLibs[fileIndex].DrawBlend(index, new Point(drawX, drawY - (3 * CellHeight)), Color.White, true, 1.0f);
                         }
