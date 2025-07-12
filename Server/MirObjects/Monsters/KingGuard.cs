@@ -1,11 +1,12 @@
 ﻿using Server.MirDatabase;
 using Server.MirEnvir;
 using S = ServerPackets;
-
+// 重写攻击范围属性，扩大到10格
 namespace Server.MirObjects.Monsters
 {
     public class KingGuard : MonsterObject
     {
+        // 重写攻击范围属性，返回固定值10
         protected virtual byte AttackRange
         {
             get
@@ -14,16 +15,18 @@ namespace Server.MirObjects.Monsters
             }
         }
 
+        // 构造函数，接收MonsterInfo对象初始化
         protected internal KingGuard(MonsterInfo info)
             : base(info)
         {
         }
-
+        // 判断目标是否在攻击范围内
         protected override bool InAttackRange()
         {
-            return CurrentMap == Target.CurrentMap && Functions.InRange(CurrentLocation, Target.CurrentLocation, AttackRange);
+            return CurrentMap == Target.CurrentMap && Functions.InRange(CurrentLocation, Target.CurrentLocation, AttackRange);// 判断是近战还是远程攻击
         }
 
+        // 攻击方法，根据距离和随机概率选择不同的攻击方式
         protected override void Attack()
         {
             if (!Target.IsAttackTarget(this))
@@ -89,6 +92,7 @@ namespace Server.MirObjects.Monsters
             }
         }
 
+        // 完成攻击处理，对目标造成伤害
         protected override void CompleteAttack(IList<object> data)
         {
             MapObject target = (MapObject)data[0];
@@ -114,6 +118,7 @@ namespace Server.MirObjects.Monsters
             }
         }
 
+        // 完成远程攻击处理，对目标造成伤害并可能附加中毒效果
         protected override void CompleteRangeAttack(IList<object> data)
         {
             MapObject target = (MapObject)data[0];
@@ -152,6 +157,7 @@ namespace Server.MirObjects.Monsters
             }
         }
 
+        // 处理目标，包括攻击和移动逻辑
         protected override void ProcessTarget()
         {
             if (Target == null) return;
