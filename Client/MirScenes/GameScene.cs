@@ -736,7 +736,11 @@ namespace Client.MirScenes
                         }
                         lastChangeTime = DateTime.Now;
 
+                        if (CMain.Time > IntelligentCreaturePickupTime)
+                        {
+                            IntelligentCreaturePickupTime = CMain.Time + 200;
                         Network.Enqueue(new C.IntelligentCreaturePickup { MouseMode = false, Location = MapControl.MapLocation });
+                        }
                         break;
                     case KeybindOptions.CreaturePickup:
                         if (DateTime.Now - lastChangeTime < changeCooldown)
@@ -745,7 +749,11 @@ namespace Client.MirScenes
                         }
                         lastChangeTime = DateTime.Now;
 
+                        if (CMain.Time > IntelligentCreaturePickupTime)
+                        {
+                            IntelligentCreaturePickupTime = CMain.Time + 200;
                         Network.Enqueue(new C.IntelligentCreaturePickup { MouseMode = true, Location = MapControl.MapLocation });
+                        }
                         break;
                     case KeybindOptions.ChangeAttackmode:
                         ChangeAttackMode();

@@ -575,6 +575,8 @@ namespace Client
 
             Program.Form.FormBorderStyle = Settings.FullScreen ? FormBorderStyle.None : FormBorderStyle.FixedDialog;
 
+            Program.Form.TopMost = Settings.FullScreen;
+
             DXManager.Parameters.Windowed = !Settings.FullScreen;
 
             Program.Form.ClientSize = new Size(Settings.ScreenWidth, Settings.ScreenHeight);
