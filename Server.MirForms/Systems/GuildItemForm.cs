@@ -24,7 +24,7 @@ namespace Server.Systems
             this.Load += GuildItemForm_Load;
         }
 
-        #region Load Guild Notice
+        #region 加载公会公告
         public void SetGuildNotice(List<string> notice)
         {
             GuildNoticeBox.Text = string.Join(Environment.NewLine, notice);
@@ -45,14 +45,14 @@ namespace Server.Systems
         }
         #endregion
 
-        #region Load Guild EXP
+        #region 加载公会经验值
         public void SetGuildExperience(long experience)
         {
             GuildEXPLabel.Text = $"公会经验: {experience}";
         }
         #endregion
 
-        #region Load Guild Ranks
+        #region 加载公会等级
         public void SetGuildRanks(List<GuildRank> ranks)
         {
             GuildRanksListView.Items.Clear();
@@ -65,7 +65,7 @@ namespace Server.Systems
         }
         #endregion
 
-        #region Load Guild Chat
+        #region 加载公会聊天
         public void LoadGuildChat()
         {
             if (main == null || Guild == null) return;
@@ -102,33 +102,33 @@ namespace Server.Systems
         }
         #endregion
 
-        #region Buff List
+        #region 增益列表
         public void SetBuffList(List<GuildBuff> activeBuffs, List<GuildBuffInfo> allBuffInfos)
         {
             BuffListView.Items.Clear();
 
-            // Dictionary to quickly check if a buff is active
+            // 用于快速检查增益效果是否生效的字典
             var activeBuffsById = activeBuffs.ToDictionary(buff => buff.Id);
 
             foreach (var buffInfo in allBuffInfos)
             {
                 ListViewItem item = new ListViewItem(buffInfo.Id.ToString());
 
-                // Display the name of the buff
+                // 显示增益效果的名称
                 item.SubItems.Add(buffInfo.Name);
 
-                // Check if this buff is active
+                // 检查这个增益效果是否处于激活状态
                 if (activeBuffsById.TryGetValue(buffInfo.Id, out GuildBuff activeBuff))
                 {
-                    // Buff is active
+                    // 增益效果已激活
                     item.SubItems.Add("激活特效");
                     item.SubItems.Add(activeBuff.ActiveTimeRemaining.ToString());
                 }
                 else
                 {
-                    // Buff is inactive
+                    // 增益效果未激活
                     item.SubItems.Add("尚未激活");
-                    item.SubItems.Add("0"); // No time remaining for inactive buff
+                    item.SubItems.Add("0"); // 非活动增益效果剩余时间为零
                 }
 
                 BuffListView.Items.Add(item);
@@ -136,7 +136,7 @@ namespace Server.Systems
         }
         #endregion
 
-        #region Delete Button
+        #region 删除按钮
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             if (MemberListView == null) return;
@@ -157,7 +157,7 @@ namespace Server.Systems
         }
         #endregion
 
-        #region Update Guild Notice
+        #region 更新公会公告
         private void RefreshNoticeButton_Click(object sender, EventArgs e)
         {
             var guild = SMain.Envir.GetGuild(GuildName);
@@ -165,7 +165,7 @@ namespace Server.Systems
 
             List<string> newNotice = GuildNoticeBox.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
 
-            // Log the guild notice update
+            // 记录公会通知更新情况
             string noticeUpdateLog = $"公会: '{GuildName}' 的公告由系统修改";
             SMain.EnqueueChat(noticeUpdateLog);
 
@@ -177,7 +177,7 @@ namespace Server.Systems
         }
         #endregion
 
-        #region Send Guild Message
+        #region 发送公会消息
         private void SendGuildMessageButton_Click(object sender, EventArgs e)
         {
             var guild = SMain.Envir.GetGuild(GuildName);
@@ -199,7 +199,7 @@ namespace Server.Systems
         }
         #endregion
 
-        #region Load Form
+        #region 加载表单
         private void GuildItemForm_Load(object sender, EventArgs e)
         {
             LoadGuildChat();
