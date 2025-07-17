@@ -8401,7 +8401,7 @@ namespace Server.MirObjects
                     Account.Auctions.Remove(auction);
                     Envir.Auctions.Remove(auction);
                     GainGold(gold);
-                    Enqueue(new S.MarketSuccess { Message = string.Format("{0}卖出价格: {1:#,##0}金币 \n收入: {2:#,##0}金币\n佣金: {3:#,##0}金币‎", auction.Item.FriendlyName, cost, gold, cost - gold) });
+                    Enqueue(new S.MarketSuccess { Message = string.Format("{0}卖出价格: {1:#,##0}金币 \n收入: {2:#,##0}金币\n佣金: {3:#,##0}金币", auction.Item.FriendlyName, cost, gold, cost - gold) });
                     MarketSearch(MatchName, MatchType);
                     return;
                 }
@@ -8427,7 +8427,7 @@ namespace Server.MirObjects
             {
                 if (auction.Sold && auction.Expired)
                 {
-                    MessageQueue.Enqueue(string.Format("拍卖已售出且已过期 {0}", Account.AccountID));
+                    MessageQueue.Enqueue(string.Format("已售出和已过期的拍卖 {0}", Account.AccountID));
                     return false;
                 }
 
@@ -8443,7 +8443,7 @@ namespace Server.MirObjects
 
                         if (auction.CurrentBuyerInfo != null)
                         {
-                        string message = string.Format("在对 {0} 的竞拍中已被超越。现退还 {1:#,##0} 金币", auction.Item.FriendlyName, auction.CurrentBid);
+                            string message = string.Format("你在{0}的出价已被超越。已退还{1:#,##0}金币.", auction.Item.FriendlyName, auction.CurrentBid);
 
                             Envir.MailCharacter(auction.CurrentBuyerInfo, gold: auction.CurrentBid, customMessage: message);
                         }
@@ -8465,14 +8465,18 @@ namespace Server.MirObjects
 
                     uint gold = (uint)Math.Max(0, cost - cost * Globals.Commission);
 
+
+
+
+
                     GainGold(gold);
-                Enqueue(new S.MarketSuccess { Message = string.Format("您以 {1:#,##0} 金币的价格出售了 {0}。\n收益：{2:#,##0} 金币。\n佣金：{3:#,##0} 金币", auction.Item.FriendlyName, cost, gold, cost - gold) });
+                    Enqueue(new S.MarketSuccess { Message = string.Format("你以{1:#,##0}金币的价格出售了{0}. \n收益：{2:#,##0} 金币。\n佣金：{3:#,##0} 金币.", auction.Item.FriendlyName, cost, gold, cost - gold) });
                     return true;
                 }
 
                 return false;
-            }
 
+            }
 
             if (Dead)
             {
